@@ -161,7 +161,8 @@ public partial class WelcomeScreen : ContentPage
     {
         if (currentIndex >= questions.Count)
         {
-            QuestionLabel.Text = "🎉 You finished all questions!";
+            //QuestionLabel.Text = "🎉 You finished all questions!";
+            await Navigation.PushAsync(new LevelSelection());
             OptionsList.ItemsSource = null;
             QuestionContinueButton.IsEnabled = false;
             AnimateProgress(1);

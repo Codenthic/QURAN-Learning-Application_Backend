@@ -1,6 +1,8 @@
-﻿using QuranJourney.Models;
+﻿using Microsoft.UI.Xaml.Media.Animation;
+using QuranJourney.Models;
 using QuranJourney.PageModels;
 using QuranJourney.Pages.Auth;
+using QuranJourney.Pages.Courses.Beginner;
 using QuranJourney.Pages.Onboarding;
 
 namespace QuranJourney.Pages

@@ -88,12 +88,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-                <VerticalStackLayout Padding="20,10,20,20" Spacing="30" BackgroundColor="White">
+                <VerticalStackLayout Padding="20,-10,20,20" Spacing="30" BackgroundColor="White">
                     <!-- 🔹 Fixed Header -->
-                <Grid ColumnDefinitions="Auto, *"
-          VerticalOptions="Start"
-          HeightRequest="50">
-
+                <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start" HeightRequest="50">
                     <!-- Back Icon -->
                     <Image x:Name="BackIcon"
                Source="back.png"
@@ -108,11 +105,11 @@
 
                     <!-- Progress Bar Container -->
                     <Grid x:Name="ProgressBarContainer"
-              Grid.Column="1"
-              Margin="15,0,0,0"
-              HeightRequest="14"
-              HorizontalOptions="FillAndExpand"
-              VerticalOptions="Center">
+                          Grid.Column="1"
+                          Margin="15,0,0,0"
+                          HeightRequest="14"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="Center">
 
                         <!-- Gray background -->
                         <BoxView BackgroundColor="#E0E0E0"
@@ -165,75 +162,64 @@
                             </WebView>
 
                             <!-- Speech bubble -->
-                            <Frame Grid.Column="1"
-               BackgroundColor="White"
-               BorderColor="#E0E0E0"
-               CornerRadius="18"
-               Padding="10"
-               Margin="-74,0,0,0"
-               HasShadow="False"
-               VerticalOptions="Center"
-               HorizontalOptions="Start">
+                            <Frame Grid.Column="1" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="18" Padding="10" Margin="-74,0,0,0" HasShadow="False" VerticalOptions="Center" HorizontalOptions="Start">
                                 <Label x:Name="QuestionLabel"
-                   Text="Loading question..."
-                   FontSize="16"
-                   TextColor="#555555"
-                   FontFamily="Sans-Serif"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
+                                  Text="Loading question..."
+                                  FontSize="16"
+                                  TextColor="#555555"
+                                  FontFamily="Sans-Serif"
+                                  VerticalTextAlignment="Center"
+                                  HorizontalTextAlignment="Center"/>
                             </Frame>
                         </Grid>
 
                         <!-- Scrollable content -->
                         <ScrollView Grid.Row="1">
                             <StackLayout>
-                                <!-- Yahan aap scrollable content add karein -->
+                                <!-- Language options -->
+                                <CollectionView x:Name="OptionsList"
+                       SelectionMode="Single"
+                       SelectionChanged="OptionsList_SelectionChanged">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="12"/>
+                                    </CollectionView.ItemsLayout>
+
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="local:OptionModel">
+                                            <Frame Padding="15,12"
+                          Margin="0"
+                          CornerRadius="14"
+                          BorderColor="#E0E0E0"
+                          BackgroundColor="White"
+                          HasShadow="False">
+                                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                                    <Image Source="{Binding Flag}"
+                                  HeightRequest="28"
+                                  WidthRequest="40"
+                                  VerticalOptions="Center" />
+                                                    <Label Text="{Binding Text}"
+                                  FontSize="16"
+                                  FontAttributes="Bold"
+                                  TextColor="#333333"
+                                  VerticalOptions="Center" />
+                                                </Grid>
+
+                                                <Frame.Triggers>
+                                                    <DataTrigger TargetType="Frame"
+                                        Binding="{Binding IsSelected}"
+                                        Value="True">
+                                                        <Setter Property="BackgroundColor" Value="#58CC02"/>
+                                                        <Setter Property="BorderColor" Value="#58CC02"/>
+                                                    </DataTrigger>
+                                                </Frame.Triggers>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
                             </StackLayout>
                         </ScrollView>
 
                     </Grid>
-
-                    <!-- Language options -->
-                    <CollectionView x:Name="OptionsList"
-                                    SelectionMode="Single"
-                                    SelectionChanged="OptionsList_SelectionChanged">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="12"/>
-                        </CollectionView.ItemsLayout>
-
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="local:OptionModel">
-                                <Frame Padding="15,12"
-                                       Margin="0"
-                                       CornerRadius="14"
-                                       BorderColor="#E0E0E0"
-                                       BackgroundColor="White"
-                                       HasShadow="False">
-                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
-                                        <Image Source="{Binding Flag}"
-                                               HeightRequest="28"
-                                               WidthRequest="40"
-                                               VerticalOptions="Center" />
-                                        <Label Text="{Binding Text}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"
-                                               TextColor="#333333"
-                                               VerticalOptions="Center" />
-                                    </Grid>
-
-                                    <Frame.Triggers>
-                                        <DataTrigger TargetType="Frame"
-                                                     Binding="{Binding IsSelected}"
-                                                     Value="True">
-                                            <Setter Property="BackgroundColor" Value="#58CC02"/>
-                                            <Setter Property="BorderColor" Value="#58CC02"/>
-                                        </DataTrigger>
-                                    </Frame.Triggers>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>
