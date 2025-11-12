@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:QuranJourney.PageModels"             
+             xmlns:models="clr-namespace:QuranJourney.Models"
+             xmlns:controls="clr-namespace:QuranJourney.Pages.Controls"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="QuranJourney.Pages.MainPage"
+             x:DataType="pageModels:MainPageModel"
+             BackgroundColor="White">
+    
+    
+    <Grid RowDefinitions="*,Auto,Auto"
+       Padding="20">
+        
+        
+        
+        <!-- Logo Area -->
+        <VerticalStackLayout Grid.Row="0"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     Spacing="5">
+            <!-- spacing kam kiya -->
+
+            <!-- GIF -->
+            <WebView WidthRequest="200" HeightRequest="150">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+                <html>
+                    <body style="margin:10; padding:0; display:flex; justify-content:flex-start; align-items:center; background: transparent; overflow:hidden; height:90%; width:90%;">
+                        <img src="giphy.gif" style="width:100%; height:100%; background: transparent; margin-left:10px; display:block;" />
+                    </body>
+                </html>
+                ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+            <!-- Text below GIF -->
+            <Label Text="Quran"
+           FontSize="32"
+           FontAttributes="Bold"
+           TextColor="#58CC02"
+           HorizontalOptions="Center"/>
+            <Label Text="Learning Application"
+           FontSize="14"
+           TextColor="#C4C2C2"
+           HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Buttons Area -->
+        <VerticalStackLayout Grid.Row="1"
+                          Spacing="15">
+            <Button Text="GET STARTED"
+        BackgroundColor="#58CC02"
+        TextColor="White"
+        FontAttributes="Bold"
+        FontSize="16"
+        HeightRequest="45"
+        CornerRadius="25"
+        Clicked="Get_Started">
+
+                <!-- Shadow Effect -->
+                <Button.Shadow>
+                    <Shadow Brush="#58CC02"
+                Offset="0,5"
+                Opacity="0.3"
+                Radius="8"/>
+                </Button.Shadow>
+            </Button>
+
+            <Button Text="I ALREADY HAVE AN ACCOUNT"
+                 BackgroundColor="Transparent"
+                 TextColor="#58CC02"
+                 FontAttributes="Bold"
+                 FontSize="16"
+                 HeightRequest="50"
+                 BorderColor="#58CC02"
+                 BorderWidth="2"
+                 CornerRadius="25"
+                 Clicked="Button_Clicked"
+                    />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
