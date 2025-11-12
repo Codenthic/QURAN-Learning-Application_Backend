@@ -8,7 +8,21 @@
     <Grid x:Name="ParentGrid" RowDefinitions="*,Auto">
 
         <!-- Welcome Screen -->
-        <Grid x:Name="MainGrid" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="True">
+        <Grid x:Name="MainGrid" Grid.Row="0" IsVisible="True">
+            <VerticalStackLayout Padding="20,10,20,20" Spacing="30" BackgroundColor="White">
+            <!-- 🔹 Fixed Header -->
+            <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start" HeightRequest="50">
+                <!-- Back Icon -->
+                <Image x:Name="BackPageIcon" Source="back.png" HeightRequest="28" WidthRequest="28" VerticalOptions="Center" HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center">
+      
             <VerticalStackLayout VerticalOptions="Center"
                              HorizontalOptions="Center"
                              Spacing="25">
@@ -66,8 +80,9 @@
 
             </VerticalStackLayout>
         </Grid>
-
+        </Grid>
         <!-- Question Screen -->
+        
         <Grid x:Name="QuestionGrid" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"  IsVisible="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -123,41 +138,59 @@
             <ScrollView Grid.Row="1">
                 <VerticalStackLayout Spacing="25" Padding="20,10">
 
-                    <!-- Duo image + speech bubble -->
-                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10" VerticalOptions="Center" Padding="10,0" Margin="0,-24">
-                        <!-- GIF -->
-                        <WebView WidthRequest="200" HeightRequest="150">
-                            <WebView.Source>
-                                <HtmlWebViewSource>
-                                    <HtmlWebViewSource.Html>
-                                        <![CDATA[
-                    <html>
-                        <body style="margin:0; padding:0; display:flex; justify-content:flex-start; align-items:center; background: transparent; overflow:hidden; height:90%; width:90%;">
-                            <img src="giphy.gif" style="width:70%; height:80%; background: transparent; margin-left:0px; display:block;" />
-                        </body>
-                    </html>
-                ]]>
-                                    </HtmlWebViewSource.Html>
-                                </HtmlWebViewSource>
-                            </WebView.Source>
-                        </WebView>
-                        <Frame Grid.Column="1"
-                               BackgroundColor="White"
-                               BorderColor="#E0E0E0"
-                               CornerRadius="18"
-                               Padding="10,10"
-                               Margin="-74,0,0,0"
-                               HasShadow="False"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start">
-                            <Label x:Name="QuestionLabel"
-                                   Text="Loading question..."
-                                   FontSize="16"
-                                   TextColor="#555555"
-                                   FontFamily="Sans-Serif"
-                                   VerticalTextAlignment="Center"
-                                   HorizontalTextAlignment="Center"/>
-                        </Frame>
+                    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
+
+                        <!-- Top fixed section -->
+                        <Grid Grid.Row="0" ColumnSpacing="10" Padding="10,0" Margin="0,-24,0,0" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- GIF -->
+                            <WebView WidthRequest="200" HeightRequest="150">
+                                <WebView.Source>
+                                    <HtmlWebViewSource>
+                                        <HtmlWebViewSource.Html>
+                                            <![CDATA[
+                        <html>
+                            <body style="margin:0; padding:0; display:flex; justify-content:flex-start; align-items:center; background: transparent; overflow:hidden; height:90%; width:90%;">
+                                <img src="giphy.gif" style="width:70%; height:80%; background: transparent; margin-left:0px; display:block;" />
+                            </body>
+                        </html>
+                        ]]>
+                                        </HtmlWebViewSource.Html>
+                                    </HtmlWebViewSource>
+                                </WebView.Source>
+                            </WebView>
+
+                            <!-- Speech bubble -->
+                            <Frame Grid.Column="1"
+               BackgroundColor="White"
+               BorderColor="#E0E0E0"
+               CornerRadius="18"
+               Padding="10"
+               Margin="-74,0,0,0"
+               HasShadow="False"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                                <Label x:Name="QuestionLabel"
+                   Text="Loading question..."
+                   FontSize="16"
+                   TextColor="#555555"
+                   FontFamily="Sans-Serif"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+                            </Frame>
+                        </Grid>
+
+                        <!-- Scrollable content -->
+                        <ScrollView Grid.Row="1">
+                            <StackLayout>
+                                <!-- Yahan aap scrollable content add karein -->
+                            </StackLayout>
+                        </ScrollView>
+
                     </Grid>
 
                     <!-- Language options -->
@@ -206,6 +239,7 @@
         </Grid>
 
         <!-- BOTTOM CONTINUE BUTTONS -->
+        
         <!-- Welcome Screen Continue Button -->
         <Button Grid.Row="1"
                 x:Name="WelcomeContinueButton"

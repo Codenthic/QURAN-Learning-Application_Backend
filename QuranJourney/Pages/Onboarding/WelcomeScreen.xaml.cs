@@ -69,7 +69,6 @@ public partial class WelcomeScreen : ContentPage
             //await Navigation.PushAsync(new BasicQuestions());
         }
     }
-
     private async Task ShowTypewriterFormattedAsync(Label label, FormattedString formattedString, int delay)
     {
         label.FormattedText = new FormattedString();
@@ -99,56 +98,65 @@ public partial class WelcomeScreen : ContentPage
         {
             new QuestionModel { Text = "What would you like to learn?",
                 Options = new List<OptionModel> {
-                    new OptionModel { Text = "Spanish", IsCorrect = true },
-                    new OptionModel { Text = "French" },
-                    new OptionModel { Text = "German" },
-                    new OptionModel { Text = "Italian" }
+                    new OptionModel { Text = "Arabic", IsCorrect = true ,Image = "learn_quran.png", }
                 } },
-            new QuestionModel { Text = "Which one means 'Hello'?",
+            new QuestionModel { Text = "How did you hear about Quran Application?",
                 Options = new List<OptionModel> {
-                    new OptionModel { Text = "Hola", IsCorrect = true },
-                    new OptionModel { Text = "Adiós" },
-                    new OptionModel { Text = "Gracias" }
+                    new OptionModel { Text = "News/article/blog", IsCorrect = true },
+                    new OptionModel { Text = "TikTok" },
+                    new OptionModel { Text = "Google Search" },
+                    new OptionModel { Text = "Friend/Family" },
+                    new OptionModel { Text = "Facebook/Istagram" },
+                    new OptionModel { Text = "App store" },
+                    new OptionModel { Text = "TV" },
+                    new OptionModel { Text = "YouTube" },
+                    new OptionModel { Text = "Other" }
                 } },
-            new QuestionModel { Text = "What is 'Apple' in Spanish?",
+            new QuestionModel
+            {
+                Text = "How much Quran do you know?",
+                Options = new List<OptionModel>
+                {
+                    new OptionModel { Text = "I'm new to learning the Quran", IsCorrect = true },
+                    new OptionModel { Text = "I can read a few short Surahs", IsCorrect = true },
+                    new OptionModel { Text = "I can recite basic Surahs with Tajweed", IsCorrect = true },
+                    new OptionModel { Text = "I can read and understand some meanings", IsCorrect = true },
+                    new OptionModel { Text = "I can recite fluently and reflect on meanings", IsCorrect = true }
+                }
+            },
+            new QuestionModel
+            {
+                Text = "Why are you learning the Quran?",
+                Options = new List<OptionModel>
+                {
+                    new OptionModel { Text = "To understand the words of Allah", IsCorrect = true },
+                    new OptionModel { Text = "To improve my recitation and Tajweed", IsCorrect = true },
+                    new OptionModel { Text = "To strengthen my connection with Islam", IsCorrect = true },
+                    new OptionModel { Text = "To memorize and act upon it in daily life", IsCorrect = true }
+                }
+            },
+
+            new QuestionModel { Text = "Let's set up a learning routine"},
+
+            new QuestionModel { Text = "Whats your daily learning goal?",
                 Options = new List<OptionModel> {
-                    new OptionModel { Text = "Manzana", IsCorrect = true },
-                    new OptionModel { Text = "Agua" },
-                    new OptionModel { Text = "Casa" }
+                    new OptionModel { Text = "3 min / day", IsCorrect = true },
+                    new OptionModel { Text = "10 min/ day" },
+                    new OptionModel { Text = "15 min / day" },
+                    new OptionModel { Text = "30 min / day" }
+
                 } },
-            new QuestionModel { Text = "What does 'Gracias' mean?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Thank you", IsCorrect = true },
-                    new OptionModel { Text = "Hello" },
-                    new OptionModel { Text = "Goodbye" }
-                } },
-            new QuestionModel { Text = "Which one means 'Book'?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Libro", IsCorrect = true },
-                    new OptionModel { Text = "Mesa" },
-                    new OptionModel { Text = "Silla" }
-                } },
-            new QuestionModel { Text = "What is 'Cat' in Spanish?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Gato", IsCorrect = true },
-                    new OptionModel { Text = "Perro" },
-                    new OptionModel { Text = "Pez" }
-                } },
-            new QuestionModel { Text = "Which one means 'Water'?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Agua", IsCorrect = true },
-                    new OptionModel { Text = "Leche" },
-                    new OptionModel { Text = "Pan" }
-                } },
-            new QuestionModel { Text = "What is 'House' in Spanish?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Casa", IsCorrect = true },
-                    new OptionModel { Text = "Coche" },
-                    new OptionModel { Text = "Escuela" }
-                } },
+            new QuestionModel { Text = "That's 25 wordsin your first week"},
+
+            new QuestionModel { Text = "I'll cheer you on from your home screen!"},
+
+          
+            new QuestionModel { Text = "Here's what you can achve in 3 months!", },
+            
+            new QuestionModel { Text = "Now let's find the best place to start!", },
+
         };
     }
-
     private async void DisplayQuestion()
     {
         if (currentIndex >= questions.Count)
@@ -162,21 +170,37 @@ public partial class WelcomeScreen : ContentPage
 
         var question = questions[currentIndex];
 
+        // Show question text
         QuestionLabel.Text = question.Text;
-
         await ShowTypewriterTextAsync(QuestionLabel, question.Text, 30);
 
-        foreach (var opt in question.Options)
+        // ✅ Handle questions without options
+        if (question.Options == null || question.Options.Count == 0)
         {
-            opt.BackgroundColor = Colors.White;
+            OptionsList.ItemsSource = null;
+
+            // Allow user to continue manually
+            QuestionContinueButton.IsEnabled = true;
+            QuestionContinueButton.BackgroundColor = Color.FromArgb("#58CC02");
+
+            // Update progress bar
+            double progress = (double)currentIndex / questions.Count;
+            AnimateProgress(progress);
+            return;
         }
 
+        // ✅ If question has options
+        foreach (var opt in question.Options)
+            opt.BackgroundColor = Colors.White;
+
         OptionsList.ItemsSource = new ObservableCollection<OptionModel>(question.Options);
+
+        // Disable Continue until an option is selected
         QuestionContinueButton.IsEnabled = false;
         QuestionContinueButton.BackgroundColor = Color.FromArgb("#E5E5E5");
 
-        double progress = (double)currentIndex / questions.Count;
-        AnimateProgress(progress);
+        double optionProgress = (double)currentIndex / questions.Count;
+        AnimateProgress(optionProgress);
     }
 
     private void OptionsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -202,19 +226,20 @@ public partial class WelcomeScreen : ContentPage
         QuestionContinueButton.IsEnabled = true;
         QuestionContinueButton.BackgroundColor = Color.FromArgb("#58CC02");
     }
-
     private async void ContinueButton_Clicked(object sender, EventArgs e)
     {
         if (selectedOption == null) return;
 
+        // Optional visual feedback (green/red flash)
         if (selectedOption.IsCorrect)
-        {
-            await DisplayAlert("✅ Correct!", "Nice job!", "Next");
-        }
+            selectedOption.BackgroundColor = Colors.LightGreen;
         else
-        {
-            await DisplayAlert("❌ Incorrect", "Try again next time!", "Next");
-        }
+            selectedOption.BackgroundColor = Colors.LightPink;
+
+        // Small delay so user can see the color feedback
+        await Task.Delay(600);
+
+        // Move to next question automatically
         currentIndex++;
         DisplayQuestion();
     }
@@ -253,6 +278,10 @@ public partial class WelcomeScreen : ContentPage
     {
         Shell.Current.GoToAsync(".."); // or Navigation.PopAsync();
     }
+    private void Back_Tapped(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(".."); // or Navigation.PopAsync();
+    }
     private async Task ShowTypewriterTextAsync(Label label, string text, int delay = 40)
     {
         label.Text = "";
@@ -264,7 +293,6 @@ public partial class WelcomeScreen : ContentPage
     }
 
 }
-
 public class QuestionModel
 {
     public string Text { get; set; }
@@ -279,6 +307,7 @@ public class OptionModel : INotifyPropertyChanged
     public string Text { get; set; }
     public string Flag { get; set; }
     public bool IsCorrect { get; set; }
+    public string Image { get; set; }
     public Color BackgroundColor { get; set; } = Colors.White;
 
     public bool IsSelected
