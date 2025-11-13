@@ -6,4 +6,8 @@ public partial class Beginner_What_You_hear : ContentPage
 	{
 		InitializeComponent();
 	}
+    private void CheckBtn(object sender, EventArgs e)
+    {
+        // Yahan aapka check logic
+    }
 }

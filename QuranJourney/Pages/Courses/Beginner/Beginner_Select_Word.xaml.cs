@@ -25,15 +25,6 @@ namespace QuranJourney.Pages.Courses.Beginner
             _questions = new List<QuestionsModel>
             {
                 new QuestionsModel { Word = "Alif", Options = new []{"الف", "ب", "ه"}, Correct = "الف" },
-                new QuestionsModel { Word = "Ba", Options = new []{"ب", "ت", "ج"}, Correct = "ب" },
-                new QuestionsModel { Word = "Ta", Options = new []{"ت", "ث", "ن"}, Correct = "ت" },
-                new QuestionsModel { Word = "Ha", Options = new []{"ه", "د", "ع"}, Correct = "ه" },
-                new QuestionsModel { Word = "Jeem", Options = new []{"ج", "ح", "خ"}, Correct = "ج" },
-                new QuestionsModel { Word = "Seen", Options = new []{"س", "ص", "ش"}, Correct = "س" },
-                new QuestionsModel { Word = "Noon", Options = new []{"ن", "م", "و"}, Correct = "ن" },
-                new QuestionsModel { Word = "Meem", Options = new []{"م", "ن", "ه"}, Correct = "م" },
-                new QuestionsModel { Word = "Kaf", Options = new []{"ك", "ق", "ف"}, Correct = "ك" },
-                new QuestionsModel { Word = "Qaf", Options = new []{"ق", "ك", "ف"}, Correct = "ق" },
             };
         }
 

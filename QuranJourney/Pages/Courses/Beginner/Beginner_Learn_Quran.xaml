@@ -73,7 +73,7 @@
                    HorizontalOptions="Center">
                 <Grid>
                     <Label x:Name="ArabicLetterLabel"
-                           Text="دو"
+                            Text="ء"
                            FontSize="70"
                            TextColor="White"
                            HorizontalOptions="Center"

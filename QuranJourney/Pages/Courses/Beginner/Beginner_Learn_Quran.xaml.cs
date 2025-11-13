@@ -13,12 +13,9 @@ namespace QuranJourney.Pages.Courses.Beginner
 
         private readonly List<QuestionModel> questions = new()
         {
-            new QuestionModel("دو", "What sound does this make?", "duu", new List<string> { "duu", "daa", "uu", "di" }),
-            new QuestionModel("ما", "What sound does this make?", "maa", new List<string> { "ma", "maa", "mee", "mo" }),
-            new QuestionModel("با", "What sound does this make?", "baa", new List<string> { "bi", "bu", "baa", "bo" }),
-            new QuestionModel("كا", "What sound does this make?", "kaa", new List<string> { "ka", "ku", "kee", "kaa" })
+            new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),      
         };
-
+        
         public Beginner_Learn_Quran()
         {
             InitializeComponent();
@@ -30,7 +27,7 @@ namespace QuranJourney.Pages.Courses.Beginner
         {
             if (currentQuestionIndex >= questions.Count)
             {
-                DisplayAlert("Done", "You’ve completed all questions!", "OK");
+                Navigation.PushAsync(new Beginner_Correct_Char());
                 return;
             }
 
@@ -207,6 +204,7 @@ namespace QuranJourney.Pages.Courses.Beginner
             });
         }
     }
+}
 
     public class QuestionModel
     {
@@ -223,4 +221,4 @@ namespace QuranJourney.Pages.Courses.Beginner
             Options = options;
         }
     }
-}
+

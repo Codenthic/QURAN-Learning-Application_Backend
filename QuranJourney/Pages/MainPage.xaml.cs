@@ -20,7 +20,7 @@ namespace QuranJourney.Pages
         }
         private async void Get_Started(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Courses.Beginner.Beginner_Select_Word());
+            await Navigation.PushAsync(new Onboarding.WelcomeScreen());
         }
     }
 }

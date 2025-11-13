@@ -21,9 +21,8 @@ public partial class LevelSelection : ContentPage
             // Highlight selected
             border.BackgroundColor = Color.FromArgb("#E8FCEB");
             // Optionally navigate or store level
-            await Navigation.PushAsync(new Beginner_Learn_Quran());
+            await Navigation.PushAsync(new CategorySelection());
         }
-
     }
 
     private async void TypeTextAsync(string message)

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Onboarding.CategorySelection"
+             Title="CategorySelection"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="20,30" Spacing="25">
+
+        <!-- 🔹 Header -->
+        <Label Text="Special Letter Categories"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <!-- 🔹 Categories Grid -->
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              ColumnDefinitions="*,*"
+              RowSpacing="25"
+              ColumnSpacing="20"
+              Padding="10,0"
+              VerticalOptions="Start">
+
+            <!-- 🔹 Row 1 -->
+            <Border x:Name="Option1Box"
+                    Grid.Row="0" Grid.Column="0"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Throat Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Throat Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Huruf-e-Halqi"
+                           FontSize="14"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="Option2Box"
+                    Grid.Row="0" Grid.Column="1"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Soft Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Soft Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 🔹 Row 2 -->
+            <Border x:Name="Option3Box"
+                    Grid.Row="1" Grid.Column="0"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Whistling Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Whistling Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Huruf-e-Safeer"
+                           FontSize="14"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="Option4Box"
+                    Grid.Row="1" Grid.Column="1"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Heavy Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Heavy Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Tafkheem Letters"
+                           FontSize="14"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 🔹 Row 3 -->
+            <Border x:Name="Option5Box"
+                    Grid.Row="2" Grid.Column="0"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Qalqalah Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Qalqalah Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="Option6Box"
+                    Grid.Row="2" Grid.Column="1"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 25"
+                    StrokeThickness="2"
+                    Stroke="#C0C0C0"
+                    HeightRequest="120">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Option_Tapped" CommandParameter="Similar Sound Letters"/>
+                </Border.GestureRecognizers>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                    <Label Text="Similar Sound Letters"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

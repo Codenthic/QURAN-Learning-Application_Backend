@@ -175,7 +175,7 @@
                                         <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Advanced"/>
                                     </Border.GestureRecognizers>
                                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                                        <Label Text="🏆 Tajweed Rules"
+                                        <Label Text="🏆 Advanced"
                            FontAttributes="Bold"
                            FontSize="22"
                            TextColor="#FF4444"
