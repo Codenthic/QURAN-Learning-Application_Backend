@@ -1,0 +1,105 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Courses.Beginner.Beginner_What_You_hear"
+             Title="Beginner_What_You_hear"
+             Background="White">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+
+        <!-- 🔹 HEADER + Progress Bar -->
+        <VerticalStackLayout Grid.Row="0" Padding="0,0,20,0" Spacing="12">
+            <!-- Top Row: Back Button + Progress Bar -->
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+                <!-- Back Button -->
+                <Image x:Name="xIcon"
+                        Source="x.png"
+                        HeightRequest="18"
+                        WidthRequest="28"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <!-- Progress Bar -->
+                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14"
+                       HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <!-- Gray background -->
+                    <BoxView BackgroundColor="#E0E0E0"
+                              CornerRadius="7"
+                              HeightRequest="14"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="Center" />
+                    <!-- Green fill -->
+                    <BoxView x:Name="ProgressFill"
+                              BackgroundColor="#58CC02"
+                              CornerRadius="7"
+                              HeightRequest="14"
+                              WidthRequest="0"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Center" />
+                </Grid>
+            </Grid>
+        </VerticalStackLayout>
+
+        <!-- 🔹 Question Label -->
+        <Label Grid.Row="0"
+               Text="Select what you hear"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Start"
+               Margin="10,40,20,0" />
+
+        <!-- 🔹 Speaker Button -->
+        <Button Grid.Row="1"
+                Text=""
+                ImageSource="volume_icon.png"
+                BackgroundColor="#1CB0F6"
+                WidthRequest="120"
+                HeightRequest="120"
+                CornerRadius="20"
+                Margin="20"
+                HorizontalOptions="Center"
+                VerticalOptions="Start" />
+
+        <!-- 🔹 Answer Buttons Grid -->
+        <Grid Grid.Row="1"
+              RowDefinitions="*,*"
+              ColumnDefinitions="*,*"
+              Padding="20"
+              Margin="0,160,0,0"
+              RowSpacing="15"
+              ColumnSpacing="20"
+              HorizontalOptions="Center"
+              VerticalOptions="Start">
+            <Button Grid.Row="0" Grid.Column="0" HeightRequest="90" WidthRequest="150"
+                    Text="duu" BackgroundColor="White" BorderColor="#D3D3D3"
+                    BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+            <Button Grid.Row="0" Grid.Column="1" HeightRequest="90" WidthRequest="150"
+                    Text="daad" BackgroundColor="White" BorderColor="#D3D3D3"
+                    BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+            <Button Grid.Row="1" Grid.Column="0" HeightRequest="90" WidthRequest="150"
+                    Text="da" BackgroundColor="White" BorderColor="#D3D3D3"
+                    BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+            <Button Grid.Row="1" Grid.Column="1" HeightRequest="90" WidthRequest="150"
+                    Text="aa" BackgroundColor="#E0F7FF" BorderColor="#D3D3D3"
+                    BorderWidth="2" TextColor="#1CB0F6" CornerRadius="10" FontAttributes="Bold" />
+        </Grid>
+
+        <!-- 🔹 Bottom CHECK BUTTON -->
+        <Button x:Name="ssCheckButton"
+                Grid.Row="2"
+                Text="CHECK"
+                FontSize="18"
+                FontAttributes="Bold"
+                BackgroundColor="#58CC02"
+                TextColor="White"
+                CornerRadius="14"
+                HeightRequest="55"
+                HorizontalOptions="FillAndExpand"
+                Margin="20,0,20,20" />
+
+    </Grid>
+</ContentPage>

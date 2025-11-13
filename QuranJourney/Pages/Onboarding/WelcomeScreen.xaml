@@ -144,8 +144,17 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- GIF -->
-                            <WebView WidthRequest="200" HeightRequest="150">
+                            <!-- ✅ Your Existing WebView GIF -->
+                            <WebView x:Name="ResultGifWebView"
+             HeightRequest="150"
+             WidthRequest="200"
+             BackgroundColor="Transparent"
+             IsVisible="False"
+             HorizontalOptions="Center"
+             VerticalOptions="End"
+             TranslationY="200"
+             Opacity="0"
+             ZIndex="0">
                                 <WebView.Source>
                                     <HtmlWebViewSource>
                                         <HtmlWebViewSource.Html>
@@ -155,7 +164,7 @@
                                 <img src="giphy.gif" style="width:70%; height:80%; background: transparent; margin-left:0px; display:block;" />
                             </body>
                         </html>
-                        ]]>
+                    ]]>
                                         </HtmlWebViewSource.Html>
                                     </HtmlWebViewSource>
                                 </WebView.Source>

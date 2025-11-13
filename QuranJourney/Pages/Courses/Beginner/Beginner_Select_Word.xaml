@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Courses.Beginner.Beginner_Select_Word"
+             Title="Beginner_Select_Word"
+             BackgroundColor="White">
+
+    <!-- 🔹 HEADER + Progress Bar -->
+    <VerticalStackLayout Grid.Row="0" Padding="0,0,20,0" Spacing="12">
+        <!-- Top Row: Back Button + Progress Bar -->
+        <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+            <!-- Back Button -->
+            <Image x:Name="xIcon"
+                        Source="x.png"
+                        HeightRequest="18"
+                        WidthRequest="28"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!-- Progress Bar -->
+            <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14" x:Name="ProgressBarContainer"
+                       HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <!-- Gray background -->
+                <BoxView BackgroundColor="#E0E0E0"
+                              CornerRadius="7"
+                              HeightRequest="14"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="Center" />
+                <!-- Green fill -->
+                <BoxView x:Name="ProgressFill"
+                              BackgroundColor="#58CC02"
+                              CornerRadius="7"
+                              HeightRequest="14"
+                              WidthRequest="0"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+
+        
+        
+        <VerticalStackLayout Padding="4"
+                             Spacing="30"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+            <!-- Card displaying the question -->
+            <Frame x:Name="QuestionFrame"
+                   BackgroundColor="#5480C0"
+                   CornerRadius="20"
+                   Padding="40"
+                   HasShadow="True"
+                   HorizontalOptions="Center">
+                <Label x:Name="QuestionLabel"
+                       Text="Alif"
+                       TextColor="White"
+                       FontSize="32"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Frame>
+
+            <!-- Buttons Row -->
+            <HorizontalStackLayout Spacing="20"
+                                   HorizontalOptions="Center">
+                <Button x:Name="Option1Btn"
+                        Clicked="Option_Clicked"
+                        BackgroundColor="White"
+                        BorderColor="#5480C0"
+                        BorderWidth="2"
+                        TextColor="Black"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        WidthRequest="80"
+                        HeightRequest="50" />
+                <Button x:Name="Option2Btn"
+                        Clicked="Option_Clicked"
+                        BackgroundColor="White"
+                        BorderColor="#5480C0"
+                        BorderWidth="2"
+                        TextColor="Black"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        WidthRequest="80"
+                        HeightRequest="50" />
+                <Button x:Name="Option3Btn"
+                        Clicked="Option_Clicked"
+                        BackgroundColor="White"
+                        BorderColor="#5480C0"
+                        BorderWidth="2"
+                        TextColor="Black"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        WidthRequest="80"
+                        HeightRequest="50" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+    </VerticalStackLayout>
+
+
+</ContentPage>

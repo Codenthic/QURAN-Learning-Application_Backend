@@ -1,72 +1,130 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuranJourney.Pages.Courses.Beginner.Beginner_Learn_Quran" BackgroundColor="White" Title="Learn Quran">
-    <Grid RowDefinitions="Auto,*,Auto" Padding="0" BackgroundColor="White">
-        <!-- 🔹 HEADER (Progress bar + Question) -->
-        <VerticalStackLayout Grid.Row="0" Padding="20,20,20,0" Spacing="12" VerticalOptions="Start">
-            <!-- Back Button + Progress -->
-            <Grid ColumnDefinitions="Auto,*" HeightRequest="40">
-                <!-- Back Button -->
-                <Image Source="x.png" HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Start">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer />
-                    </Image.GestureRecognizers>
-                </Image>
-                <!-- Progress Bar -->
-                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="12" VerticalOptions="Center">
-                    <!-- Gray background -->
-                    <BoxView BackgroundColor="#E0E0E0" CornerRadius="6" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
-                    <!-- Green Fill -->
-                    <BoxView x:Name="ProgressFill" BackgroundColor="#58CC02" CornerRadius="6" WidthRequest="100" HeightRequest="12" HorizontalOptions="Start" VerticalOptions="Center" />
-                </Grid>
-            </Grid>
-            <!-- Question -->
-            <Label x:Name="QuestionLabel" Text="What sound does this make?" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start" HorizontalOptions="Start"/>
-        </VerticalStackLayout>
-        <!-- 🔹 CENTER CONTENT -->
-        <VerticalStackLayout Grid.Row="1" Spacing="30" Padding="10,0,20,0" VerticalOptions="Center" HorizontalOptions="Center">
-            <!-- Arabic Letter Card -->
-            <Frame BackgroundColor="#1CB0F6"
-           CornerRadius="20"
-           WidthRequest="220"
-           HeightRequest="220"
-           HasShadow="False"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-                <Grid>
-                    <!-- Arabic Letter -->
-                    <Label Text="دو"
-                   FontSize="70"
-                   TextColor="White"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Courses.Beginner.Beginner_Learn_Quran"
+             BackgroundColor="White"
+             Title="Learn Quran">
 
-                    <!-- Speaker Button -->
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        <!-- 🔹 HEADER -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,20,20,0" Spacing="12">
+            <VerticalStackLayout Padding="20,-10,20,20" Spacing="30" BackgroundColor="White">
+                <!-- 🔹 Fixed Header -->
+                <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start" HeightRequest="50">
+                    <!-- Back Icon -->
+                    <Image x:Name="BackIcon"
+                          Source="x.png"
+                          HeightRequest="28"
+                          WidthRequest="28"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Start">
+                          <Image.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <!-- Progress Bar Container -->
+                    <Grid x:Name="ProgressBarContainer"
+              Grid.Column="1"
+              Margin="15,0,0,0"
+              HeightRequest="14"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="Center">
+
+                        <!-- Gray background -->
+                        <BoxView BackgroundColor="#E0E0E0"
+         CornerRadius="7"
+         HeightRequest="14"
+         HorizontalOptions="FillAndExpand"
+         VerticalOptions="Center" />
+
+                        <!-- Green filled portion -->
+                        <BoxView x:Name="ProgressFill"
+         BackgroundColor="#58CC02"
+         CornerRadius="7"
+         HeightRequest="14"
+         WidthRequest="0"
+         HorizontalOptions="Start"
+         VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </VerticalStackLayout>
+
+
+
+            <!-- Question -->
+            <Label x:Name="QuestionLabel"
+                   Text="What sound does this make?"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+        </VerticalStackLayout>
+
+        <!-- 🔹 CENTER CONTENT -->
+        <VerticalStackLayout Grid.Row="1" Padding="10,0,10,0" Spacing="20"
+                             VerticalOptions="Center" HorizontalOptions="Center">
+            <!-- Arabic Letter Card -->
+            <Frame x:Name="LetterCard"
+                   BackgroundColor="#1CB0F6"
+                   CornerRadius="20"
+                   WidthRequest="220"
+                   HeightRequest="220"
+                   HasShadow="False"
+                   HorizontalOptions="Center">
+                <Grid>
+                    <Label x:Name="ArabicLetterLabel"
+                           Text="دو"
+                           FontSize="70"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
                     <Button x:Name="SpeakerButton"
-                    ImageSource="volume_icon.png"
-                    WidthRequest="70"
-                    HeightRequest="70"
-                    BackgroundColor="Transparent"
-                    HorizontalOptions="End"
-                    VerticalOptions="End"
-                    Margin="0,0,-30,-30"
-                    Clicked="SpeakerButton_Clicked"/>
+                            ImageSource="volume_icon.png"
+                            WidthRequest="70"
+                            HeightRequest="70"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            Margin="0,0,-30,-30"
+                            Clicked="SpeakerButton_Clicked"/>
                 </Grid>
             </Frame>
-        </VerticalStackLayout>
 
-
-        <!-- 🔹 CENTER CONTENT -->
-        <VerticalStackLayout Grid.Row="1" Spacing="30" Padding="10,330,20,0" VerticalOptions="Center" Margin="-30,0,0,0" HorizontalOptions="Center">
             <!-- Answer Options -->
-            <Grid ColumnDefinitions="*,*,*" Margin="0,30,0,0" ColumnSpacing="10" HorizontalOptions="Center">
-                <Button Text="duu" FontSize="18" BackgroundColor="White" TextColor="Black" BorderColor="#E0E0E0" BorderWidth="1" WidthRequest="100" CornerRadius="14" HeightRequest="50"/>
-                <Button Grid.Column="1" Text="daa" FontSize="18" BackgroundColor="White" TextColor="Black" BorderColor="#E0E0E0" BorderWidth="1" WidthRequest="100" CornerRadius="14" HeightRequest="50"/>
-                <Button Grid.Column="2" Text="uu" FontSize="18" BackgroundColor="White" TextColor="Black" WidthRequest="100" BorderColor="#E0E0E0" BorderWidth="1" CornerRadius="14" HeightRequest="50"/>
+            <Grid x:Name="OptionsGrid"
+                  ColumnDefinitions="*,*,*"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="10"
+                  RowSpacing="10"
+                  HorizontalOptions="Center">
+                <!-- Buttons dynamically added in code-behind -->
             </Grid>
+            <!-- Result GIF WebView -->
+            <WebView
+        x:Name="ResultGifWebView"
+        HeightRequest="200"
+        BackgroundColor="Transparent"
+        IsVisible="False"
+        Opacity="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Start"
+        ZIndex="2">
+            </WebView>
+
+            <!-- CHECK BUTTON -->
+            <Grid Grid.Row="2" Padding="20,30,20,25">
+                <Button x:Name="CheckButton"
+                Text="CHECK"
+                FontSize="18"
+                FontAttributes="Bold"
+                BackgroundColor="#E0E0E0"
+                TextColor="White"
+                CornerRadius="14"
+                HeightRequest="55"
+                Clicked="CheckButton_Clicked"
+                HorizontalOptions="FillAndExpand" />
+            </Grid>
+
         </VerticalStackLayout>
-        <!-- 🔹 BOTTOM FIXED CHECK BUTTON -->
-        <Grid Grid.Row="2" Padding="20,30,20,25" BackgroundColor="White">
-            <Button Text="CHECK" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="55" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
-        </Grid>
     </Grid>
 </ContentPage>
