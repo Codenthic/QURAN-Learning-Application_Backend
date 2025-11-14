@@ -28,6 +28,7 @@
                           HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <!-- Gray background -->
                     <BoxView BackgroundColor="#E0E0E0"
+                             x:Name="ProgressBarContainer"
                                  CornerRadius="7"
                                  HeightRequest="14"
                                  HorizontalOptions="FillAndExpand"
@@ -43,26 +44,30 @@
                 </Grid>
             </Grid>
 
-            <!-- Question Label -->
-            <Label x:Name="QuestionsLabel"
-                       Text="Match the Arabic letters with their pronunciation"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="Black"
-                       Margin="10,0,0,0"/>
+
         </VerticalStackLayout>
         <!-- ================= HEADER ================= -->
 
         <!-- ================= Correct Char CONTENT ================= -->
-        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <VerticalStackLayout Grid.Row="0" x:Name="Correct_Char_Header" Padding="4,10,20,0" Spacing="12" IsVisible="True">
+            <!-- Question Label -->
+            <Label x:Name="QuestionsLabel"
+                 Text="Select the correct characters for 'ghaa'"
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 TextColor="Black"
+                 Margin="10,47,0,0"/>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="True" >
             <Grid Grid.Row="1"
-      RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-      ColumnDefinitions="*,*"
-      Padding="20"
-      RowSpacing="15"
-      ColumnSpacing="20"
-      HorizontalOptions="Center"
-      VerticalOptions="Center">
+                 RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                 ColumnDefinitions="*,*"
+                 Padding="20"
+                 RowSpacing="15"
+                 ColumnSpacing="20"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
                 <!-- Row 1 -->
                 <Button Grid.Row="0" Grid.Column="0" HeightRequest="160" Text="غ"
             BackgroundColor="White"
@@ -70,12 +75,12 @@
             BorderColor="#D3D3D3"
             BorderWidth="2"
             FontSize="40"
-            WidthRequest="120"
+            WidthRequest="140"
             TextColor="Black"
             CornerRadius="10"/>
                 <Button Grid.Row="0" Grid.Column="1" HeightRequest="160" Text="gh"
             BackgroundColor="White"
-            WidthRequest="120"
+            WidthRequest="140"
             FontSize="40"
             FontAttributes="Bold"
             BorderColor="#D3D3D3"
@@ -90,13 +95,13 @@
             BorderColor="#D3D3D3"
             BorderWidth="2"
             FontSize="40"
-            WidthRequest="120"
+            WidthRequest="140"
             TextColor="Black"
             CornerRadius="10"/>
                 <Button Grid.Row="1" Grid.Column="1" HeightRequest="160" Text="ghaa"
             BackgroundColor="White"
             FontAttributes="Bold"
-            WidthRequest="120"
+            WidthRequest="140"
             BorderColor="#D3D3D3"
             FontSize="40"
             BorderWidth="2"
@@ -106,6 +111,17 @@
         </Grid>
 
         <!-- =================  Matching Pair CONTENT ================= -->
+        <VerticalStackLayout Grid.Row="0" x:Name="Matching_pair_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+            <!-- Question Label -->
+            <Label x:Name="QuestionsLabel"
+                 Text="Tap the matching pairs"
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 TextColor="Black"
+                 Margin="10,47,0,0"/>
+        </VerticalStackLayout>
+
+
         <Grid Grid.Row="1" x:Name="Matching_pair_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
             <!-- 🔹 Matching Pairs Grid -->
@@ -144,6 +160,7 @@
         </Grid>
 
         <!-- =================  Select Word CONTENT ================= -->
+
         <Grid Grid.Row="1" x:Name="Select_Word_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
             <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
@@ -199,6 +216,17 @@
         </Grid>
 
         <!-- ================= What You Hear  CONTENT ================= -->
+
+        <VerticalStackLayout Grid.Row="0" x:Name="What_You_Hear_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+            <!-- Question Label -->
+            <Label x:Name="QuestionsLabel"
+                 Text="Select what you hear"
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 TextColor="Black"
+                 Margin="10,47,0,0"/>
+        </VerticalStackLayout>
+
         <Grid Grid.Row="1" x:Name="What_You_Hear_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
             <!-- 🔹 Speaker Button -->
             <Button Grid.Row="1" Text="" ImageSource="volume_icon.png" BackgroundColor="#1CB0F6" WidthRequest="120" HeightRequest="120" CornerRadius="20" Margin="20" HorizontalOptions="Center" VerticalOptions="Start" />
@@ -217,7 +245,17 @@
         </Grid>
 
         <!-- ================= What_Sound CONTENT ================= -->
-        <Grid Grid.Row="1" x:Name="What_Sound_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="True" >
+        <VerticalStackLayout Grid.Row="0" x:Name="What_Sound_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+            <!-- Question Label -->
+            <Label x:Name="QuestionsLabel"
+                 Text="What sound does this make?"
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 TextColor="Black"
+                 Margin="10,47,0,0"/>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" x:Name="What_Sound_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
             <VerticalStackLayout Grid.Row="1" Padding="0,0,10,0" Spacing="20"
                      VerticalOptions="Center" HorizontalOptions="Center">
@@ -260,28 +298,10 @@
 
         <!-- ================= FOOTER ================= -->
         <!-- 🔹 Bottom CHECK BUTTON -->
-        <Button x:Name="CheckButton"
-           Grid.Row="2"
-           Text="CHECK"
-           FontSize="18"
-           FontAttributes="Bold"
-           BackgroundColor="#E0E0E0"
-           TextColor="White"
-           CornerRadius="14"
-           HeightRequest="25"
-           HorizontalOptions="FillAndExpand"
-           Margin="20,0,20,20" 
-                    ZIndex="1"/>
+        <Button x:Name="CheckButton" Grid.Row="2" Text="CHECK" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="25" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"  ZIndex="1"/>
         
         <!-- Correct Box OVERLAY -->
-        <Frame x:Name="CorrectBox"
-           Grid.RowSpan="3"
-           VerticalOptions="End"
-           Margin="0,0,0,0"
-           BackgroundColor="#58CC02"
-           CornerRadius="1"
-           IsVisible="False"     
-           HeightRequest="130">
+        <Frame x:Name="CorrectBox" Grid.RowSpan="3" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#58CC02" CornerRadius="1" IsVisible="False" HeightRequest="130">
             <Label Text="Correct Answer!"
                TextColor="White"
                FontSize="18"
@@ -289,20 +309,11 @@
         </Frame>
         
         <!-- Worng Box OVERLAY -->
-        <Frame x:Name="WorngBox"
-             Grid.RowSpan="3"
-             VerticalOptions="End"
-             Margin="0,0,0,0"
-             IsVisible="False"
-             BackgroundColor="Red"
-             CornerRadius="1"
-             HeightRequest="130">
-             <Label Text="Worng Answer!"
+        <Frame x:Name="WorngBox" Grid.RowSpan="3" VerticalOptions="End" Margin="0,0,0,0" IsVisible="False" BackgroundColor="Red" CornerRadius="1" HeightRequest="130">
+            <Label Text="Worng Answer!"
              TextColor="White"
              FontSize="18"
              HorizontalOptions="Center"/>
         </Frame>
-
-
     </Grid>
 </ContentPage>

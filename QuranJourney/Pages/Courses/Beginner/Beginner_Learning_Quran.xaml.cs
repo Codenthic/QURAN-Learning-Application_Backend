@@ -2,12 +2,17 @@
 
 public partial class Beginner_Learning_Quran : ContentPage
 {
-	public Beginner_Learning_Quran()
+    private int currentQuestionIndex = 0;
+    private string selectedAnswer = string.Empty;
+    private bool isAnswerChecked = false;
+
+    public Beginner_Learning_Quran()
 	{
 		InitializeComponent();
         LoadQuestion();
         AnimateProgress(0.0);
     }
+
     private async void AnimateProgress(double targetProgress)
     {
         targetProgress = Math.Clamp(targetProgress, 0.0, 1.0);
@@ -33,7 +38,8 @@ public partial class Beginner_Learning_Quran : ContentPage
 
             animation.Commit(this, "ProgressAnim", 16, 800);
         });
-    }
+    }    
+    
     private void LoadQuestion()
     {
         if (currentQuestionIndex >= questions.Count)
@@ -76,11 +82,30 @@ public partial class Beginner_Learning_Quran : ContentPage
                 row++;
             }
         }
-
-        ResultGifWebView.IsVisible = false;
-        ResultGifWebView.Opacity = 0;
-        ResultGifWebView.TranslationY = 200;
     }
+    
+    private void Option_Clicked(object sender, EventArgs e)
+    {
+        var btn = (Button)sender;
+        selectedAnswer = btn.Text;
+
+        // Reset all buttons
+        foreach (var child in OptionsGrid.Children)
+        {
+            if (child is Button b)
+            {
+                b.BackgroundColor = Colors.White;
+                b.TextColor = Colors.Black;
+            }
+        }
+
+        // Highlight selected
+        btn.BackgroundColor = Color.FromArgb("#1CB0F6");
+        btn.TextColor = Colors.White;
+
+        CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
+    }
+
     private readonly List<QuestionModel> questions = new()
         {
             new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),
