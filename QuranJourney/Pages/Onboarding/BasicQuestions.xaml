@@ -2,98 +2,151 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuranJourney.Pages.Onboarding.BasicQuestions"
+              xmlns:local="clr-namespace:QuranJourney.Pages.Onboarding"
                BackgroundColor="White"
              Title="BasicQuestions">
 
-    <!--<Grid RowDefinitions="Auto,*,Auto">
-        <Grid Grid.Row="0" Padding="20,40,20,10">
-            <Border x:Name="ProgressBarContainer"
-            BackgroundColor="#E0E0E0"
-            StrokeShape="RoundRectangle 10"
-            HeightRequest="14"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="Center">
-                <Grid x:Name="ProgressBarGrid"
-              HorizontalOptions="FillAndExpand"
-              VerticalOptions="FillAndExpand">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+
+        <!-- ================= HEADER ================= -->
+
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <!-- Top Row: Back Button + Progress Bar -->
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+                <!-- Back Button -->
+                <Image x:Name="xIcon"
+               Source="back.png"
+               HeightRequest="28"
+               WidthRequest="28"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <!-- Progress Bar -->
+                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14"
+              HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <!-- Gray background -->
+                    <BoxView BackgroundColor="#E0E0E0"
+                     x:Name="ProgressBarContainer"
+                     CornerRadius="7"
+                     HeightRequest="14"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Center" />
+                    <!-- Green fill -->
                     <BoxView x:Name="ProgressFill"
                      BackgroundColor="#58CC02"
-                     HorizontalOptions="Start"
-                     VerticalOptions="FillAndExpand"
+                     CornerRadius="7"
+                     HeightRequest="14"
                      WidthRequest="0"
-                     CornerRadius="10"/>
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center" />
                 </Grid>
-            </Border>
-        </Grid>
+            </Grid>
 
-        --><!-- MAIN CONTENT --><!--
+            <!-- Question + GIF Section -->
+            <Grid ColumnSpacing="10" Margin="0,-30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Side: GIF -->
+                <WebView x:Name="ResultGifWebView"
+                 HeightRequest="150"
+                 WidthRequest="150"
+                 BackgroundColor="Transparent"
+                 IsVisible="True"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center">
+                    <WebView.Source>
+                        <HtmlWebViewSource>
+                            <HtmlWebViewSource.Html>
+                                <![CDATA[
+                        <html>
+                            <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; height:100%; width:100%;">
+                                <img src="giphy.gif" style="width:60%; height:60%; background: transparent; display:block;" />
+                            </body>
+                        </html>
+                        ]]>
+                            </HtmlWebViewSource.Html>
+                        </HtmlWebViewSource>
+                    </WebView.Source>
+                </WebView>
+
+                <!-- Right Side: Speech Bubble with Question -->
+                <Frame Grid.Column="1"
+               BackgroundColor="White"
+               BorderColor="#E0E0E0"
+               CornerRadius="18"
+               Padding="12"
+               HasShadow="False"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                    <Label x:Name="QuestionLabel"
+                   Text="Loading question..."
+                   FontSize="16"
+                   TextColor="#555555"
+                   FontFamily="Sans-Serif"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"/>
+                </Frame>
+            </Grid>
+            <!-- Horizontal Line Separator -->
+            <BoxView Margin="0,-40,0,0" HeightRequest="1" BackgroundColor="#E0E0E0" HorizontalOptions="FillAndExpand"/>
+
+        </VerticalStackLayout>
+
+
+
+        <!-- ================= HEADER ================= -->
+
+
+        <!-- Scrollable content -->
+
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="25" Padding="20,10" Margin="0,0,0,80">
+            <StackLayout>
 
-                --><!-- Duo image + speech bubble --><!--
-                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10" VerticalOptions="Center" Padding="10,0">
-                    <Image Source="cartoonremovebg.png"
-                           HeightRequest="90"
-                           WidthRequest="90"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Start"/>
+                <!-- Language options -->
 
-                    <Frame Grid.Column="1"
-                           BackgroundColor="White"
-                           BorderColor="#E0E0E0"
-                           CornerRadius="18"
-                           Padding="15,10"
-                           HasShadow="False"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Start">
-                        <Label x:Name="QuestionLabel"
-                               Text="Loading question..."
-                               FontSize="16"
-                               TextColor="#555555"
-                               FontFamily="Sans-Serif"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"/>
-                    </Frame>
-                </Grid>
-
-                --><!-- Language options --><!--
                 <CollectionView x:Name="OptionsList"
-                SelectionMode="Single"
-                SelectionChanged="OptionsList_SelectionChanged">
-
-                    --><!-- 👇 This is the missing part --><!--
+         SelectionMode="Single"
+                                      Margin="12,0"  
+         SelectionChanged="OptionsList_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="12"/>
-                        --><!-- 12 = gap between each option; change to 15 or 20 if you want bigger spacing --><!--
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="local:OptionModel">
                             <Frame Padding="15,12"
-               Margin="0"
-               CornerRadius="14"
-               BorderColor="#E0E0E0"
-               BackgroundColor="White"
-               HasShadow="False">
+            Margin="0"
+            CornerRadius="14"
+            BorderColor="#E0E0E0"
+            BackgroundColor="White"
+            HasShadow="False">
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Image Source="{Binding Flag}"
-                       HeightRequest="28"
-                       WidthRequest="40"
-                       VerticalOptions="Center" />
+                    HeightRequest="28"
+                    WidthRequest="40"
+                    VerticalOptions="Center" />
                                     <Label Text="{Binding Text}"
-                       FontSize="16"
-                       FontAttributes="Bold"
-                       TextColor="#333333"
-                       VerticalOptions="Center" />
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
                                 </Grid>
 
-                                --><!-- 👇 Add this to highlight selected item --><!--
                                 <Frame.Triggers>
                                     <DataTrigger TargetType="Frame"
-                             Binding="{Binding IsSelected}"
-                             Value="True">
+                          Binding="{Binding IsSelected}"
+                          Value="True">
                                         <Setter Property="BackgroundColor" Value="#58CC02"/>
-                                        --><!-- Green highlight --><!--
                                         <Setter Property="BorderColor" Value="#58CC02"/>
                                     </DataTrigger>
                                 </Frame.Triggers>
@@ -101,22 +154,13 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
-            </VerticalStackLayout>
+            </StackLayout>
         </ScrollView>
-        --><!-- FOOTER --><!--
-        <Grid Grid.Row="2" Padding="20,10,20,30">
-            <Button x:Name="ContinueButton"
-                    Text="CONTINUE"
-                    FontAttributes="Bold"
-                    FontSize="18"
-                    CornerRadius="12"
-                    HeightRequest="55"
-                    BackgroundColor="#E5E5E5"
-                    TextColor="White"
-                    IsEnabled="False"
-                    Clicked="ContinueButton_Clicked"/>
-        </Grid>
 
-    </Grid>-->
+
+
+        <!-- ================= FOOTER ================= -->
+        <!-- 🔹 Bottom CHECK BUTTON -->
+        <Button x:Name="QuestionContinueButton"  Clicked="ContinueButton_Clicked" Grid.Row="2" Text="CONTINUE" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="25" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"  ZIndex="1"/>
+    </Grid>
 </ContentPage>

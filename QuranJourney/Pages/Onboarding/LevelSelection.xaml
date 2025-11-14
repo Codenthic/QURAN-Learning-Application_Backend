@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuranJourney.Pages.Onboarding.LevelSelection"
@@ -10,190 +9,186 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <VerticalStackLayout Padding="20,20,20,20" Spacing="30" BackgroundColor="White">
-            <!-- 🔹 Fixed Header -->
-            <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start" HeightRequest="50">
-                <!-- Back Icon -->
-                <Image x:Name="BackIcon"
+
+        <!-- ================= HEADER ================= -->
+
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <!-- Top Row: Back Button + Progress Bar -->
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+                <!-- Back Button -->
+                <Image x:Name="xIcon"
                Source="back.png"
                HeightRequest="28"
                WidthRequest="28"
                VerticalOptions="Center"
                HorizontalOptions="Start">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Back_Tapped" />
+                        <TapGestureRecognizer />
                     </Image.GestureRecognizers>
                 </Image>
 
-                <!-- Progress Bar Container -->
-                <Grid x:Name="ProgressBarContainer"
-                          Grid.Column="1"
-                          Margin="15,0,0,0"
-                          HeightRequest="14"
-                          HorizontalOptions="FillAndExpand"
-                          VerticalOptions="Center">
-
+                <!-- Progress Bar -->
+                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14"
+              HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <!-- Gray background -->
                     <BoxView BackgroundColor="#E0E0E0"
+                     x:Name="ProgressBarContainer"
                      CornerRadius="7"
                      HeightRequest="14"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="Center" />
-
-                    <!-- Green filled portion -->
+                    <!-- Green fill -->
                     <BoxView x:Name="ProgressFill"
                      BackgroundColor="#58CC02"
                      CornerRadius="7"
                      HeightRequest="14"
-                     WidthRequest="400  "
+                     WidthRequest="340"
                      HorizontalOptions="Start"
                      VerticalOptions="Center" />
                 </Grid>
             </Grid>
-        </VerticalStackLayout>
 
+            <!-- Question + GIF Section -->
+            <Grid ColumnSpacing="10" Margin="0,-30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <!-- MAIN CONTENT -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="25" Padding="20,10">
-
-                <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
-
-                    <!-- Top fixed section -->
-                    <Grid Grid.Row="0" ColumnSpacing="10" Padding="10,0" Margin="0,-24,0,0" VerticalOptions="Start">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- GIF -->
-                        <WebView WidthRequest="200" HeightRequest="150">
-                            <WebView.Source>
-                                <HtmlWebViewSource>
-                                    <HtmlWebViewSource.Html>
-                                        <![CDATA[
+                <!-- Left Side: GIF -->
+                <WebView x:Name="ResultGifWebView"
+                 HeightRequest="150"
+                 WidthRequest="150"
+                 BackgroundColor="Transparent"
+                 IsVisible="True"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center">
+                    <WebView.Source>
+                        <HtmlWebViewSource>
+                            <HtmlWebViewSource.Html>
+                                <![CDATA[
                         <html>
-                            <body style="margin:0; padding:0; display:flex; justify-content:flex-start; align-items:center; background: transparent; overflow:hidden; height:90%; width:90%;">
-                                <img src="giphy.gif" style="width:70%; height:80%; background: transparent; margin-left:0px; display:block;" />
+                            <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; height:100%; width:100%;">
+                                <img src="giphy.gif" style="width:60%; height:60%; background: transparent; display:block;" />
                             </body>
                         </html>
                         ]]>
-                                    </HtmlWebViewSource.Html>
-                                </HtmlWebViewSource>
-                            </WebView.Source>
-                        </WebView>
+                            </HtmlWebViewSource.Html>
+                        </HtmlWebViewSource>
+                    </WebView.Source>
+                </WebView>
 
-                        <Frame Grid.Column="1"
-       BackgroundColor="White"
-       BorderColor="White"
-       CornerRadius="18"
-       Padding="10"
-       Margin="-74,0,0,0"
-       HasShadow="False"
-       VerticalOptions="Center"
-       HorizontalOptions="Start">
-                            <Label x:Name="QuestionLabel"
-           FontSize="16"
-           TextColor="Black"
-           FontFamily="Sans-Serif"
-           VerticalTextAlignment="Center"
-           HorizontalTextAlignment="Center"/>
-                        </Frame>
-                    </Grid>
+                <!-- Right Side: Speech Bubble with Question -->
+                <Frame Grid.Column="1"
+               BackgroundColor="White"
+               BorderColor="#E0E0E0"
+               CornerRadius="18"
+               Padding="12"
+               HasShadow="False"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                    <Label x:Name="QuestionLabel"
+                   Text="Loading question..."
+                   FontSize="16"
+                   TextColor="#555555"
+                   FontFamily="Sans-Serif"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"/>
+                </Frame>
+            </Grid>
+            <!-- Horizontal Line Separator -->
+            <BoxView Margin="0,-40,0,0" HeightRequest="1" BackgroundColor="#E0E0E0" HorizontalOptions="FillAndExpand"/>
 
-                    <!-- Scrollable content -->
-                    <ScrollView Grid.Row="1"
-            VerticalOptions="Start"
-            BackgroundColor="White">
+        </VerticalStackLayout>
 
-                        <VerticalStackLayout Padding="20,40,20,40"
-                         Spacing="30"
-                         VerticalOptions="Start">
-                            <!-- Levels Grid -->
-                            <Grid RowDefinitions="Auto,Auto,Auto"
-              RowSpacing="25"
-              Padding="10,0"
-              VerticalOptions="Start">
 
-                                <!-- Beginner -->
-                                <Border x:Name="BeginnerBox"
-                    Grid.Row="0"
-                    BackgroundColor="White"
-                    StrokeShape="RoundRectangle 25"
-                    StrokeThickness="2"
-                    Stroke="#58CC02"
-                    HeightRequest="120">
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Beginner"/>
-                                    </Border.GestureRecognizers>
-                                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                                        <Label Text="🌱 Beginner"
+
+        <!-- ================= HEADER ================= -->
+
+        <ScrollView Grid.Row="1" BackgroundColor="White">
+            <VerticalStackLayout Spacing="25" Padding="20">
+
+                <!-- Levels Grid -->
+                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="25">
+
+                    <!-- Beginner Level -->
+                    <Frame x:Name="BeginnerBox"
+                   BackgroundColor="White"
+                   CornerRadius="25"
+                   BorderColor="#58CC02"
+                   HasShadow="True"
+                   HeightRequest="120">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Beginner"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                            <Label Text="Beginner"
                            FontAttributes="Bold"
                            FontSize="22"
                            TextColor="#58CC02"
                            HorizontalOptions="Center"/>
-                                        <Label Text="Start your journey"
+                            <Label Text="Learn the Arabic letters of the Quran"
                            FontSize="15"
                            TextColor="#666"
                            HorizontalOptions="Center"/>
-                                    </VerticalStackLayout>
-                                </Border>
+                        </VerticalStackLayout>
+                    </Frame>
 
-                                <!-- Intermediate -->
-                                <Border x:Name="IntermediateBox"
-                    Grid.Row="1"
-                    BackgroundColor="White"
-                    StrokeShape="RoundRectangle 25"
-                    StrokeThickness="2"
-                    Stroke="#FFA500"
-                    HeightRequest="120">
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Intermediate"/>
-                                    </Border.GestureRecognizers>
-                                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                                        <Label Text="🔥 Intermediate"
+                    <!-- Intermediate Level -->
+                    <Frame x:Name="IntermediateBox"
+                   Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="25"
+                   BorderColor="#FFA500"
+                   HasShadow="True"
+                   HeightRequest="120">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Intermediate"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                            <Label Text="Intermediate"
                            FontAttributes="Bold"
                            FontSize="22"
                            TextColor="#FFA500"
                            HorizontalOptions="Center"/>
-                                        <Label Text="Continue growing"
+                            <Label Text="Learn common words in the Quran"
                            FontSize="15"
                            TextColor="#666"
                            HorizontalOptions="Center"/>
-                                    </VerticalStackLayout>
-                                </Border>
+                        </VerticalStackLayout>
+                    </Frame>
 
-                                <!-- Advanced -->
-                                <Border x:Name="AdvancedBox"
-                    Grid.Row="2"
-                    BackgroundColor="White"
-                    StrokeShape="RoundRectangle 25"
-                    StrokeThickness="2"
-                    Stroke="#FF4444"
-                    HeightRequest="120">
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Advanced"/>
-                                    </Border.GestureRecognizers>
-                                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                                        <Label Text="🏆 Advanced"
+                    <!-- Advanced Level -->
+                    <Frame x:Name="AdvancedBox"
+                   Grid.Row="2"
+                   BackgroundColor="White"
+                   CornerRadius="25"
+                   BorderColor="#FF4444"
+                   HasShadow="True"
+                   HeightRequest="120">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Advanced"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                            <Label Text="Advanced"
                            FontAttributes="Bold"
                            FontSize="22"
                            TextColor="#FF4444"
                            HorizontalOptions="Center"/>
-                                        <Label Text="Master your skills"
+                            <Label Text="Practice reading Quranic sentences  verses"
                            FontSize="15"
                            TextColor="#666"
                            HorizontalOptions="Center"/>
-                                    </VerticalStackLayout>
-                                </Border>
-
-                            </Grid>
                         </VerticalStackLayout>
-                    </ScrollView>
+                    </Frame>
 
                 </Grid>
+
             </VerticalStackLayout>
         </ScrollView>
+
     </Grid>
 
 </ContentPage>

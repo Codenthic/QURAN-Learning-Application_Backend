@@ -23,6 +23,8 @@ public partial class LevelSelection : ContentPage
             // Optionally navigate or store level
             await Navigation.PushAsync(new CategorySelection());
         }
+        await Navigation.PushAsync(new CategorySelection());
+
     }
 
     private async void TypeTextAsync(string message)

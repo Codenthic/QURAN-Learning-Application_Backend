@@ -138,21 +138,6 @@ namespace QuranJourney.Pages.Courses.Beginner
                     b.TextColor = Colors.White;
                 }
             }
-
-            //// Show GIF
-            //string gifName = correct ? "correctanswer.gif" : "wrong.gif";
-            //ResultGifWebView.Source = new HtmlWebViewSource
-            //{
-            //    Html = $@"
-            //     <html>
-            //         <body style='margin:0; padding:0; display:flex; justify-content:center; align-items:center; 
-            //                      background:transparent; width:100vw; height:100vh; overflow:hidden;'>
-            //             <img src='{gifName}' 
-            //                  style='width:100vw; height:auto; object-fit:contain;' />
-            //         </body>
-            //     </html>"
-            //};
-            //await Task.Delay(2000);
             ResultGifWebView.IsVisible = true;
             await Task.Delay(3000); // short delay
             ResultGifWebView.IsVisible = false;

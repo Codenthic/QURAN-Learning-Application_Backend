@@ -9,68 +9,80 @@ namespace QuranJourney.Data
         public static List<LetterCategory> Categories = new List<LetterCategory>
         {
             // 1) Throat Letters (Huruf-e-Halqi)
-            new LetterCategory
-            {
-                Id = 1,
-                Title = "Throat Letters (Huruf-e-Halqi)",
-                QuizItems = new List<LetterQuizItem>
-                {
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "ط",
-                        EnglishLetter = "Taa",
-                        ArabicOptions = new List<string> { "ط", "غ", "س", "ع" },
-                        EnglishOptions = new List<string> { "Taa", "Ghain", "Seen", "Ayn" },
-                        CorrectArabic = "ط",
-                        CorrectEnglish = "Taa"
-                    },
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "غ",
-                        EnglishLetter = "Ghain",
-                        ArabicOptions = new List<string> { "غ", "ع", "ہ", "ء" },
-                        EnglishOptions = new List<string> { "Ghain", "Ayn", "Heh", "Hamza" },
-                        CorrectArabic = "غ",
-                        CorrectEnglish = "Ghain"
-                    },
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "س",
-                        EnglishLetter = "Seen",
-                        ArabicOptions = new List<string> { "س", "ص", "ط", "غ" },
-                        EnglishOptions = new List<string> { "Seen", "Saad", "Taa", "Ghain" },
-                        CorrectArabic = "س",
-                        CorrectEnglish = "Seen"
-                    },
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "ع",
-                        EnglishLetter = "Ayn",
-                        ArabicOptions = new List<string> { "ع", "غ", "ہ", "ء" },
-                        EnglishOptions = new List<string> { "Ayn", "Ghain", "Heh", "Hamza" },
-                        CorrectArabic = "ع",
-                        CorrectEnglish = "Ayn"
-                    },
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "ہ",
-                        EnglishLetter = "Heh",
-                        ArabicOptions = new List<string> { "ہ", "ء", "ط", "غ" },
-                        EnglishOptions = new List<string> { "Heh", "Hamza", "Taa", "Ghain" },
-                        CorrectArabic = "ہ",
-                        CorrectEnglish = "Heh"
-                    },
-                    new LetterQuizItem
-                    {
-                        ArabicLetter = "ء",
-                        EnglishLetter = "Hamza",
-                        ArabicOptions = new List<string> { "ء", "ہ", "ع", "غ" },
-                        EnglishOptions = new List<string> { "Hamza", "Heh", "Ayn", "Ghain" },
-                        CorrectArabic = "ء",
-                        CorrectEnglish = "Hamza"
-                    }
-                }
-            },
+         new LetterCategory
+         {
+             Id = 1,
+             Title = "Throat Letters (Huruf-e-Halqi)",
+             QuizItems = new List<LetterQuizItem>
+             {
+                 // 1 — Hamza
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "ء",
+                     EnglishLetter = "Hamza",
+                     ArabicOptions = new List<string> { "ء", "ه", "ح", "غ" },
+                     EnglishOptions = new List<string> { "Hamza", "Heh", "Haa", "Ghain" },
+                     CorrectArabic = "ء",
+                     CorrectEnglish = "Hamza"
+                 },
+         
+                 // 2 — Heh
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "ه",
+                     EnglishLetter = "Heh",
+                     ArabicOptions = new List<string> { "ه", "ء", "ع", "خ" },
+                     EnglishOptions = new List<string> { "Heh", "Hamza", "Ayn", "Khaa" },
+                     CorrectArabic = "ه",
+                     CorrectEnglish = "Heh"
+                 },
+         
+                 // 3 — Ayn
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "ع",
+                     EnglishLetter = "Ayn",
+                     ArabicOptions = new List<string> { "ع", "غ", "ح", "ء" },
+                     EnglishOptions = new List<string> { "Ayn", "Ghain", "Haa", "Hamza" },
+                     CorrectArabic = "ع",
+                     CorrectEnglish = "Ayn"
+                 },
+         
+                 // 4 — Haa (ح)
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "ح",
+                     EnglishLetter = "Haa",
+                     ArabicOptions = new List<string> { "ح", "ع", "خ", "غ" },
+                     EnglishOptions = new List<string> { "Haa", "Ayn", "Khaa", "Ghain" },
+                     CorrectArabic = "ح",
+                     CorrectEnglish = "Haa"
+                 },
+         
+                 // 5 — Ghain
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "غ",
+                     EnglishLetter = "Ghain",
+                     ArabicOptions = new List<string> { "غ", "خ", "ح", "ء" },
+                     EnglishOptions = new List<string> { "Ghain", "Khaa", "Haa", "Hamza" },
+                     CorrectArabic = "غ",
+                     CorrectEnglish = "Ghain"
+                 },
+         
+                 // 6 — Khaa
+                 new LetterQuizItem
+                 {
+                     ArabicLetter = "خ",
+                     EnglishLetter = "Khaa",
+                     ArabicOptions = new List<string> { "خ", "غ", "ح", "ه" },
+                     EnglishOptions = new List<string> { "Khaa", "Ghain", "Haa", "Heh" },
+                     CorrectArabic = "خ",
+                     CorrectEnglish = "Khaa"
+                 }
+             }
+         },
+
 
             // 2) Soft Letters
             new LetterCategory

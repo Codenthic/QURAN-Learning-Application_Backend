@@ -10,6 +10,6 @@ public partial class CategorySelection : ContentPage
 	}
     private void Option_Tapped(object sender, TappedEventArgs e)
     {
-        Navigation.PushAsync(new Beginner_Learn_Quran());
+        Navigation.PushAsync(new Beginner_Learning_Quran());
     }
 }

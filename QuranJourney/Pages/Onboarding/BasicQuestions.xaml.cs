@@ -1,214 +1,227 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Maui;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace QuranJourney.Pages.Onboarding;
 
 public partial class BasicQuestions : ContentPage
 {
+    private int currentIndex = 0;
+    private List<QuestionModel> questions;
+    private OptionModel selectedOption;
+    private bool isFirstClick = true;
 
-
-    //private int currentIndex = 0;
-    //private List<QuestionModel> questions;
-    //private OptionModel selectedOption;
     public BasicQuestions()
     {
         InitializeComponent();
-        //LoadQuestionsFromBackend();
+        LoadQuestionsFromBackend();
 
-        //this.Loaded += async (s, e) =>
-        //{
-        //    DisplayQuestion();
-        //    await Task.Delay(300); // wait for layout measure
-        //    AnimateProgress(0.0);
-        //};
+        this.Loaded += async (s, e) =>
+        {
+            DisplayQuestion();
+            await Task.Delay(300); // wait for layout measure
+            AnimateProgress(0.0);
+        };
+    }
+    private void LoadQuestionsFromBackend()
+    {
+        // Example data — replace later with backend API
+        questions = new List<QuestionModel>
+        {
+            new QuestionModel { Text = "What would you like to learn?",
+                Options = new List<OptionModel> {
+                    new OptionModel { Text = "Arabic", IsCorrect = true ,Image = "learn_quran.png", }
+                } },
+            new QuestionModel { Text = "How did you hear about Quran Application?",
+                Options = new List<OptionModel> {
+                    new OptionModel { Text = "News/article/blog", IsCorrect = true },
+                    new OptionModel { Text = "TikTok" },
+                    new OptionModel { Text = "Google Search" },
+                    new OptionModel { Text = "Friend/Family" },
+                    new OptionModel { Text = "Facebook/Istagram" },
+                    new OptionModel { Text = "App store" },
+                    new OptionModel { Text = "TV" },
+                    new OptionModel { Text = "YouTube" },
+                    new OptionModel { Text = "Other" }
+                } },
+            new QuestionModel
+            {
+                Text = "How much Quran do you know?",
+                Options = new List<OptionModel>
+                {
+                    new OptionModel { Text = "I'm new to learning the Quran", IsCorrect = true },
+                    new OptionModel { Text = "I can read a few short Surahs", IsCorrect = true },
+                    new OptionModel { Text = "I can recite basic Surahs with Tajweed", IsCorrect = true },
+                    new OptionModel { Text = "I can read and understand some meanings", IsCorrect = true },
+                    new OptionModel { Text = "I can recite fluently and reflect on meanings", IsCorrect = true }
+                }
+            },
+            new QuestionModel
+            {
+                Text = "Why are you learning the Quran?",
+                Options = new List<OptionModel>
+                {
+                    new OptionModel { Text = "To understand the words of Allah", IsCorrect = true },
+                    new OptionModel { Text = "To improve my recitation and Tajweed", IsCorrect = true },
+                    new OptionModel { Text = "To strengthen my connection with Islam", IsCorrect = true },
+                    new OptionModel { Text = "To memorize and act upon it in daily life", IsCorrect = true }
+                }
+            },
+
+            new QuestionModel { Text = "Let's set up a learning routine"},
+
+            new QuestionModel { Text = "Whats your daily learning goal?",
+                Options = new List<OptionModel> {
+                    new OptionModel { Text = "3 min / day", IsCorrect = true },
+                    new OptionModel { Text = "10 min/ day" },
+                    new OptionModel { Text = "15 min / day" },
+                    new OptionModel { Text = "30 min / day" }
+
+                } },
+            new QuestionModel { Text = "That's 25 wordsin your first week"},
+
+            new QuestionModel { Text = "I'll cheer you on from your home screen!"},
+
+
+            new QuestionModel { Text = "Here's what you can achve in 3 months!", },
+
+            new QuestionModel { Text = "Now let's find the best place to start!", },
+
+        };
+    }
+    private async void DisplayQuestion()
+    {
+        if (currentIndex >= questions.Count)
+        {
+            //QuestionLabel.Text = "🎉 You finished all questions!";
+            await Navigation.PushAsync(new LevelSelection());
+            OptionsList.ItemsSource = null;
+            QuestionContinueButton.IsEnabled = false;
+            AnimateProgress(1);
+            return;
+        }
+
+        var question = questions[currentIndex];
+
+        // Show question text
+        QuestionLabel.Text = question.Text;
+        await ShowTypewriterTextAsync(QuestionLabel, question.Text, 30);
+
+        // ✅ Handle questions without options
+        if (question.Options == null || question.Options.Count == 0)
+        {
+            OptionsList.ItemsSource = null;
+
+            // Allow user to continue manually
+            QuestionContinueButton.IsEnabled = true;
+            QuestionContinueButton.BackgroundColor = Color.FromArgb("#58CC02");
+
+            // Update progress bar
+            double progress = (double)currentIndex / questions.Count;
+            AnimateProgress(progress);
+            return;
+        }
+
+        // ✅ If question has options
+        foreach (var opt in question.Options)
+            opt.BackgroundColor = Colors.White;
+
+        OptionsList.ItemsSource = new ObservableCollection<OptionModel>(question.Options);
+
+        // Disable Continue until an option is selected
+        QuestionContinueButton.IsEnabled = false;
+        QuestionContinueButton.BackgroundColor = Color.FromArgb("#E5E5E5");
+
+        double optionProgress = (double)currentIndex / questions.Count;
+        AnimateProgress(optionProgress);
     }
 
+    private void OptionsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.Count == 0)
+            return;
 
-//    private void LoadQuestionsFromBackend()
-//    {
-//        // Example data — replace later with backend API
-//        questions = new List<QuestionModel>
-//        {
-//            new QuestionModel { Text = "What would you like to learn?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Spanish", IsCorrect = true },
-//                    new OptionModel { Text = "French" },
-//                    new OptionModel { Text = "German" },
-//                    new OptionModel { Text = "Italian" }
-//                } },
-//            new QuestionModel { Text = "Which one means 'Hello'?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Hola", IsCorrect = true },
-//                    new OptionModel { Text = "Adiós" },
-//                    new OptionModel { Text = "Gracias" }
-//                } },
-//            new QuestionModel { Text = "What is 'Apple' in Spanish?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Manzana", IsCorrect = true },
-//                    new OptionModel { Text = "Agua" },
-//                    new OptionModel { Text = "Casa" }
-//                } },
-//            new QuestionModel { Text = "What does 'Gracias' mean?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Thank you", IsCorrect = true },
-//                    new OptionModel { Text = "Hello" },
-//                    new OptionModel { Text = "Goodbye" }
-//                } },
-//            new QuestionModel { Text = "Which one means 'Book'?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Libro", IsCorrect = true },
-//                    new OptionModel { Text = "Mesa" },
-//                    new OptionModel { Text = "Silla" }
-//                } },
-//            new QuestionModel { Text = "What is 'Cat' in Spanish?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Gato", IsCorrect = true },
-//                    new OptionModel { Text = "Perro" },
-//                    new OptionModel { Text = "Pez" }
-//                } },
-//            new QuestionModel { Text = "Which one means 'Water'?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Agua", IsCorrect = true },
-//                    new OptionModel { Text = "Leche" },
-//                    new OptionModel { Text = "Pan" }
-//                } },
-//            new QuestionModel { Text = "What is 'House' in Spanish?",
-//                Options = new List<OptionModel> {
-//                    new OptionModel { Text = "Casa", IsCorrect = true },
-//                    new OptionModel { Text = "Coche" },
-//                    new OptionModel { Text = "Escuela" }
-//                } },
-//        };
-//    //}
+        var selected = e.CurrentSelection.FirstOrDefault() as OptionModel;
+        if (selected == null)
+            return;
 
-//    //private void DisplayQuestion()
-//    //{
-//    //    if (currentIndex >= questions.Count)
-//    //    {
-//    //        QuestionLabel.Text = "🎉 You finished all questions!";
-//    //        OptionsList.ItemsSource = null;
-//    //        ContinueButton.IsEnabled = false;
-//    //        AnimateProgress(1);
-//    //        return;
-//    //    }
+        // Reset all selections
+        foreach (var option in (OptionsList.ItemsSource as IEnumerable<OptionModel>))
+            option.IsSelected = false;
 
-//    //    var question = questions[currentIndex];
-//    //    QuestionLabel.Text = question.Text;
+        // Mark current one as selected
+        selected.IsSelected = true;
 
-//    //    foreach (var opt in question.Options)
-//    //    {
-//    //        opt.BackgroundColor = Colors.White;
-//    //    }
+        // ✅ Save selection so we can use it in ContinueButton_Clicked
+        selectedOption = selected;
 
-//    //    OptionsList.ItemsSource = new ObservableCollection<OptionModel>(question.Options);
-//    //    ContinueButton.IsEnabled = false;
-//    //    ContinueButton.BackgroundColor = Color.FromArgb("#E5E5E5");
+        // Optional: enable Continue button
+        QuestionContinueButton.IsEnabled = true;
+        QuestionContinueButton.BackgroundColor = Color.FromArgb("#58CC02");
+    }
+    private async void ContinueButton_Clicked(object sender, EventArgs e)
+    {
+        if (selectedOption == null) return;
 
-//    //    double progress = (double)currentIndex / questions.Count;
-//    //    AnimateProgress(progress);
-//    //}
+        // Optional visual feedback (green/red flash)
+        if (selectedOption.IsCorrect)
+            selectedOption.BackgroundColor = Colors.LightGreen;
+        else
+            selectedOption.BackgroundColor = Colors.LightPink;
 
-//    //private void OptionsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-//    //{
-//    //    if (e.CurrentSelection.Count == 0)
-//    //        return;
+        // Small delay so user can see the color feedback
+        await Task.Delay(600);
 
-//    //    var selected = e.CurrentSelection.FirstOrDefault() as OptionModel;
-//    //    if (selected == null)
-//    //        return;
+        // Move to next question automatically
+        currentIndex++;
+        DisplayQuestion();
+    }
+    private async void AnimateProgress(double targetProgress)
+    {
+        // Clamp between 0 and 1
+        targetProgress = Math.Clamp(targetProgress, 0.0, 1.0);
 
-//    //    // Reset all selections
-//    //    foreach (var option in (OptionsList.ItemsSource as IEnumerable<OptionModel>))
-//    //        option.IsSelected = false;
+        // Wait until layout measured
+        while (ProgressBarContainer.Width <= 0)
+            await Task.Delay(50);
 
-//    //    // Mark current one as selected
-//    //    selected.IsSelected = true;
+        // Calculate target width
+        double totalWidth = ProgressBarContainer.Width;
+        double targetWidth = targetProgress * totalWidth;
 
-//    //    // ✅ Save selection so we can use it in ContinueButton_Clicked
-//    //    selectedOption = selected;
+        // Cancel old animation (if any)
+        ProgressFill.AbortAnimation("ProgressAnim");
 
-//    //    // Optional: enable Continue button
-//    //    ContinueButton.IsEnabled = true;
-//    //    ContinueButton.BackgroundColor = Color.FromArgb("#58CC02");
-//    //}
+        // Animate width
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            var animation = new Animation(v =>
+            {
+                ProgressFill.WidthRequest = v;
+                ProgressFill.InvalidateMeasure(); // refresh layout
+            },
+            ProgressFill.WidthRequest,
+            targetWidth,
+            Easing.CubicInOut);
 
-//    //private async void ContinueButton_Clicked(object sender, EventArgs e)
-//    //{
-//    //    if (selectedOption == null) return;
-
-//    //    if (selectedOption.IsCorrect)
-//    //    {
-//    //        await DisplayAlert("✅ Correct!", "Nice job!", "Next");
-//    //    }
-//    //    else
-//    //    {
-//    //        await DisplayAlert("❌ Incorrect", "Try again next time!", "Next");
-//    //    }
-
-//    //    currentIndex++;
-//    //    DisplayQuestion();
-//    //}
-
-//    //private async void AnimateProgress(double targetProgress)
-//    //{
-//    //    // TEMP: force test value
-//    //    //targetProgress = 3;
-
-//    //    if (ProgressBarContainer.Width <= 0)
-//    //    {
-//    //        await Task.Delay(100);
-//    //        AnimateProgress(targetProgress);
-//    //        return;
-//    //    }
-
-//    //    // Clamp progress
-//    //    targetProgress = Math.Clamp(targetProgress, 0.0, 1.0);
-
-//    //    double totalWidth = ProgressBarContainer.Width;
-//    //    double targetWidth = targetProgress * totalWidth;
-
-//    //    // Cancel any previous animations
-//    //    ProgressFill.AbortAnimation("ProgressAnim");
-
-//    //    // Animate WidthRequest property instead of LayoutTo
-//    //    var animation = new Animation(v => ProgressFill.WidthRequest = v,
-//    //                                  ProgressFill.WidthRequest,
-//    //                                  targetWidth);
-
-//    //    animation.Commit(this, "ProgressAnim", 16, 400, Easing.CubicInOut);
-//    //}
-//}
-
-//public class QuestionModel
-//{
-//    public string Text { get; set; }
-//    public List<OptionModel> Options { get; set; }
-//}
-
-
-//public class OptionModel : INotifyPropertyChanged
-//{
-//    private bool isSelected;
-
-//    public string Text { get; set; }
-//    public string Flag { get; set; }
-//    public bool IsCorrect { get; set; }
-//    public Color BackgroundColor { get; set; } = Colors.White;
-
-    //public bool IsSelected
-    //{
-    //    get => isSelected;
-    //    set
-    //    {
-    //        if (isSelected != value)
-    //        {
-    //            isSelected = value;
-    //            OnPropertyChanged(nameof(IsSelected));
-    //        }
-    //    }
-    //}
-
-    //public event PropertyChangedEventHandler PropertyChanged;
-    //void OnPropertyChanged(string name) =>
-    //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            animation.Commit(this, "ProgressAnim", 16, 800); // 800ms duration
+        });
+    }
+    private void BackIcon_Tapped(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(".."); // or Navigation.PopAsync();
+    }
+    private void Back_Tapped(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(".."); // or Navigation.PopAsync();
+    }
+    private async Task ShowTypewriterTextAsync(Label label, string text, int delay = 40)
+    {
+        label.Text = "";
+        foreach (char c in text)
+        {
+            label.Text += c;
+            await Task.Delay(delay);
+        }
+    }
 }
