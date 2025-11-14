@@ -10,9 +10,15 @@ namespace QuranJourney.Pages.Courses.Beginner
     {
         private int currentQuestionIndex = 0;
         private string selectedAnswer = string.Empty;
+        private bool isAnswerChecked = false;
 
         private readonly List<QuestionModel> questions = new()
         {
+            new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),
+            new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),
+
+            new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),
+            new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),
             new QuestionModel("ء", "What sound does this make?", "ʔ", new List<string> { "ʔ", "a", "e", "i" }),      
         };
         
@@ -95,6 +101,16 @@ namespace QuranJourney.Pages.Courses.Beginner
 
         private async void CheckButton_Clicked(object sender, EventArgs e)
         {
+            // If answer already checked → Now Continue pressed
+            if (isAnswerChecked)
+            {
+                isAnswerChecked = false;
+                CheckButton.Text = "Check";
+                currentQuestionIndex++;
+                LoadQuestion();
+                return;
+            }
+
             if (string.IsNullOrEmpty(selectedAnswer))
             {
                 await DisplayAlert("Select an answer", "Please select an option first.", "OK");
@@ -103,6 +119,7 @@ namespace QuranJourney.Pages.Courses.Beginner
 
             bool correct = selectedAnswer == questions[currentQuestionIndex].CorrectAnswer;
 
+            // Reset colors
             foreach (var child in OptionsGrid.Children)
             {
                 if (child is Button b)
@@ -112,6 +129,7 @@ namespace QuranJourney.Pages.Courses.Beginner
                 }
             }
 
+            // Mark selected
             foreach (var child in OptionsGrid.Children)
             {
                 if (child is Button b && b.Text == selectedAnswer)
@@ -121,36 +139,22 @@ namespace QuranJourney.Pages.Courses.Beginner
                 }
             }
 
-            // Set GIF
-            string gifName = correct ? "correctanswer.gif" : "wrong.gif";
-            var htmlSource = new HtmlWebViewSource
-            {
-                Html = $@"
-        <html>
-            <body style='margin:0; padding:0; display:flex; justify-content:center; align-items:center; background:transparent; overflow:hidden; height:100%; width:100%;'>
-                <img src='{gifName}' style='width:100%; height:auto; background:transparent;' />
-            </body>
-        </html>"
-            };
-            ResultGifWebView.Source = htmlSource;
-
-            // Animate WebView
-            ResultGifWebView.TranslationY = -200; // Start above button
-            ResultGifWebView.Opacity = 0;
+            //// Show GIF
+            //string gifName = correct ? "correctanswer.gif" : "wrong.gif";
+            //ResultGifWebView.Source = new HtmlWebViewSource
+            //{
+            //    Html = $@"
+            //     <html>
+            //         <body style='margin:0; padding:0; display:flex; justify-content:center; align-items:center; 
+            //                      background:transparent; width:100vw; height:100vh; overflow:hidden;'>
+            //             <img src='{gifName}' 
+            //                  style='width:100vw; height:auto; object-fit:contain;' />
+            //         </body>
+            //     </html>"
+            //};
+            //await Task.Delay(2000);
             ResultGifWebView.IsVisible = true;
-
-            await Task.WhenAll(
-                ResultGifWebView.FadeTo(1, 500, Easing.SinOut),
-                ResultGifWebView.TranslateTo(0, 0, 500, Easing.SinOut)
-            );
-
-            await Task.Delay(1200);
-
-            await Task.WhenAll(
-                ResultGifWebView.FadeTo(0, 400, Easing.SinIn),
-                ResultGifWebView.TranslateTo(0, -200, 400, Easing.SinIn)
-            );
-
+            await Task.Delay(3000); // short delay
             ResultGifWebView.IsVisible = false;
 
             if (correct)
@@ -159,9 +163,11 @@ namespace QuranJourney.Pages.Courses.Beginner
                 AnimateProgress(progress);
             }
 
-            currentQuestionIndex++;
-            LoadQuestion();
+            // 🔥 Now answer is checked — next click will be Continue
+            CheckButton.Text = "Continue";
+            isAnswerChecked = true;
         }
+
 
 
         private async void SpeakerButton_Clicked(object sender, EventArgs e)

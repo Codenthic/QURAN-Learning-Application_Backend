@@ -86,6 +86,9 @@
 	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Correct_Char.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Learning_Quran.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Learn_Quran.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

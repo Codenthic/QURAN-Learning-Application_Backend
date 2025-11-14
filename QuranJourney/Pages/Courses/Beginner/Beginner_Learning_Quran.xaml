@@ -1,0 +1,308 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Courses.Beginner.Beginner_Learning_Quran"
+             Title="Beginner_Learning_Quran"
+             Background="White">
+    
+    
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        <!-- ================= HEADER ================= -->
+
+        <VerticalStackLayout Grid.Row="0" Padding="4,10,20,0" Spacing="12">
+            <!-- Top Row: Back Button + Progress Bar -->
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+                <!-- Back Button -->
+                <Image x:Name="xIcon"
+                           Source="x.png"
+                           HeightRequest="18"
+                           WidthRequest="28"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <!-- Progress Bar -->
+                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14"
+                          HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <!-- Gray background -->
+                    <BoxView BackgroundColor="#E0E0E0"
+                                 CornerRadius="7"
+                                 HeightRequest="14"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center" />
+                    <!-- Green fill -->
+                    <BoxView x:Name="ProgressFill"
+                                 BackgroundColor="#58CC02"
+                                 CornerRadius="7"
+                                 HeightRequest="14"
+                                 WidthRequest="0"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center" />
+                </Grid>
+            </Grid>
+
+            <!-- Question Label -->
+            <Label x:Name="QuestionsLabel"
+                       Text="Match the Arabic letters with their pronunciation"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Margin="10,0,0,0"/>
+        </VerticalStackLayout>
+        <!-- ================= HEADER ================= -->
+
+        <!-- ================= Correct Char CONTENT ================= -->
+        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+            <Grid Grid.Row="1"
+      RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+      ColumnDefinitions="*,*"
+      Padding="20"
+      RowSpacing="15"
+      ColumnSpacing="20"
+      HorizontalOptions="Center"
+      VerticalOptions="Center">
+                <!-- Row 1 -->
+                <Button Grid.Row="0" Grid.Column="0" HeightRequest="160" Text="غ"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            BorderColor="#D3D3D3"
+            BorderWidth="2"
+            FontSize="40"
+            WidthRequest="120"
+            TextColor="Black"
+            CornerRadius="10"/>
+                <Button Grid.Row="0" Grid.Column="1" HeightRequest="160" Text="gh"
+            BackgroundColor="White"
+            WidthRequest="120"
+            FontSize="40"
+            FontAttributes="Bold"
+            BorderColor="#D3D3D3"
+            BorderWidth="2"
+            TextColor="Black"
+            CornerRadius="10"/>
+
+                <!-- Row 2 -->
+                <Button Grid.Row="1" Grid.Column="0" HeightRequest="160" Text="غا"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            BorderColor="#D3D3D3"
+            BorderWidth="2"
+            FontSize="40"
+            WidthRequest="120"
+            TextColor="Black"
+            CornerRadius="10"/>
+                <Button Grid.Row="1" Grid.Column="1" HeightRequest="160" Text="ghaa"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            WidthRequest="120"
+            BorderColor="#D3D3D3"
+            FontSize="40"
+            BorderWidth="2"
+            TextColor="Black"
+            CornerRadius="10"/>
+            </Grid>
+        </Grid>
+
+        <!-- =================  Matching Pair CONTENT ================= -->
+        <Grid Grid.Row="1" x:Name="Matching_pair_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+
+            <!-- 🔹 Matching Pairs Grid -->
+            <Grid Grid.Row="1"
+                  RowDefinitions="*,*,*,*,*"
+                  ColumnDefinitions="*,*"
+                  Padding="10"
+                  RowSpacing="10"
+                  ColumnSpacing="20"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  Margin="0,-29,0,0">
+
+                <!-- Row 1 -->
+                <Button Grid.Row="0" Grid.Column="0" HeightRequest="60" WidthRequest="130" Text="دو" BackgroundColor="White" FontAttributes="Bold" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+                <Button Grid.Row="0" Grid.Column="1" HeightRequest="60" WidthRequest="130" Text="du" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+
+                <!-- Row 2 -->
+                <Button Grid.Row="1" Grid.Column="0"  HeightRequest="60" WidthRequest="130" Text="دا" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+                <Button Grid.Row="1" Grid.Column="1" HeightRequest="60" WidthRequest="130" Text="daa" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+
+                <!-- Row 3 -->
+                <Button Grid.Row="2" Grid.Column="0" HeightRequest="60" WidthRequest="130" Text="دي" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+                <Button Grid.Row="2" Grid.Column="1" HeightRequest="60" WidthRequest="130" Text="di" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+
+                <!-- Row 4 -->
+                <Button Grid.Row="3" Grid.Column="0" HeightRequest="60" WidthRequest="130" Text="دَ" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+                <Button Grid.Row="3" Grid.Column="1" HeightRequest="60" WidthRequest="130" Text="da" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+
+                <!-- Row 5 -->
+                <Button Grid.Row="4" Grid.Column="0" HeightRequest="60" WidthRequest="130" Text="دوو" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+                <Button Grid.Row="4" Grid.Column="1" HeightRequest="60" WidthRequest="130" Text="do" BackgroundColor="White" FontAttributes="Bold"  BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10"/>
+            </Grid>
+
+
+        </Grid>
+
+        <!-- =================  Select Word CONTENT ================= -->
+        <Grid Grid.Row="1" x:Name="Select_Word_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+
+            <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
+
+                <!-- Card displaying the question -->
+                <Frame x:Name="QuestionFrame"
+                BackgroundColor="#5480C0"
+                CornerRadius="20"
+                Padding="40"
+                HasShadow="True"
+                HorizontalOptions="Center">
+                    <Label x:Name="QuestionLabel"
+                    Text="Alif"
+                    TextColor="White"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                </Frame>
+
+                <!-- Buttons Row -->
+                <HorizontalStackLayout Spacing="20"
+                                HorizontalOptions="Center">
+                    <Button x:Name="Option1Btn"
+                     BackgroundColor="White"
+                     BorderColor="#5480C0"
+                     BorderWidth="2"
+                     TextColor="Black"
+                     CornerRadius="10"
+                     FontAttributes="Bold"
+                     WidthRequest="80"
+                     HeightRequest="50" />
+                    <Button x:Name="Option2Btn"
+                     BackgroundColor="White"
+                     BorderColor="#5480C0"
+                     BorderWidth="2"
+                     TextColor="Black"
+                     CornerRadius="10"
+                     FontAttributes="Bold"
+                     WidthRequest="80"
+                     HeightRequest="50" />
+                    <Button x:Name="Option3Btn"
+                     BackgroundColor="White"
+                     BorderColor="#5480C0"
+                     BorderWidth="2"
+                     TextColor="Black"
+                     CornerRadius="10"
+                     FontAttributes="Bold"
+                     WidthRequest="80"
+                     HeightRequest="50" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </Grid>
+
+        <!-- ================= What You Hear  CONTENT ================= -->
+        <Grid Grid.Row="1" x:Name="What_You_Hear_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+            <!-- 🔹 Speaker Button -->
+            <Button Grid.Row="1" Text="" ImageSource="volume_icon.png" BackgroundColor="#1CB0F6" WidthRequest="120" HeightRequest="120" CornerRadius="20" Margin="20" HorizontalOptions="Center" VerticalOptions="Start" />
+            
+            <!-- 🔹 Answer Buttons Grid -->
+            <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*" Padding="20" Margin="0,160,0,0" RowSpacing="15" ColumnSpacing="20" HorizontalOptions="Center" VerticalOptions="Start">
+                <Button Grid.Row="0" Grid.Column="0" HeightRequest="90" WidthRequest="150" Text="ha" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+              
+                <Button Grid.Row="0" Grid.Column="1" HeightRequest="90" WidthRequest="150" Text="haa" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+                
+                <Button Grid.Row="1" Grid.Column="0" HeightRequest="90" WidthRequest="150" Text="h" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+                
+                <Button Grid.Row="1"  Grid.Column="1" HeightRequest="90" WidthRequest="150" Text="ہ" BackgroundColor="#E0F7FF" BorderColor="#D3D3D3" BorderWidth="2" TextColor="#1CB0F6" CornerRadius="10" FontAttributes="Bold" />
+            </Grid>
+            
+        </Grid>
+
+        <!-- ================= What_Sound CONTENT ================= -->
+        <Grid Grid.Row="1" x:Name="What_Sound_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="True" >
+
+            <VerticalStackLayout Grid.Row="1" Padding="0,0,10,0" Spacing="20"
+                     VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Arabic Letter Card -->
+                <Frame x:Name="LetterCard"
+                     BackgroundColor="#1CB0F6"
+                     CornerRadius="20"
+                     WidthRequest="120"
+                     HeightRequest="120"
+                     HasShadow="False"
+                     HorizontalOptions="Center">
+                    <Grid>
+                        <Label x:Name="ArabicLetterLabel"
+                    Text="ء"
+                   FontSize="70"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+                        <Button x:Name="SpeakerButton"
+                    ImageSource="volume_icon.png"
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="0,0,-30,-30"/>
+                    </Grid>
+                </Frame>
+
+                <!-- Answer Options -->
+                <Grid x:Name="OptionsGrid"
+                 ColumnDefinitions="*,*,*"
+                 RowDefinitions="Auto,Auto"
+                 ColumnSpacing="10"
+                 RowSpacing="10"
+                 HorizontalOptions="Center">
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- ================= FOOTER ================= -->
+        <!-- 🔹 Bottom CHECK BUTTON -->
+        <Button x:Name="CheckButton"
+           Grid.Row="2"
+           Text="CHECK"
+           FontSize="18"
+           FontAttributes="Bold"
+           BackgroundColor="#E0E0E0"
+           TextColor="White"
+           CornerRadius="14"
+           HeightRequest="25"
+           HorizontalOptions="FillAndExpand"
+           Margin="20,0,20,20" 
+                    ZIndex="1"/>
+        
+        <!-- Correct Box OVERLAY -->
+        <Frame x:Name="CorrectBox"
+           Grid.RowSpan="3"
+           VerticalOptions="End"
+           Margin="0,0,0,0"
+           BackgroundColor="#58CC02"
+           CornerRadius="1"
+           IsVisible="False"     
+           HeightRequest="130">
+            <Label Text="Correct Answer!"
+               TextColor="White"
+               FontSize="18"
+               HorizontalOptions="Center"/>
+        </Frame>
+        
+        <!-- Worng Box OVERLAY -->
+        <Frame x:Name="WorngBox"
+             Grid.RowSpan="3"
+             VerticalOptions="End"
+             Margin="0,0,0,0"
+             IsVisible="False"
+             BackgroundColor="Red"
+             CornerRadius="1"
+             HeightRequest="130">
+             <Label Text="Worng Answer!"
+             TextColor="White"
+             FontSize="18"
+             HorizontalOptions="Center"/>
+        </Frame>
+
+
+    </Grid>
+</ContentPage>

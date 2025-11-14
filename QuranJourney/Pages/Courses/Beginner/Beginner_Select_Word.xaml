@@ -44,10 +44,7 @@
 
         
         
-        <VerticalStackLayout Padding="4"
-                             Spacing="30"
-                             HorizontalOptions="Center"
-                             VerticalOptions="Center">
+        <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
 
             <!-- Card displaying the question -->
             <Frame x:Name="QuestionFrame"
