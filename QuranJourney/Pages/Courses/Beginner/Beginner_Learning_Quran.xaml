@@ -49,9 +49,9 @@
         <!-- ================= HEADER ================= -->
 
         <!-- ================= Correct Char CONTENT ================= -->
-        <VerticalStackLayout Grid.Row="0" x:Name="Correct_Char_Header" Padding="4,10,20,0" Spacing="12" IsVisible="True">
+        <VerticalStackLayout Grid.Row="0" x:Name="Correct_Char_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
-            <Label x:Name="QuestionsLabel"
+            <Label 
                  Text="Select the correct characters for 'ghaa'"
                  FontSize="20"
                  FontAttributes="Bold"
@@ -59,7 +59,7 @@
                  Margin="10,47,0,0"/>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="True" >
+        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
             <Grid Grid.Row="1"
                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                  ColumnDefinitions="*,*"
@@ -113,7 +113,7 @@
         <!-- =================  Matching Pair CONTENT ================= -->
         <VerticalStackLayout Grid.Row="0" x:Name="Matching_pair_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
-            <Label x:Name="QuestionsLabel"
+            <Label 
                  Text="Tap the matching pairs"
                  FontSize="20"
                  FontAttributes="Bold"
@@ -161,65 +161,78 @@
 
         <!-- =================  Select Word CONTENT ================= -->
 
+        <VerticalStackLayout Grid.Row="0" x:Name="Select_Word_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+            <!-- Question Label -->
+            <Label 
+                 Text="Select the Correct Word"
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 TextColor="Black"
+                 Margin="10,47,0,0"/>
+        </VerticalStackLayout>
+
         <Grid Grid.Row="1" x:Name="Select_Word_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
-            <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
+                <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
 
-                <!-- Card displaying the question -->
-                <Frame x:Name="QuestionFrame"
-                BackgroundColor="#5480C0"
-                CornerRadius="20"
-                Padding="40"
-                HasShadow="True"
-                HorizontalOptions="Center">
-                    <Label x:Name="QuestionLabel"
-                    Text="Alif"
-                    TextColor="White"
-                    FontSize="32"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
-                </Frame>
+                    <!-- Card displaying the question -->
+                    <Frame x:Name="QuestionFrame"
+                    BackgroundColor="#5480C0"
+                    CornerRadius="20"
+                    Padding="40"
+                    HasShadow="True"
+                    HorizontalOptions="Center">
+                        <Label x:Name="SelectWord_QuestionLabel"
+                        Text="Alif"
+                        TextColor="White"
+                        FontSize="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+                    </Frame>
 
-                <!-- Buttons Row -->
-                <HorizontalStackLayout Spacing="20"
-                                HorizontalOptions="Center">
-                    <Button x:Name="Option1Btn"
-                     BackgroundColor="White"
-                     BorderColor="#5480C0"
-                     BorderWidth="2"
-                     TextColor="Black"
-                     CornerRadius="10"
-                     FontAttributes="Bold"
-                     WidthRequest="80"
-                     HeightRequest="50" />
-                    <Button x:Name="Option2Btn"
-                     BackgroundColor="White"
-                     BorderColor="#5480C0"
-                     BorderWidth="2"
-                     TextColor="Black"
-                     CornerRadius="10"
-                     FontAttributes="Bold"
-                     WidthRequest="80"
-                     HeightRequest="50" />
-                    <Button x:Name="Option3Btn"
-                     BackgroundColor="White"
-                     BorderColor="#5480C0"
-                     BorderWidth="2"
-                     TextColor="Black"
-                     CornerRadius="10"
-                     FontAttributes="Bold"
-                     WidthRequest="80"
-                     HeightRequest="50" />
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+                    <!-- Buttons Row -->
+                    <HorizontalStackLayout Spacing="20"
+                                    HorizontalOptions="Center">
+                      <Button x:Name="SelectWord_Option1"
+                           BackgroundColor="White"
+                           BorderColor="#5480C0"
+                           BorderWidth="2"
+                           Clicked="Select_Word_Option_Clicked"
+                           TextColor="Black"
+                           CornerRadius="10"
+                           FontAttributes="Bold"
+                           WidthRequest="80"
+                           HeightRequest="50" />
+                      <Button x:Name="SelectWord_Option2"
+                           BackgroundColor="White"
+                           BorderColor="#5480C0"
+                           BorderWidth="2"
+                           Clicked="Select_Word_Option_Clicked"
+                           TextColor="Black"
+                           CornerRadius="10"
+                           FontAttributes="Bold"
+                           WidthRequest="80"
+                           HeightRequest="50" />
+                      <Button x:Name="SelectWord_Option3"
+                           BackgroundColor="White"
+                           BorderColor="#5480C0"
+                           Clicked="Select_Word_Option_Clicked"   
+                           BorderWidth="2"
+                           TextColor="Black"
+                           CornerRadius="10"
+                           FontAttributes="Bold"
+                           WidthRequest="80"
+                           HeightRequest="50" />
+                      </HorizontalStackLayout>
+                </VerticalStackLayout>
 
-        </Grid>
+            </Grid>
 
         <!-- ================= What You Hear  CONTENT ================= -->
 
         <VerticalStackLayout Grid.Row="0" x:Name="What_You_Hear_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
-            <Label x:Name="QuestionsLabel"
+            <Label 
                  Text="Select what you hear"
                  FontSize="20"
                  FontAttributes="Bold"
@@ -233,21 +246,32 @@
             
             <!-- 🔹 Answer Buttons Grid -->
             <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*" Padding="20" Margin="0,160,0,0" RowSpacing="15" ColumnSpacing="20" HorizontalOptions="Center" VerticalOptions="Start">
-                <Button Grid.Row="0" Grid.Column="0" HeightRequest="90" WidthRequest="150" Text="ha" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
-              
-                <Button Grid.Row="0" Grid.Column="1" HeightRequest="90" WidthRequest="150" Text="haa" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
-                
-                <Button Grid.Row="1" Grid.Column="0" HeightRequest="90" WidthRequest="150" Text="h" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
-                
-                <Button Grid.Row="1"  Grid.Column="1" HeightRequest="90" WidthRequest="150" Text="ہ" BackgroundColor="#E0F7FF" BorderColor="#D3D3D3" BorderWidth="2" TextColor="#1CB0F6" CornerRadius="10" FontAttributes="Bold" />
+                <Button Clicked="WhatYouHearOption_Clicked" x:Name="What_You_Hear_Option1" Grid.Row="0" Grid.Column="0" HeightRequest="90" FontSize="Medium" WidthRequest="150" Text="" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+
+                <Button Clicked="WhatYouHearOption_Clicked" x:Name="What_You_Hear_Option2" Grid.Row="0" Grid.Column="1" HeightRequest="90" FontSize="Medium" WidthRequest="150" Text="" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2" TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+
+                <Button Clicked="WhatYouHearOption_Clicked" x:Name="What_You_Hear_Option3" Grid.Row="1" Grid.Column="0" HeightRequest="90" FontSize="Medium" WidthRequest="150" Text="" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2"  TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+
+                <Button Clicked="WhatYouHearOption_Clicked" x:Name="What_You_Hear_Option4" Grid.Row="1"  Grid.Column="1" HeightRequest="90" FontSize="Medium" WidthRequest="150" Text="" BackgroundColor="White" BorderColor="#D3D3D3" BorderWidth="2"  TextColor="Black" CornerRadius="10" FontAttributes="Bold" />
+
+                <!-- Answer Options -->
+                <Grid x:Name="WhatYouHearOptionOptionsGrid"
+                     ColumnDefinitions="*,*,*"
+                     RowDefinitions="Auto,Auto"
+                     ColumnSpacing="10"
+                     RowSpacing="10"
+                     HorizontalOptions="Center">
+                </Grid>
             </Grid>
+            
+            
             
         </Grid>
 
         <!-- ================= What_Sound CONTENT ================= -->
         <VerticalStackLayout Grid.Row="0" x:Name="What_Sound_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
-            <Label x:Name="QuestionsLabel"
+            <Label 
                  Text="What sound does this make?"
                  FontSize="20"
                  FontAttributes="Bold"
@@ -268,8 +292,8 @@
                      HasShadow="False"
                      HorizontalOptions="Center">
                     <Grid>
-                        <Label x:Name="ArabicLetterLabel"
-                    Text="ء"
+                        <Label x:Name="What_SoundArabicLetterLabel"
+                    Text=""
                    FontSize="70"
                    TextColor="White"
                    HorizontalOptions="Center"
@@ -286,7 +310,7 @@
                 </Frame>
 
                 <!-- Answer Options -->
-                <Grid x:Name="OptionsGrid"
+                <Grid x:Name="What_Sound_OptionsGrid"
                  ColumnDefinitions="*,*,*"
                  RowDefinitions="Auto,Auto"
                  ColumnSpacing="10"
@@ -298,7 +322,7 @@
 
         <!-- ================= FOOTER ================= -->
         <!-- 🔹 Bottom CHECK BUTTON -->
-        <Button x:Name="CheckButton" Grid.Row="2" Text="CHECK" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="25" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"  ZIndex="1"/>
+        <Button x:Name="CheckButton" Clicked="CheckButton_Clicked" Grid.Row="2" Text="CHECK" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="25" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"  ZIndex="1"/>
         
         <!-- Correct Box OVERLAY -->
         <Frame x:Name="CorrectBox" Grid.RowSpan="3" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#58CC02" CornerRadius="1" IsVisible="False" HeightRequest="130">
