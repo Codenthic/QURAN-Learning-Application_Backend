@@ -104,7 +104,13 @@
 	  <MauiXaml Update="Pages\Onboarding\BasicQuestions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Onboarding\CategorySelection.xaml">
+	  <MauiXaml Update="Pages\Onboarding\CompoundLettersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Onboarding\SpecialLetterCategoriesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Onboarding\LearningCategorySelection.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Onboarding\LevelSelection.xaml">
@@ -127,6 +133,12 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\raw\cartooncharacter.gif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Pages\Onboarding\SpecialLetterCategoriesPage.xaml.cs">
+	    <DependentUpon>SpecialLetterCategoriesPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 	
 </Project>

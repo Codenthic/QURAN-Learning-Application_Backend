@@ -21,9 +21,9 @@ public partial class LevelSelection : ContentPage
             // Highlight selected
             border.BackgroundColor = Color.FromArgb("#E8FCEB");
             // Optionally navigate or store level
-            await Navigation.PushAsync(new CategorySelection());
+            await Navigation.PushAsync(new LearningCategorySelection());
         }
-        await Navigation.PushAsync(new CategorySelection());
+        await Navigation.PushAsync(new LearningCategorySelection());
 
     }
 

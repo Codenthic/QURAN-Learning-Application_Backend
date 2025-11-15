@@ -2,9 +2,9 @@ using QuranJourney.Pages.Courses.Beginner;
 
 namespace QuranJourney.Pages.Onboarding;
 
-public partial class CategorySelection : ContentPage
+public partial class SpecialLetterCategoriesPage : ContentPage
 {
-	public CategorySelection()
+	public SpecialLetterCategoriesPage()
 	{
 		InitializeComponent();
 	}

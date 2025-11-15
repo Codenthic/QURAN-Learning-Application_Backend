@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QuranJourney.Pages.Onboarding.LevelSelection"
-             Title="Choose Your Level"
-             BackgroundColor="#F9FAFB">
+             x:Class="QuranJourney.Pages.Onboarding.LearningCategorySelection"
+             Title="LearningCategorySelection"
+             BackgroundColor="White">
 
-    <Grid x:Name="QuestionGrid" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- HEADER -->
             <RowDefinition Height="*"/>
+            <!-- CONTENT -->
         </Grid.RowDefinitions>
-
         <!-- ================= HEADER ================= -->
         <VerticalStackLayout Padding="10" Spacing="20">
 
@@ -103,80 +105,52 @@
         </VerticalStackLayout>
         <!-- ================= HEADER ================= -->
 
-        <ScrollView Grid.Row="1" BackgroundColor="White">
+        <!-- =============== CATEGORY OPTIONS =============== -->
+        <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="25" Padding="20">
 
-                <!-- Levels Grid -->
-                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="25">
+                <Grid RowDefinitions="Auto,Auto" RowSpacing="25">
 
-                    <!-- Beginner Level -->
-                    <Frame x:Name="BeginnerBox"
-                   BackgroundColor="White"
-                   CornerRadius="25"
-                   BorderColor="#58CC02"
-                   HasShadow="True"
-                   HeightRequest="120">
+                    <!-- Category 1 -->
+                    <Frame CornerRadius="25"
+                           BackgroundColor="White"
+                           BorderColor="#58CC02"
+                           HeightRequest="120"
+                           HasShadow="True">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Beginner"/>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped"
+                                                  CommandParameter="CompoundLetters"/>
                         </Frame.GestureRecognizers>
                         <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                            <Label Text="Beginner"
-                           FontAttributes="Bold"
-                           FontSize="22"
-                           TextColor="#58CC02"
-                           HorizontalOptions="Center"/>
-                            <Label Text="Learn the Arabic letters of the Quran"
-                           FontSize="15"
-                           TextColor="#666"
-                           HorizontalOptions="Center"/>
+                            <Label Text="Compound Letters (Murakkabat)"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#58CC02"/>
+                            <Label Text="Learn joined or combined Arabic letters"
+                                   TextColor="#666"
+                                   FontSize="15"/>
                         </VerticalStackLayout>
                     </Frame>
 
-                    <!-- Intermediate Level -->
-                    <Frame x:Name="IntermediateBox"
-                   Grid.Row="1"
-                   BackgroundColor="White"
-                   CornerRadius="25"
-                   BorderColor="#FFA500"
-                   HasShadow="True"
-                   HeightRequest="120">
+                    <!-- Category 2 -->
+                    <Frame Grid.Row="1"
+                           CornerRadius="25"
+                           BackgroundColor="White"
+                           BorderColor="#FFA500"
+                           HeightRequest="120"
+                           HasShadow="True">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Intermediate"/>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped"
+                                                  CommandParameter="SpecialCategories"/>
                         </Frame.GestureRecognizers>
                         <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                            <Label Text="Intermediate"
-                           FontAttributes="Bold"
-                           FontSize="22"
-                           TextColor="#FFA500"
-                           HorizontalOptions="Center"/>
-                            <Label Text="Learn common words in the Quran"
-                           FontSize="15"
-                           TextColor="#666"
-                           HorizontalOptions="Center"/>
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    <!-- Advanced Level -->
-                    <Frame x:Name="AdvancedBox"
-                   Grid.Row="2"
-                   BackgroundColor="White"
-                   CornerRadius="25"
-                   BorderColor="#FF4444"
-                   HasShadow="True"
-                   HeightRequest="120">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnLevelTapped" CommandParameter="Advanced"/>
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                            <Label Text="Advanced"
-                           FontAttributes="Bold"
-                           FontSize="22"
-                           TextColor="#FF4444"
-                           HorizontalOptions="Center"/>
-                            <Label Text="Practice reading Quranic sentences  verses"
-                           FontSize="15"
-                           TextColor="#666"
-                           HorizontalOptions="Center"/>
+                            <Label Text="Special Letter Categories"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#FFA500"/>
+                            <Label Text="Learn unique pronunciation categories"
+                                   TextColor="#666"
+                                   FontSize="15"/>
                         </VerticalStackLayout>
                     </Frame>
 
@@ -184,7 +158,5 @@
 
             </VerticalStackLayout>
         </ScrollView>
-
     </Grid>
-
 </ContentPage>
