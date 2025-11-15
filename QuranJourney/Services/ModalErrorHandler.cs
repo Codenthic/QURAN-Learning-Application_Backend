@@ -13,7 +13,7 @@ namespace QuranJourney.Services
         /// <param name="ex">Exception.</param>
         public void HandleError(Exception ex)
         {
-            DisplayAlert(ex).FireAndForgetSafeAsync();
+            DisplayAlert(ex);
         }
 
         async Task DisplayAlert(Exception ex)

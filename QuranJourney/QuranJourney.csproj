@@ -116,11 +116,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="PageModels\" />
 	  <Folder Include="Pages\Courses\Intermediate\" />
 	  <Folder Include="Pages\Courses\Advanced\" />
 	  <Folder Include="Pages\Gamification\" />
 	  <Folder Include="Pages\Review\" />
 	  <Folder Include="Pages\Settings\" />
+	  <Folder Include="Utilities\" />
 	</ItemGroup>
 
 	<ItemGroup>

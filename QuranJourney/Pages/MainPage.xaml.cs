@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Media.Animation;
 using QuranJourney.Models;
-using QuranJourney.PageModels;
 using QuranJourney.Pages.Auth;
 using QuranJourney.Pages.Courses.Beginner;
 using QuranJourney.Pages.Onboarding;
@@ -9,10 +8,9 @@ namespace QuranJourney.Pages
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(MainPageModel model)
+        public MainPage()
         {
             InitializeComponent();
-            BindingContext = model;
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
