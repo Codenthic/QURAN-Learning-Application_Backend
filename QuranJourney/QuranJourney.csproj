@@ -101,6 +101,9 @@
 	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_What_You_hear.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Levels_Category\LevelCategoriesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Onboarding\BasicQuestions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

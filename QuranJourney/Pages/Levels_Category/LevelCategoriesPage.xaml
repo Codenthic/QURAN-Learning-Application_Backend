@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuranJourney.Pages.Levels_Category.LevelCategoriesPage"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout x:Name="CategoriesLayout"
+                             Padding="20,30"
+                             Spacing="25">
+
+            <!-- 🔹 Header -->
+            <Label x:Name="HeaderLabel"
+                   Text="Learning Categories"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <!-- 🔹 Categories Grid -->
+            <Grid x:Name="CategoriesGrid"
+                  RowSpacing="25"
+                  ColumnSpacing="20"
+                  Padding="10,0"
+                  VerticalOptions="Start">
+                <!-- Dynamic content added from code-behind -->
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

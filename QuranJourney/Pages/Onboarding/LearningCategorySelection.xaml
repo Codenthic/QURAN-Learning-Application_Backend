@@ -122,13 +122,13 @@
                                                   CommandParameter="CompoundLetters"/>
                         </Frame.GestureRecognizers>
                         <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
-                            <Label Text="Compound Letters (Murakkabat)"
+                            <Label Text="Qaida (Murakkabat)"
                                    FontSize="20"
                                    FontAttributes="Bold"
                                    TextColor="#58CC02"/>
-                            <Label Text="Learn joined or combined Arabic letters"
+                            <!--<Label Text="Learn joined or combined Arabic letters"
                                    TextColor="#666"
-                                   FontSize="15"/>
+                                   FontSize="15"/>-->
                         </VerticalStackLayout>
                     </Frame>
 
@@ -148,9 +148,9 @@
                                    FontSize="20"
                                    FontAttributes="Bold"
                                    TextColor="#FFA500"/>
-                            <Label Text="Learn unique pronunciation categories"
+                            <!--<Label Text="Learn unique pronunciation categories"
                                    TextColor="#666"
-                                   FontSize="15"/>
+                                   FontSize="15"/>-->
                         </VerticalStackLayout>
                     </Frame>
 

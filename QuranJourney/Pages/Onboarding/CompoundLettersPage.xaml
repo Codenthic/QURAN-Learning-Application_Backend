@@ -2,11 +2,183 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuranJourney.Pages.Onboarding.CompoundLettersPage"
-             Title="CompoundLettersPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="CompoundLettersPage"
+             Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- HEADER -->
+            <RowDefinition Height="*"/>
+            <!-- CONTENT -->
+        </Grid.RowDefinitions>
+        <!-- ================= HEADER ================= -->
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <!-- Top Row: Back Button + Progress Bar -->
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
+                <!-- Back Button -->
+                <Image x:Name="xIcon"
+               Source="back.png"
+               HeightRequest="28"
+               WidthRequest="28"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <!-- Progress Bar -->
+                <Grid Grid.Column="1" Margin="15,0,0,0" HeightRequest="14"
+              HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <!-- Gray background -->
+                    <BoxView BackgroundColor="#E0E0E0"
+                     x:Name="ProgressBarContainer"
+                     CornerRadius="7"
+                     HeightRequest="14"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Center" />
+                    <!-- Green fill -->
+                    <BoxView x:Name="ProgressFill"
+                     BackgroundColor="#58CC02"
+                     CornerRadius="7"
+                     HeightRequest="14"
+                     WidthRequest="340"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center" />
+                </Grid>
+            </Grid>
+
+            <!-- Question + GIF Section -->
+            <Grid ColumnSpacing="10" Margin="0,-30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Side: GIF -->
+                <WebView x:Name="ResultGifWebView"
+                 HeightRequest="150"
+                 WidthRequest="150"
+                 BackgroundColor="Transparent"
+                 IsVisible="True"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center">
+                    <WebView.Source>
+                        <HtmlWebViewSource>
+                            <HtmlWebViewSource.Html>
+                                <![CDATA[
+                        <html>
+                            <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; height:100%; width:100%;">
+                                <img src="giphy.gif" style="width:60%; height:60%; background: transparent; display:block;" />
+                            </body>
+                        </html>
+                        ]]>
+                            </HtmlWebViewSource.Html>
+                        </HtmlWebViewSource>
+                    </WebView.Source>
+                </WebView>
+
+                <!-- Right Side: Speech Bubble with Question -->
+                <Frame Grid.Column="1"
+               BackgroundColor="White"
+               BorderColor="#E0E0E0"
+               CornerRadius="18"
+               Padding="12"
+               HasShadow="False"
+               VerticalOptions="Center"
+               HorizontalOptions="Start">
+                    <Label x:Name="QuestionLabel"
+                   Text="Loading question..."
+                   FontSize="16"
+                   TextColor="#555555"
+                   FontFamily="Sans-Serif"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"/>
+                </Frame>
+            </Grid>
+            <!-- Horizontal Line Separator -->
+            <BoxView Margin="0,-40,0,0" HeightRequest="1" BackgroundColor="#E0E0E0" HorizontalOptions="FillAndExpand"/>
+
+        </VerticalStackLayout>
+        <!-- ================= HEADER ================= -->
+
+        <!-- =============== CATEGORY OPTIONS =============== -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="25" Padding="20">
+
+                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="25">
+
+                    <!-- Beginner Level – Qaida -->
+                    <Frame CornerRadius="25"
+           BackgroundColor="White"
+           BorderColor="#58CC02"
+           HeightRequest="120"
+           HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped"
+                                  CommandParameter="BeginnerQaida"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="4">
+                            <Label Text="Beginner Level – Qaida"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#58CC02"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                    <!-- Intermediate Level – Qaida / Nazra -->
+                    <Frame Grid.Row="1"
+           CornerRadius="25"
+           BackgroundColor="White"
+           BorderColor="#FFA500"
+           HeightRequest="120"
+           HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped"
+                                  CommandParameter="IntermediateNazra"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="4">
+                            <Label Text="Intermediate Level – Qaida / Nazra"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#FFA500"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+
+                    <!-- Advanced – Tajweed Rules -->
+                    <Frame Grid.Row="2"
+           CornerRadius="25"
+           BackgroundColor="White"
+           BorderColor="#FF4444"
+           HeightRequest="120"
+           HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLevelTapped"
+                                  CommandParameter="TajweedRules"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="4">
+                            <Label Text="Advanced Level – Tajweed Rules"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#FF4444"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </Grid>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -5,7 +5,7 @@ public partial class LearningCategorySelection : ContentPage
 	public LearningCategorySelection()
 	{
 		InitializeComponent();
-        TypeTextAsync("Assalamu Alaikum! May Allah bless your intention to learn the Quran. Select a category below and continue your journey toward perfecting Quranic reading and pronunciation.");
+        TypeTextAsync("Assalamu Alaikum! Start your Quran learning journey here. Choose a category to continue.");
 
     }
     private void OnCategoryTapped(object sender, TappedEventArgs e)
