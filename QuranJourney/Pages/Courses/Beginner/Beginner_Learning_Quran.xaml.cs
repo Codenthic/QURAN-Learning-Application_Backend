@@ -4,7 +4,7 @@
 
     public partial class Beginner_Learning_Quran : ContentPage
     {
-        #region =============================== Fields / Variables =======================================
+    #region =============================== Fields / Variables =======================================
         private int currentQuestionIndex = 0;          // Track current question
         private string selectedAnswer = string.Empty;  // Track selected answer
         private bool isAnswerChecked = false;          // Track if answer checked (currently unused)
@@ -45,7 +45,7 @@
         }
         else if (categoryType == "qaida")
         {
-            var QaidaCategory = ThaktiRepository.GetQaidaCategoryById(2);
+            var QaidaCategory = ThaktiRepository.GetQaidaCategoryById(categoryId);
             shuffledQuestions = QaidaCategory.QuizItems.OrderBy(x => Guid.NewGuid()).ToList();
         }
         else
@@ -136,7 +136,8 @@
             CheckButton.BackgroundColor = Color.FromArgb("#E0E0E0");
         }
     #endregion
-    #region =============================== Select And Match Correct Char Activity ==================================
+    
+    #region ================================ Select And Match Correct Char Activity =====================
 
     private void MatchingPair_Activity(LetterQuizItem quiz)
         {
@@ -321,7 +322,7 @@
 
     #endregion
 
-    #region =============================== Select Correct Char Activity ==================================
+    #region =============================== Select Correct Char Activity ================================
     private void Correct_Char_Activity(LetterQuizItem quiz)
     {
        // Set question label
@@ -670,7 +671,7 @@
 
     #endregion
 
-    #region =============================== Fill in The Blank Activity========================================
+    #region =============================== Fill in The Blank Activity=================================
 
          private void FillIn_Activity(LetterQuizItem quiz)
     {
@@ -743,7 +744,6 @@
         CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
     }
     #endregion
-
 
     #region =============================== Progress Update ==========================================
          private void UpdateProgress()

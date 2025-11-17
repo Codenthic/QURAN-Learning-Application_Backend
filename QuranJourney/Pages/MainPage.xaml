@@ -7,13 +7,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="QuranJourney.Pages.MainPage"
              BackgroundColor="White">
-    
-    
-    <Grid RowDefinitions="*,Auto,Auto"
-       Padding="20">
-        
-        
-        
+
+    <Grid RowDefinitions="*,Auto,Auto" Padding="20">
         <!-- Logo Area -->
         <VerticalStackLayout Grid.Row="0"
                      VerticalOptions="Center"
@@ -83,4 +78,5 @@
                     />
         </VerticalStackLayout>
     </Grid>
+    
 </ContentPage>

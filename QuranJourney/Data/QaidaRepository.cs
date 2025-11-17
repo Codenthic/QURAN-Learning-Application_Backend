@@ -51,7 +51,9 @@ namespace QuranJourney.Data
                   Title = "Thakti ۲",
                   QuizItems = new List<LetterQuizItem>
                   {
+                      new LetterQuizItem { ArabicLetter="بلب", EnglishLetter="Balab", ArabicOptions=new List<string>{"بلب","باب","تب","لب"}, EnglishOptions=new List<string>{"Balab","Baab","Tab","Lab"}, CorrectArabic="بلب", CorrectEnglish="Balab" },
                       new LetterQuizItem { ArabicLetter="لا", EnglishLetter="La", ArabicOptions=new List<string>{"لا","با","ما","كا"}, EnglishOptions=new List<string>{"La","Ba","Ma","Ka"}, CorrectArabic="لا", CorrectEnglish="La" },
+
                       new LetterQuizItem { ArabicLetter="با", EnglishLetter="Ba", ArabicOptions=new List<string>{"با","لا","تا","ثا"}, EnglishOptions=new List<string>{"Ba","La","Ta","Tha"}, CorrectArabic="با", CorrectEnglish="Ba" },
                       new LetterQuizItem { ArabicLetter="الا", EnglishLetter="Ala", ArabicOptions=new List<string>{"الا","اللا","با","يا"}, EnglishOptions=new List<string>{"Ala","Alla","Ba","Ya"}, CorrectArabic="الا", CorrectEnglish="Ala" },
               
