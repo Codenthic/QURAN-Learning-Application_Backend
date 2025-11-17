@@ -42,7 +42,59 @@ namespace QuranJourney.Data
                      new LetterQuizItem { ArabicLetter="و", EnglishLetter="Waw", ArabicOptions=new List<string>{"و","ه","ي","ا"}, EnglishOptions=new List<string>{"Waw","Heh","Ya","Alif"}, CorrectArabic="و", CorrectEnglish="Waw" },
                      new LetterQuizItem { ArabicLetter="ي", EnglishLetter="Ya", ArabicOptions=new List<string>{"ي","و","ه","ا"}, EnglishOptions=new List<string>{"Ya","Waw","Heh","Alif"}, CorrectArabic="ي", CorrectEnglish="Ya" }
                  }
+
+              },
+
+              new LetterCategory
+              {
+                  Id = 2,
+                  Title = "Thakti ۲",
+                  QuizItems = new List<LetterQuizItem>
+                  {
+                      new LetterQuizItem { ArabicLetter="لا", EnglishLetter="La", ArabicOptions=new List<string>{"لا","با","ما","كا"}, EnglishOptions=new List<string>{"La","Ba","Ma","Ka"}, CorrectArabic="لا", CorrectEnglish="La" },
+                      new LetterQuizItem { ArabicLetter="با", EnglishLetter="Ba", ArabicOptions=new List<string>{"با","لا","تا","ثا"}, EnglishOptions=new List<string>{"Ba","La","Ta","Tha"}, CorrectArabic="با", CorrectEnglish="Ba" },
+                      new LetterQuizItem { ArabicLetter="الا", EnglishLetter="Ala", ArabicOptions=new List<string>{"الا","اللا","با","يا"}, EnglishOptions=new List<string>{"Ala","Alla","Ba","Ya"}, CorrectArabic="الا", CorrectEnglish="Ala" },
+              
+                      new LetterQuizItem { ArabicLetter="ل", EnglishLetter="Laam", ArabicOptions=new List<string>{"ل","ك","ب","ت"}, EnglishOptions=new List<string>{"Laam","Kaaf","Ba","Ta"}, CorrectArabic="ل", CorrectEnglish="Laam" },
+                      new LetterQuizItem { ArabicLetter="لا", EnglishLetter="La", ArabicOptions=new List<string>{"لا","با","تا","ثا"}, EnglishOptions=new List<string>{"La","Ba","Ta","Tha"}, CorrectArabic="لا", CorrectEnglish="La" },
+              
+                      new LetterQuizItem { ArabicLetter="لب", EnglishLetter="Lab", ArabicOptions=new List<string>{"لب","بب","با","لا"}, EnglishOptions=new List<string>{"Lab","Bab","Ba","La"}, CorrectArabic="لب", CorrectEnglish="Lab" },
+              
+                      new LetterQuizItem { ArabicLetter="مح", EnglishLetter="Mah", ArabicOptions=new List<string>{"مح","حم","ما","كا"}, EnglishOptions=new List<string>{"Mah","Ham","Ma","Ka"}, CorrectArabic="مح", CorrectEnglish="Mah" },
+                      new LetterQuizItem { ArabicLetter="لح", EnglishLetter="Lah", ArabicOptions=new List<string>{"لح","حل","لا","بل"}, EnglishOptions=new List<string>{"Lah","Hal","La","Bal"}, CorrectArabic="لح", CorrectEnglish="Lah" },
+              
+                      new LetterQuizItem { ArabicLetter="ك", EnglishLetter="Kaaf", ArabicOptions=new List<string>{"ك","ق","ف","ل"}, EnglishOptions=new List<string>{"Kaaf","Qaf","Fa","Laam"}, CorrectArabic="ك", CorrectEnglish="Kaaf" },
+                      new LetterQuizItem { ArabicLetter="كا", EnglishLetter="Kaa", ArabicOptions=new List<string>{"كا","ك","با","لا"}, EnglishOptions=new List<string>{"Kaa","Kaaf","Ba","La"}, CorrectArabic="كا", CorrectEnglish="Kaa" },
+              
+                      new LetterQuizItem { ArabicLetter="كبا", EnglishLetter="Kaba", ArabicOptions=new List<string>{"كبا","باك","كا","كب"}, EnglishOptions=new List<string>{"Kaba","Bak","Kaa","Kab"}, CorrectArabic="كبا", CorrectEnglish="Kaba" },
+                      new LetterQuizItem { ArabicLetter="كب", EnglishLetter="Kab", ArabicOptions=new List<string>{"كب","بك","كا","لا"}, EnglishOptions=new List<string>{"Kab","Bak","Kaa","La"}, CorrectArabic="كب", CorrectEnglish="Kab" },
+              
+                      new LetterQuizItem { ArabicLetter="بكت", EnglishLetter="Bakt", ArabicOptions=new List<string>{"بكت","بتك","كبت","بكت"}, EnglishOptions=new List<string>{"Bakt","Batk","Kabt","Bakt"}, CorrectArabic="بكت", CorrectEnglish="Bakt" },
+                      new LetterQuizItem { ArabicLetter="تدث", EnglishLetter="Tadth", ArabicOptions=new List<string>{"تدث","تثد","دثت","تد"}, EnglishOptions=new List<string>{"Tadth","Tathd","Dath","Tad"}, CorrectArabic="تدث", CorrectEnglish="Tadth" },
+              
+                      new LetterQuizItem { ArabicLetter="ت", EnglishLetter="Ta", ArabicOptions=new List<string>{"ت","ث","ب","ن"}, EnglishOptions=new List<string>{"Ta","Tha","Ba","Noon"}, CorrectArabic="ت", CorrectEnglish="Ta" },
+                      new LetterQuizItem { ArabicLetter="ب", EnglishLetter="Ba", ArabicOptions=new List<string>{"ب","ت","ث","ن"}, EnglishOptions=new List<string>{"Ba","Ta","Tha","Noon"}, CorrectArabic="ب", CorrectEnglish="Ba" },
+              
+                      new LetterQuizItem { ArabicLetter="ثا", EnglishLetter="Thaa", ArabicOptions=new List<string>{"ثا","تا","سا","شا"}, EnglishOptions=new List<string>{"Thaa","Taa","Saa","Shaa"}, CorrectArabic="ثا", CorrectEnglish="Thaa" },
+                      new LetterQuizItem { ArabicLetter="با", EnglishLetter="Baa", ArabicOptions=new List<string>{"با","ثا","تا","شا"}, EnglishOptions=new List<string>{"Baa","Thaa","Taa","Shaa"}, CorrectArabic="با", CorrectEnglish="Baa" },
+              
+                      new LetterQuizItem { ArabicLetter="يا", EnglishLetter="Yaa", ArabicOptions=new List<string>{"يا","با","تا","ثا"}, EnglishOptions=new List<string>{"Yaa","Baa","Taa","Thaa"}, CorrectArabic="يا", CorrectEnglish="Yaa" },
+                      new LetterQuizItem { ArabicLetter="نا", EnglishLetter="Naa", ArabicOptions=new List<string>{"نا","يا","تا","ثا"}, EnglishOptions=new List<string>{"Naa","Yaa","Taa","Thaa"}, CorrectArabic="نا", CorrectEnglish="Naa" },
+              
+                      new LetterQuizItem { ArabicLetter="نس", EnglishLetter="Nas", ArabicOptions=new List<string>{"نس","سن","س","نا"}, EnglishOptions=new List<string>{"Nas","San","Sa","Naa"}, CorrectArabic="نس", CorrectEnglish="Nas" },
+                      new LetterQuizItem { ArabicLetter="تس", EnglishLetter="Tas", ArabicOptions=new List<string>{"تس","ست","نس","تا"}, EnglishOptions=new List<string>{"Tas","Sat","Nas","Taa"}, CorrectArabic="تس", CorrectEnglish="Tas" },
+              
+                      new LetterQuizItem { ArabicLetter="شا", EnglishLetter="Shaa", ArabicOptions=new List<string>{"شا","سا","ش","ثا"}, EnglishOptions=new List<string>{"Shaa","Saa","Sh","Thaa"}, CorrectArabic="شا", CorrectEnglish="Shaa" },
+                      new LetterQuizItem { ArabicLetter="يا", EnglishLetter="Yaa", ArabicOptions=new List<string>{"يا","شا","سا","ش"}, EnglishOptions=new List<string>{"Yaa","Shaa","Saa","Sh"}, CorrectArabic="يا", CorrectEnglish="Yaa" },
+              
+                      new LetterQuizItem { ArabicLetter="يس", EnglishLetter="Yas", ArabicOptions=new List<string>{"يس","سي","شس","سا"}, EnglishOptions=new List<string>{"Yas","See","Shas","Saa"}, CorrectArabic="يس", CorrectEnglish="Yas" },
+                      new LetterQuizItem { ArabicLetter="بس", EnglishLetter="Bas", ArabicOptions=new List<string>{"بس","سب","س","با"}, EnglishOptions=new List<string>{"Bas","Sab","Sa","Ba"}, CorrectArabic="بس", CorrectEnglish="Bas" },
+              
+                      new LetterQuizItem { ArabicLetter="شج", EnglishLetter="Shaj", ArabicOptions=new List<string>{"شج","جش","شا","جا"}, EnglishOptions=new List<string>{"Shaj","Jash","Shaa","Ja"}, CorrectArabic="شج", CorrectEnglish="Shaj" },
+                      new LetterQuizItem { ArabicLetter="تج", EnglishLetter="Taj", ArabicOptions=new List<string>{"تج","جت","تا","جا"}, EnglishOptions=new List<string>{"Taj","Jat","Taa","Ja"}, CorrectArabic="تج", CorrectEnglish="Taj" }
+                  }
               }
+
         };
         public static LetterCategory GetQaidaCategoryById(int id)
         {

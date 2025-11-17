@@ -61,7 +61,7 @@
         </VerticalStackLayout>
 
         <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="1" x:Name="Correct_Char_ButtonsGrid"
                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                  ColumnDefinitions="*,*"
                  Padding="20"
@@ -70,7 +70,7 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
                 <!-- Row 1 -->
-                <Button Grid.Row="0" Grid.Column="0" HeightRequest="160" Text="غ"
+                <Button Grid.Row="0" Grid.Column="0" HeightRequest="160" Text="Btn1"
             BackgroundColor="White"
             FontAttributes="Bold"
             BorderColor="#D3D3D3"
@@ -80,7 +80,7 @@
             WidthRequest="140"
             TextColor="Black"
             CornerRadius="10"/>
-                <Button Grid.Row="0" Grid.Column="1" HeightRequest="160" Text="gh"
+                <Button Grid.Row="0" Grid.Column="1" HeightRequest="160" Text="Btn2"
             BackgroundColor="White"
             WidthRequest="140"
             FontSize="40"
@@ -92,7 +92,7 @@
             CornerRadius="10"/>
 
                 <!-- Row 2 -->
-                <Button Grid.Row="1" Grid.Column="0" HeightRequest="160" Text="غا"
+                <Button Grid.Row="1" Grid.Column="0" HeightRequest="160" Text="Btn3"
             BackgroundColor="White"
             FontAttributes="Bold"
             BorderColor="#D3D3D3"
@@ -102,7 +102,7 @@
             WidthRequest="140"
             TextColor="Black"
             CornerRadius="10"/>
-                <Button Grid.Row="1" Grid.Column="1" HeightRequest="160" Text="ghaa"
+                <Button Grid.Row="1" Grid.Column="1" HeightRequest="160" Text="Btn4"
             BackgroundColor="White"
             FontAttributes="Bold"
             WidthRequest="140"
@@ -322,6 +322,68 @@
                 </Grid>
             </VerticalStackLayout>
         </Grid>
+
+
+        <!-- ================= Fill In The Blanks CONTENT ================= -->
+        <VerticalStackLayout Grid.Row="0" x:Name="FillIn_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+            <Label
+        Text="Fill in the blank"
+        FontSize="20"
+        FontAttributes="Bold"
+        TextColor="Black"
+        Margin="10,47,0,0" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" x:Name="FillIn_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False">
+            <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
+                <!-- Sentence Card with a blank -->
+                <Frame x:Name="FillIn_SentenceFrame"
+               BackgroundColor="#5480C0"
+               CornerRadius="20"
+               Padding="20"
+               HasShadow="True"
+               HorizontalOptions="Center">
+                    <Label x:Name="FillIn_SentenceLabel"
+                   Text="______ is the missing word."
+                   TextColor="White"
+                   FontSize="22"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+                </Frame>
+
+                <!-- Options row -->
+                <HorizontalStackLayout Spacing="18" HorizontalOptions="Center">
+                    <Button x:Name="Fill_Option1"
+                    Clicked="FillIn_Option_Clicked"
+                    BackgroundColor="White"
+                    BorderColor="#5480C0"
+                    BorderWidth="2"
+                    TextColor="Black"
+                    CornerRadius="10"
+                    WidthRequest="120"
+                    HeightRequest="50" />
+                    <Button x:Name="Fill_Option2"
+                    Clicked="FillIn_Option_Clicked"
+                    BackgroundColor="White"
+                    BorderColor="#5480C0"
+                    BorderWidth="2"
+                    TextColor="Black"
+                    CornerRadius="10"
+                    WidthRequest="120"
+                    HeightRequest="50" />
+                    <Button x:Name="Fill_Option3"
+                    Clicked="FillIn_Option_Clicked"
+                    BackgroundColor="White"
+                    BorderColor="#5480C0"
+                    BorderWidth="2"
+                    TextColor="Black"
+                    CornerRadius="10"
+                    WidthRequest="120"
+                    HeightRequest="50" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+
 
         <!-- ================= FOOTER ================= -->
         <!-- 🔹 Bottom CHECK BUTTON -->

@@ -105,9 +105,30 @@ public partial class LevelCategoriesPage : ContentPage
             }
         };
     }
+    private int ExtractNumberFromThakti(string title)
+    {
+        // Remove all non-digits (Persian/Urdu digits allowed)
+        var digits = new string(title.Where(char.IsDigit).ToArray());
+
+        if (string.IsNullOrEmpty(digits))
+            return 1; // default
+
+        // Persian/Urdu digits → English digits conversion
+        string englishNumber = digits
+            .Replace('۰', '0').Replace('۱', '1').Replace('۲', '2').Replace('۳', '3')
+            .Replace('۴', '4').Replace('۵', '5').Replace('۶', '6').Replace('۷', '7')
+            .Replace('۸', '8').Replace('۹', '9');
+
+        return int.Parse(englishNumber);
+    }
 
     private async void OnCategoryTapped(string category)
     {
-        await Navigation.PushAsync(new Beginner_Learning_Quran());
+        // Extract number from "تختی ۱" → 1
+        int id = ExtractNumberFromThakti(category);
+
+        // Navigate with dynamic ID
+        await Navigation.PushAsync(new Beginner_Learning_Quran(id, "qaida"));
     }
+
 }

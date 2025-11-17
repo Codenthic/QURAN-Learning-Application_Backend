@@ -21,7 +21,8 @@ namespace QuranJourney.Pages
             //await Navigation.PushAsync(new Beginner_Learning_Quran());
 
             //await Navigation.PushAsync(new Onboarding.BasicQuestions());
-            await Navigation.PushAsync(new WelcomeScreen());
+            //await Navigation.PushAsync(new WelcomeScreen());
+            await Navigation.PushAsync(new Beginner_Learning_Quran(1, "qaida"));
 
         }
     }

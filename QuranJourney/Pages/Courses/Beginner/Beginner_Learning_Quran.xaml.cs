@@ -14,60 +14,71 @@
         private Button firstSelected = null;  // Pehla selected button
         private Button secondSelected = null; // Dusra selected button
         private List<Tuple<Button, Button>> matchedPairs = new List<Tuple<Button, Button>>();
-
+        private List<Label> dragSourceLabels = new();
+        private List<Button> dropSlotButtons = new();
+        private string[] currentCorrectOrder; // expected sequence
         private List<Button> allButtons = new();
         private Dictionary<Button, Color> assignedColors = new();
         private List<Color> pairColors = new()
-    {
-        Colors.Green,
-        Colors.Blue,
-        Colors.Orange,
-        Colors.Purple,
-        Colors.Brown
-    };
+        {
+            Colors.Green,
+            Colors.Blue,
+            Colors.Orange,
+            Colors.Purple,
+            Colors.Brown
+        };
 
         private int currentColorIndex = 0;
 
-        #endregion
+    #endregion
 
-        #region =============================== Constructor =============================================
-        public Beginner_Learning_Quran()
+    #region =============================== Constructor =============================================
+    public Beginner_Learning_Quran(int categoryId, string categoryType)
+    {
+        InitializeComponent();
+
+        // Decide category type
+        if (categoryType == "special")
         {
-            InitializeComponent();
+            var category = SpecialLetterRepository.GetCategoryById(1);
+            shuffledQuestions = category.QuizItems.OrderBy(x => Guid.NewGuid()).ToList();
+        }
+        else if (categoryType == "qaida")
+        {
+            var QaidaCategory = ThaktiRepository.GetQaidaCategoryById(2);
+            shuffledQuestions = QaidaCategory.QuizItems.OrderBy(x => Guid.NewGuid()).ToList();
+        }
+        else
+        {
+            throw new Exception("Invalid category type");
+        }
 
-        // Load category and shuffle questions
-        //var category = SpecialLetterRepository.GetCategoryById(1);
-        //shuffledQuestions = category.QuizItems.OrderBy(x => Guid.NewGuid()).ToList();
-
-        var QaidaCategory = ThaktiRepository.GetQaidaCategoryById(1);
-
-        shuffledQuestions = QaidaCategory.QuizItems.OrderBy(x => Guid.NewGuid()).ToList();
-
-
-        // Set CheckButton click event
+        // Button events
         CheckButton.Clicked += CheckButton_Clicked;
 
-            // Load first activity
-            ShowCurrentActivity();
+        // Load first activity
+        ShowCurrentActivity();
 
-            allButtons = new List<Button>
+        allButtons = new List<Button>
+    {
+        Btn1, Btn2, Btn3, Btn4, Btn5,
+        Btn6, Btn7, Btn8, Btn9, Btn10
+    };
+
+        foreach (var btn in allButtons)
         {
-            Btn1, Btn2, Btn3, Btn4, Btn5,
-            Btn6, Btn7, Btn8, Btn9, Btn10
-        };
-
-            foreach (var btn in allButtons)
-            {
-                btn.Clicked += MatchingPairOption_Clicked;
-                btn.BackgroundColor = Colors.White;
-            }
-            // Initialize progress bar
-            AnimateProgress(0.0);
+            btn.Clicked += MatchingPairOption_Clicked;
+            btn.BackgroundColor = Colors.White;
         }
-        #endregion
 
-        #region =============================== Activity Management ======================================
-        private void ShowCurrentActivity()
+        // Progress Bar
+        AnimateProgress(0.0);
+    }
+
+    #endregion
+
+    #region =============================== Activity Management ======================================
+    private void ShowCurrentActivity()
         {
             // 1️⃣ Hide all headers & grids
             Select_Word_Header.IsVisible = false;
@@ -78,8 +89,10 @@
             What_Sound_ContentGrid.IsVisible = false;
             Correct_Char_Header.IsVisible = false;
             Correct_Char_ContentGrid.IsVisible = false;
-            // 2️⃣ Reset all option buttons
-            ResetAllOptionButtons();
+            FillIn_ContentGrid.IsVisible = false;
+            FillIn_Header.IsVisible = false;
+
+        ResetAllOptionButtons();
 
             // 3️⃣ Show current activity
             switch (currentActivityIndex)
@@ -106,15 +119,20 @@
                     Correct_Char_Header.IsVisible = true;
                     Correct_Char_ContentGrid.IsVisible = true;
                     break;
-                //case 4:
+            case 4:
+                FillIn_Activity(shuffledQuestions[currentQuestionIndex]);
+                FillIn_Header.IsVisible = true;
+                FillIn_ContentGrid.IsVisible = true;
+                break;
+                //case 5:
                 //    MatchingPair_Activity(shuffledQuestions[currentQuestionIndex]);
                 //    Matching_pair_Header.IsVisible = true;
                 //    Matching_pair_ContentGrid.IsVisible = true;
                 //    break;
-            }
+        }
 
-            // Reset selection
-            selectedAnswer = string.Empty;
+        // Reset selection
+        selectedAnswer = string.Empty;
             CheckButton.BackgroundColor = Color.FromArgb("#E0E0E0");
         }
     #endregion
@@ -305,28 +323,28 @@
 
     #region =============================== Select Correct Char Activity ==================================
     private void Correct_Char_Activity(LetterQuizItem quiz)
-        {
-            // Set question label
-            Correct_Char_Header.Children.OfType<Label>().FirstOrDefault().Text = $"Select the correct characters for '{quiz.EnglishLetter}'";
+    {
+       // Set question label
+       Correct_Char_Header.Children.OfType<Label>().FirstOrDefault().Text = $"Select the correct characters for '{quiz.EnglishLetter}'";
 
-            // Set button texts dynamically (assuming 4 buttons in your XAML)
-            var buttons = Correct_Char_ContentGrid.Children.OfType<Button>().ToList();
-            if (buttons.Count >= 4)
-            {
-                buttons[0].Text = quiz.ArabicOptions[0];
-                buttons[1].Text = quiz.EnglishOptions[0];
-                buttons[2].Text = quiz.ArabicOptions[1];
-                buttons[3].Text = quiz.EnglishOptions[1];
-            }
+       // Set button texts dynamically (assuming 4 buttons in your XAML)
+       var buttons = Correct_Char_ButtonsGrid.Children.OfType<Button>().ToList();
+       if (buttons.Count >= 4)
+       {
+           buttons[0].Text = quiz.ArabicOptions[0];
+           buttons[1].Text = quiz.EnglishOptions[0];
+           buttons[2].Text = quiz.ArabicOptions[1];
+           buttons[3].Text = quiz.EnglishOptions[1];
+       }
 
-            // Add click events
-            foreach (var btn in buttons)
-            {
-                btn.Clicked -= CorrectCharOption_Clicked; // avoid duplicate
-                btn.Clicked += CorrectCharOption_Clicked;
-            }
-        }
-        private void CorrectCharOption_Clicked(object sender, EventArgs e)
+       // Add click events
+       foreach (var btn in buttons)
+       {
+           btn.Clicked -= CorrectCharOption_Clicked; // avoid duplicate
+           btn.Clicked += CorrectCharOption_Clicked;
+       }
+     }
+     private void CorrectCharOption_Clicked(object sender, EventArgs e)
         {
             var clickedButton = sender as Button;
             if (clickedButton == null) return;
@@ -354,9 +372,9 @@
             CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
         }
 
-        #endregion
+    #endregion
 
-        #region =============================== Progress Bar Animation ===================================
+    #region =============================== Progress Bar Animation ===================================
         private async void AnimateProgress(double targetProgress)
         {
             targetProgress = Math.Clamp(targetProgress, 0.0, 1.0);
@@ -383,9 +401,9 @@
                 animation.Commit(this, "ProgressAnim", 16, 800);
             });
         }
-        #endregion
+    #endregion
 
-        #region =============================== Select Word Activity ====================================
+    #region =============================== Select Word Activity ====================================
         // Load Select Word activity question & options
         public void Select_Word_Activity(LetterQuizItem quiz)
         {
@@ -419,9 +437,9 @@
             // Enable Check button
             CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
         }
-        #endregion
+    #endregion
 
-        #region =============================== What You Hear Activity ==================================
+    #region =============================== What You Hear Activity ==================================
         // Load What You Hear activity options
         public void What_You_Hear_Activity(LetterQuizItem quiz)
         {
@@ -456,9 +474,9 @@
             // Enable Check button
             CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
         }
-        #endregion
+    #endregion
 
-        #region =============================== What Sound Activity =====================================
+    #region =============================== What Sound Activity =====================================
         // Load dynamic buttons for What Sound activity
         private void What_Sound_Hear_LoadQuestion(LetterQuizItem quiz)
         {
@@ -514,9 +532,9 @@
 
             CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
         }
-        #endregion
+    #endregion
 
-        #region =============================== Answer Validation ========================================
+    #region =============================== Answer Validation ========================================
         private bool ValidateAnswer(string answer)
         {
             var currentQuiz = shuffledQuestions[currentQuestionIndex];
@@ -575,31 +593,18 @@
 
                 return isMatch;
             }
+            else if (FillIn_ContentGrid.IsVisible)
+            {
+                var quiz = shuffledQuestions[currentQuestionIndex];
 
+                // If we used English options for fill, compare to CorrectEnglish, otherwise CorrectArabic
+                if (quiz.EnglishOptions != null && quiz.EnglishOptions.Count >= 1)
+                    return quiz.CorrectEnglish == answer;
+                else
+                    return quiz.CorrectArabic == answer;
+            }
             return false;
         }
-
-
-        // Universal validation method (checks Arabic or English automatically)
-        //private bool ValidateAnswer(string answer)
-        //{
-        //    var currentQuiz = shuffledQuestions[currentQuestionIndex];
-
-        //    if (Select_Word_ContentGrid.IsVisible || What_You_Hear_ContentGrid.IsVisible)
-        //    {
-        //        // Arabic answer check
-        //        return currentQuiz.CorrectArabic == answer;
-        //    }
-        //    else if (What_Sound_ContentGrid.IsVisible)
-        //    {
-        //        // English answer check
-        //        return currentQuiz.CorrectEnglish == answer;
-        //    }
-
-        //    return false;
-        //}
-
-        // Handle CheckButton click
         private async void CheckButton_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectedAnswer)) return;
@@ -663,10 +668,85 @@
         }
 
 
-        #endregion
+    #endregion
 
-        #region =============================== Progress Update ==========================================
-        private void UpdateProgress()
+    #region =============================== Fill in The Blank Activity========================================
+
+         private void FillIn_Activity(LetterQuizItem quiz)
+    {
+        // Header label (optional dynamic)
+        var headerLabel = FillIn_Header.Children.OfType<Label>().FirstOrDefault();
+        if (headerLabel != null)
+            headerLabel.Text = $"Fill in the blank for '{quiz.EnglishLetter}'";
+
+        // Determine sentence text - prefer a FillSentence property if present, otherwise a default template
+        string sentence = null;
+        // try to use a 'FillSentence' property if your model has it
+        var prop = typeof(LetterQuizItem).GetProperty("FillSentence");
+        if (prop != null)
+        {
+            var val = prop.GetValue(quiz) as string;
+            if (!string.IsNullOrWhiteSpace(val))
+                sentence = val;
+        }
+
+        // fallback: create a template sentence using EnglishLetter
+        if (string.IsNullOrWhiteSpace(sentence))
+        {
+            sentence = $"Select the missing word for '{quiz.EnglishLetter}': ___ {quiz.EnglishLetter}";
+        }
+
+        FillIn_SentenceLabel.Text = sentence;
+
+        // Choose options source: prefer EnglishOptions, otherwise ArabicOptions
+        var options = (quiz.ArabicOptions != null && quiz.ArabicOptions.Count >= 3)
+                        ? quiz.ArabicOptions.Take(3).ToList()
+                        : quiz.EnglishOptions.Take(3).ToList();
+
+        // If fewer than 3 options exist, pad with whatever is available
+        while (options.Count < 3)
+        {
+            options.Add(string.Empty);
+        }
+
+        Fill_Option1.Text = options[0];
+        Fill_Option2.Text = options[1];
+        Fill_Option3.Text = options[2];
+
+        // Reset visuals
+        Fill_Option1.BackgroundColor = Colors.White; Fill_Option1.TextColor = Colors.Black;
+        Fill_Option2.BackgroundColor = Colors.White; Fill_Option2.TextColor = Colors.Black;
+        Fill_Option3.BackgroundColor = Colors.White; Fill_Option3.TextColor = Colors.Black;
+    }
+
+         private void FillIn_Option_Clicked(object sender, EventArgs e)
+    {
+        var clickedButton = sender as Button;
+        if (clickedButton == null) return;
+
+        // reset other options
+        var opts = new List<Button> { Fill_Option1, Fill_Option2, Fill_Option3 };
+        foreach (var b in opts)
+        {
+            b.BackgroundColor = Colors.White;
+            b.TextColor = Colors.Black;
+        }
+
+        // highlight selected
+        clickedButton.BackgroundColor = Color.FromArgb("#1CB0F6");
+        clickedButton.TextColor = Colors.White;
+
+        // set selectedAnswer (we'll validate against quiz)
+        selectedAnswer = clickedButton.Text;
+
+        // enable Check button
+        CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
+    }
+    #endregion
+
+
+    #region =============================== Progress Update ==========================================
+         private void UpdateProgress()
         {
             var category = SpecialLetterRepository.GetCategoryById(1);
             int totalQuestions = category.QuizItems.Count;
@@ -677,14 +757,14 @@
             double progress = (double)currentStep / totalSteps;
             AnimateProgress(progress);
         }
-        #endregion
+    #endregion
 
-        #region =============================== Next Question Logic =====================================
+    #region =============================== Next Question Logic =====================================
         private void LoadNextQuestion()
         {
             currentActivityIndex++;
 
-            if (currentActivityIndex > 3)
+            if (currentActivityIndex > 4)
             {
                 currentActivityIndex = 0;
                 currentQuestionIndex++;
@@ -701,9 +781,9 @@
 
             ShowCurrentActivity();
         }
-        #endregion
+    #endregion
 
-        #region =============================== Reset Option Buttons ====================================
+    #region =============================== Reset Option Buttons ====================================
         private void ResetAllOptionButtons()
         {
             // Reset Select Word buttons
@@ -750,5 +830,5 @@
                 btn.BorderColor = Colors.Gray;
             }
         }
-        #endregion
+    #endregion
     }

@@ -8,8 +8,9 @@ public partial class SpecialLetterCategoriesPage : ContentPage
 	{
 		InitializeComponent();
 	}
-    private void Option_Tapped(object sender, TappedEventArgs e)
+    private async void Option_Tapped(object sender, TappedEventArgs e)
     {
-        Navigation.PushAsync(new Beginner_Learning_Quran());
+        //Navigation.PushAsync(new Beginner_Learning_Quran());
+        await Navigation.PushAsync(new Beginner_Learning_Quran(1, "special"));
     }
 }
