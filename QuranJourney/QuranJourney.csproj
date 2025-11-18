@@ -83,22 +83,7 @@
 	  <MauiXaml Update="Pages\Auth\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Correct_Char.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Learning_Quran.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Learn_Quran.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_MatchingPairs.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_Select_Word.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Courses\Beginner\Beginner_What_You_hear.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Levels_Category\LevelCategoriesPage.xaml">
@@ -125,7 +110,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="PageModels\" />
+	  <Folder Include="PageModels\Auth\" />
+	  <Folder Include="PageModels\Courses\" />
+	  <Folder Include="PageModels\Gamification\" />
+	  <Folder Include="PageModels\Levels_Category\" />
+	  <Folder Include="PageModels\Review\" />
+	  <Folder Include="PageModels\Settings\" />
 	  <Folder Include="Pages\Courses\Intermediate\" />
 	  <Folder Include="Pages\Courses\Advanced\" />
 	  <Folder Include="Pages\Gamification\" />

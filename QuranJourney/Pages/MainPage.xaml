@@ -54,7 +54,7 @@
         FontSize="16"
         HeightRequest="45"
         CornerRadius="25"
-        Clicked="Get_Started">
+        Command="{Binding GetStartedCommand}">
 
                 <!-- Shadow Effect -->
                 <Button.Shadow>
@@ -74,8 +74,7 @@
                  BorderColor="#58CC02"
                  BorderWidth="2"
                  CornerRadius="25"
-                 Clicked="Button_Clicked"
-                    />
+                 Command="{Binding LoginCommand}"/>
         </VerticalStackLayout>
     </Grid>
     

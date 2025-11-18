@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui;
+using QuranJourney.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -8,7 +9,7 @@ public partial class BasicQuestions : ContentPage
 {
     private int currentIndex = 0;
     private List<QuestionModel> questions;
-    private OptionModel selectedOption;
+    private BasicOptionModel selectedOption;
     private bool isFirstClick = true;
 
     public BasicQuestions()
@@ -29,53 +30,53 @@ public partial class BasicQuestions : ContentPage
         questions = new List<QuestionModel>
         {
             new QuestionModel { Text = "What would you like to learn?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "Arabic", IsCorrect = true ,Image = "learn_quran.png", }
+                Options = new List<BasicOptionModel> {
+                    new BasicOptionModel { Text = "Arabic", IsCorrect = true ,Image = "learn_quran.png", }
                 } },
             new QuestionModel { Text = "How did you hear about Quran Application?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "News/article/blog", IsCorrect = true },
-                    new OptionModel { Text = "TikTok" },
-                    new OptionModel { Text = "Google Search" },
-                    new OptionModel { Text = "Friend/Family" },
-                    new OptionModel { Text = "Facebook/Istagram" },
-                    new OptionModel { Text = "App store" },
-                    new OptionModel { Text = "TV" },
-                    new OptionModel { Text = "YouTube" },
-                    new OptionModel { Text = "Other" }
+                Options = new List<BasicOptionModel> {
+                    new BasicOptionModel { Text = "News/article/blog", IsCorrect = true },
+                    new BasicOptionModel { Text = "TikTok" },
+                    new BasicOptionModel { Text = "Google Search" },
+                    new BasicOptionModel { Text = "Friend/Family" },
+                    new BasicOptionModel { Text = "Facebook/Istagram" },
+                    new BasicOptionModel { Text = "App store" },
+                    new BasicOptionModel { Text = "TV" },
+                    new BasicOptionModel { Text = "YouTube" },
+                    new BasicOptionModel { Text = "Other" }
                 } },
             new QuestionModel
             {
                 Text = "How much Quran do you know?",
-                Options = new List<OptionModel>
+                Options = new List<BasicOptionModel>
                 {
-                    new OptionModel { Text = "I'm new to learning the Quran", IsCorrect = true },
-                    new OptionModel { Text = "I can read a few short Surahs", IsCorrect = true },
-                    new OptionModel { Text = "I can recite basic Surahs with Tajweed", IsCorrect = true },
-                    new OptionModel { Text = "I can read and understand some meanings", IsCorrect = true },
-                    new OptionModel { Text = "I can recite fluently and reflect on meanings", IsCorrect = true }
+                    new BasicOptionModel { Text = "I'm new to learning the Quran", IsCorrect = true },
+                    new BasicOptionModel { Text = "I can read a few short Surahs", IsCorrect = true },
+                    new BasicOptionModel { Text = "I can recite basic Surahs with Tajweed", IsCorrect = true },
+                    new BasicOptionModel { Text = "I can read and understand some meanings", IsCorrect = true },
+                    new BasicOptionModel { Text = "I can recite fluently and reflect on meanings", IsCorrect = true }
                 }
             },
             new QuestionModel
             {
                 Text = "Why are you learning the Quran?",
-                Options = new List<OptionModel>
+                Options = new List<BasicOptionModel>
                 {
-                    new OptionModel { Text = "To understand the words of Allah", IsCorrect = true },
-                    new OptionModel { Text = "To improve my recitation and Tajweed", IsCorrect = true },
-                    new OptionModel { Text = "To strengthen my connection with Islam", IsCorrect = true },
-                    new OptionModel { Text = "To memorize and act upon it in daily life", IsCorrect = true }
+                    new BasicOptionModel { Text = "To understand the words of Allah", IsCorrect = true },
+                    new BasicOptionModel { Text = "To improve my recitation and Tajweed", IsCorrect = true },
+                    new BasicOptionModel { Text = "To strengthen my connection with Islam", IsCorrect = true },
+                    new BasicOptionModel { Text = "To memorize and act upon it in daily life", IsCorrect = true }
                 }
             },
 
             new QuestionModel { Text = "Let's set up a learning routine"},
 
             new QuestionModel { Text = "Whats your daily learning goal?",
-                Options = new List<OptionModel> {
-                    new OptionModel { Text = "3 min / day", IsCorrect = true },
-                    new OptionModel { Text = "10 min/ day" },
-                    new OptionModel { Text = "15 min / day" },
-                    new OptionModel { Text = "30 min / day" }
+                Options = new List<BasicOptionModel> {
+                    new BasicOptionModel { Text = "3 min / day", IsCorrect = true },
+                    new BasicOptionModel { Text = "10 min/ day" },
+                    new BasicOptionModel { Text = "15 min / day" },
+                    new BasicOptionModel { Text = "30 min / day" }
 
                 } },
             new QuestionModel { Text = "That's 25 wordsin your first week"},
@@ -126,7 +127,7 @@ public partial class BasicQuestions : ContentPage
         foreach (var opt in question.Options)
             opt.BackgroundColor = Colors.White;
 
-        OptionsList.ItemsSource = new ObservableCollection<OptionModel>(question.Options);
+        OptionsList.ItemsSource = new ObservableCollection<BasicOptionModel>(question.Options);
 
         // Disable Continue until an option is selected
         QuestionContinueButton.IsEnabled = false;
@@ -141,12 +142,12 @@ public partial class BasicQuestions : ContentPage
         if (e.CurrentSelection.Count == 0)
             return;
 
-        var selected = e.CurrentSelection.FirstOrDefault() as OptionModel;
+        var selected = e.CurrentSelection.FirstOrDefault() as BasicOptionModel;
         if (selected == null)
             return;
 
         // Reset all selections
-        foreach (var option in (OptionsList.ItemsSource as IEnumerable<OptionModel>))
+        foreach (var option in (OptionsList.ItemsSource as IEnumerable<BasicOptionModel>))
             option.IsSelected = false;
 
         // Mark current one as selected

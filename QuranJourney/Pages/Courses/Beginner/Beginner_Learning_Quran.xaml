@@ -387,22 +387,92 @@
 
         <!-- ================= FOOTER ================= -->
         <!-- 🔹 Bottom CHECK BUTTON -->
-        <Button x:Name="CheckButton" Clicked="CheckButton_Clicked" Grid.Row="2" Text="CHECK" FontSize="18" FontAttributes="Bold" BackgroundColor="#E0E0E0" TextColor="White" CornerRadius="14" HeightRequest="25" HorizontalOptions="FillAndExpand" Margin="20,0,20,20"  ZIndex="1"/>
-        
+        <!-- CHECK BUTTON -->
+        <Button x:Name="CheckButton"
+        Clicked="CheckButton_Clicked"
+        Grid.Row="2"
+        Text="CHECK"
+        FontSize="18"
+        FontAttributes="Bold"
+        BackgroundColor="#E0E0E0"
+        TextColor="White"
+        CornerRadius="14"
+        HeightRequest="25"
+        HorizontalOptions="FillAndExpand"
+        Margin="20,0,20,20"
+        ZIndex="20"/>
+        <!-- Higher than CorrectBox -->
+
         <!-- Correct Box OVERLAY -->
-        <Frame x:Name="CorrectBox" Grid.RowSpan="3" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#58CC02" CornerRadius="1" IsVisible="False" HeightRequest="130">
-            <Label Text="Correct Answer!"
-               TextColor="White"
-               FontSize="18"
-               HorizontalOptions="Center"/>
+        <Frame x:Name="CorrectBox"
+       Grid.RowSpan="3"
+       Margin="0"
+       Padding="0"
+       CornerRadius="0"
+       IsVisible="True"
+       HeightRequest="130"
+       HorizontalOptions="FillAndExpand"
+       VerticalOptions="End"
+       BackgroundColor="Transparent"
+       HasShadow="False"
+       ZIndex="0">
+            <WebView
+         HorizontalOptions="FillAndExpand"
+         VerticalOptions="FillAndExpand"
+         BackgroundColor="Transparent"
+         IsVisible="True"
+         InputTransparent="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+                    <html>
+                        <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; width:100%; height:100%;">
+                            <img src="correctanswer.gif" style="width:100%; height:100%; object-fit:contain; display:block;" />
+                        </body>
+                    </html>
+                    ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
         </Frame>
-        
+
+
+
+
         <!-- Worng Box OVERLAY -->
-        <Frame x:Name="WorngBox" Grid.RowSpan="3" VerticalOptions="End" Margin="0,0,0,0" IsVisible="False" BackgroundColor="Red" CornerRadius="1" HeightRequest="130">
-            <Label Text="Worng Answer!"
-             TextColor="White"
-             FontSize="18"
-             HorizontalOptions="Center"/>
+        <Frame x:Name="WorngBox" Grid.RowSpan="3"
+            Margin="0"
+            Padding="0"
+            CornerRadius="0"
+            IsVisible="False"
+            HeightRequest="130"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="End"
+            BackgroundColor="Transparent"
+            HasShadow="False"
+            ZIndex="0">
+            <!-- Behind button -->
+            <WebView HeightRequest="930"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand"
+             BackgroundColor="Transparent"
+             IsVisible="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+                    <html>
+                        <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; width:100vw; height:100vh;">
+                            <img src="wronganswer.gif" style="width:100%; height:100%; background: transparent; display:block;" />
+                        </body>
+                    </html>
+                    ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
         </Frame>
     </Grid>
 </ContentPage>

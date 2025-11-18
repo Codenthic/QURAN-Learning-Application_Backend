@@ -2,97 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuranJourney.Pages.Onboarding.WelcomeScreen"
-             xmlns:local="clr-namespace:QuranJourney.Pages.Onboarding"
              BackgroundColor="White">
 
-    <Grid x:Name="ParentGrid" RowDefinitions="*,Auto">
+    <Grid RowDefinitions="*,Auto">
 
-        <!-- Welcome Screen -->
-        <Grid x:Name="MainGrid" Grid.Row="0" IsVisible="True">
-            <VerticalStackLayout Padding="20,10,20,20" Spacing="30" BackgroundColor="White">
-            <!-- 🔹 Fixed Header -->
-            <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start" HeightRequest="50">
-                <!-- Back Icon -->
-                <Image x:Name="BackPageIcon" Source="back.png" HeightRequest="28" WidthRequest="28" VerticalOptions="Center" HorizontalOptions="Start">
+        <!-- MAIN CONTENT -->
+        <Grid Grid.Row="0">
+
+            <VerticalStackLayout Padding="20,10" Spacing="30">
+
+                <!-- Back button -->
+                <Image Source="back.png"
+                       HeightRequest="28" WidthRequest="28">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Back_Tapped" />
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
-            </Grid>
-        </VerticalStackLayout>
-
-        <Grid Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center">
-      
-            <VerticalStackLayout VerticalOptions="Center"
-                             HorizontalOptions="Center"
-                             Spacing="25">
-
-                <Grid HorizontalOptions="Center"
-                      VerticalOptions="Center"
-                      WidthRequest="300">
-                    <!-- Speech Bubble -->
-                    <Frame BackgroundColor="#FFFFFF"
-                           BorderColor="#E0E0E0"
-                           CornerRadius="18"
-                           Padding="12,10"
-                           HasShadow="False"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           WidthRequest="200"  
-                           MinimumHeightRequest="50">
-                        <Label x:Name="SpeechLabel"
-                               Text="Hi there! I'm Duo!"
-                               FontSize="16"
-                               TextColor="#555555"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               FontFamily="Sans-Serif"
-                               LineBreakMode="WordWrap" />
-                    </Frame>
-
-                    <Polygon Points="0,0 16,0 8,10"
-                             Fill="#FFFFFF"
-                             Stroke="#E0E0E0"
-                             StrokeThickness="1"
-                             HorizontalOptions="Center"
-                             VerticalOptions="End"
-                             TranslationY="26"/>
-                </Grid>
-
-                <!-- GIF -->
-                <WebView x:Name="GifWebView"
-                         WidthRequest="200"
-                         HeightRequest="150">
-                    <WebView.Source>
-                        <HtmlWebViewSource>
-                            <HtmlWebViewSource.Html>
-                                <![CDATA[
-<html>
-    <body style="margin:0; padding:0; display:flex; justify-content:flex-start; align-items:center; background: transparent; overflow:hidden; height:100%; width:100%;">
-        <img id="gifImage" src="giphy.gif" style="width:100%; height:100%; background: transparent; margin-left:20px; display:block;" />
-    </body>
-</html>
-]]>
-                            </HtmlWebViewSource.Html>
-                        </HtmlWebViewSource>
-                    </WebView.Source>
-                </WebView>
 
             </VerticalStackLayout>
+
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="25">
+
+                    <!-- Speech Bubble -->
+                    <Frame BackgroundColor="#FFFFFF" BorderColor="#E0E0E0"
+                           CornerRadius="18" Padding="12">
+                        <Label Text="{Binding SpeechText}"
+                               FontSize="16" TextColor="#555" />
+                    </Frame>
+
+                    <!-- GIF WebView -->
+                    <WebView WidthRequest="200" HeightRequest="150">
+                        <WebView.Source>
+                            <HtmlWebViewSource Html="{Binding GifHtml}" />
+                        </WebView.Source>
+                    </WebView>
+
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
-        </Grid>
-        
-        <!-- Welcome Screen Continue Button -->
+
+        <!-- CONTINUE BUTTON -->
         <Button Grid.Row="1"
-                x:Name="WelcomeContinueButton"
                 Text="CONTINUE"
                 BackgroundColor="#58CC02"
                 TextColor="White"
                 FontAttributes="Bold"
-                FontSize="16"
                 HeightRequest="50"
                 CornerRadius="25"
-                Margin="20,10,20,20"
-                Clicked="OnContinueClicked" />
+                Margin="20"
+                Command="{Binding ContinueCommand}" />
+
     </Grid>
+
 </ContentPage>
