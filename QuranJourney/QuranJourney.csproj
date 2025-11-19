@@ -125,10 +125,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\raw\cartooncharacter.gif" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Pages\Onboarding\SpecialLetterCategoriesPage.xaml.cs">
 	    <DependentUpon>SpecialLetterCategoriesPage.xaml</DependentUpon>
 	  </Compile>

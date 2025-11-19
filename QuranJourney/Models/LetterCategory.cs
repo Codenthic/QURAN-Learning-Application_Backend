@@ -17,6 +17,7 @@ namespace QuranJourney.Models
 
         public string CorrectArabic { get; set; }
         public string CorrectEnglish { get; set; }
+        public int ActivityCount { get; set; }
     }
     public class LetterCategory
     {

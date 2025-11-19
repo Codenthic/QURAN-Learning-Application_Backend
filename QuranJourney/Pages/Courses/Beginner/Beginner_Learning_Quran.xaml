@@ -8,7 +8,7 @@
     <Grid RowDefinitions="Auto,*,Auto" Padding="0">
         <!-- ================= HEADER ================= -->
 
-        <VerticalStackLayout Grid.Row="0" Padding="4,10,20,0" Spacing="12">
+        <VerticalStackLayout Grid.Row="0" Padding="4,10,20,0" ZIndex="110" Spacing="12">
             <!-- Top Row: Back Button + Progress Bar -->
             <Grid ColumnDefinitions="Auto,*" HeightRequest="50">
                 <!-- Back Button -->
@@ -50,7 +50,7 @@
         <!-- ================= HEADER ================= -->
 
         <!-- ================= Correct Char CONTENT ================= -->
-        <VerticalStackLayout Grid.Row="0" x:Name="Correct_Char_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" x:Name="Correct_Char_Header" ZIndex="110" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
             <Label 
                  Text="Select the correct characters for 'ghaa'"
@@ -60,7 +60,7 @@
                  Margin="10,47,0,0"/>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <Grid Grid.Row="1" x:Name="Correct_Char_ContentGrid" Padding="10" ZIndex="110" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
             <Grid Grid.Row="1" x:Name="Correct_Char_ButtonsGrid"
                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                  ColumnDefinitions="*,*"
@@ -116,7 +116,7 @@
         </Grid>
 
         <!-- =================  Matching Pair CONTENT ================= -->
-        <VerticalStackLayout Grid.Row="0" x:Name="Matching_pair_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" x:Name="Matching_pair_Header" ZIndex="110" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
             <Label 
                  Text="Tap the matching pairs"
@@ -127,7 +127,7 @@
         </VerticalStackLayout>
 
 
-        <Grid Grid.Row="1" x:Name="Matching_pair_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <Grid Grid.Row="1" x:Name="Matching_pair_ContentGrid" Padding="10" RowSpacing="10" ZIndex="110" ColumnSpacing="10" IsVisible="False" >
 
             <!-- 🔹 Matching Pairs Grid -->
             <Grid Grid.Row="1"
@@ -164,7 +164,7 @@
 
         <!-- =================  Select Word CONTENT ================= -->
 
-        <VerticalStackLayout Grid.Row="0" x:Name="Select_Word_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" ZIndex="110" x:Name="Select_Word_Header"  Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
             <Label 
                  Text="Select the Correct Word"
@@ -174,7 +174,7 @@
                  Margin="10,47,0,0"/>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="Select_Word_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <Grid Grid.Row="1" x:Name="Select_Word_ContentGrid" ZIndex="110" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
                 <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
 
@@ -233,7 +233,7 @@
 
         <!-- ================= What You Hear  CONTENT ================= -->
 
-        <VerticalStackLayout Grid.Row="0" x:Name="What_You_Hear_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" x:Name="What_You_Hear_Header" ZIndex="110" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
             <Label 
                  Text="Select what you hear"
@@ -243,7 +243,7 @@
                  Margin="10,47,0,0"/>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="What_You_Hear_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <Grid Grid.Row="1" x:Name="What_You_Hear_ContentGrid" Padding="10" ZIndex="110" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
             <!-- 🔹 Speaker Button -->
             <Button Grid.Row="1" Text="" ImageSource="volume_icon.png" BackgroundColor="#1CB0F6" WidthRequest="120" HeightRequest="120" CornerRadius="20" Margin="20" HorizontalOptions="Center" VerticalOptions="Start" />
             
@@ -272,7 +272,7 @@
         </Grid>
 
         <!-- ================= What_Sound CONTENT ================= -->
-        <VerticalStackLayout Grid.Row="0" x:Name="What_Sound_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" x:Name="What_Sound_Header" ZIndex="110"  Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <!-- Question Label -->
             <Label 
                  Text="What sound does this make?"
@@ -282,7 +282,7 @@
                  Margin="10,47,0,0"/>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="What_Sound_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
+        <Grid Grid.Row="1" x:Name="What_Sound_ContentGrid" Padding="10" ZIndex="110" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
 
             <VerticalStackLayout Grid.Row="1" Padding="0,0,10,0" Spacing="20"
                      VerticalOptions="Center" HorizontalOptions="Center">
@@ -290,14 +290,14 @@
                 <Frame x:Name="LetterCard"
                      BackgroundColor="#1CB0F6"
                      CornerRadius="20"
-                     WidthRequest="120"
-                     HeightRequest="120"
+                     WidthRequest="170"
+                     HeightRequest="170"
                      HasShadow="False"
                      HorizontalOptions="Center">
                     <Grid>
                         <Label x:Name="What_SoundArabicLetterLabel"
                     Text=""
-                   FontSize="70"
+                   FontSize="60"
                    TextColor="White"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
@@ -325,7 +325,7 @@
 
 
         <!-- ================= Fill In The Blanks CONTENT ================= -->
-        <VerticalStackLayout Grid.Row="0" x:Name="FillIn_Header" Padding="4,10,20,0" Spacing="12" IsVisible="False">
+        <VerticalStackLayout Grid.Row="0" x:Name="FillIn_Header" ZIndex="110" Padding="4,10,20,0" Spacing="12" IsVisible="False">
             <Label
         Text="Fill in the blank"
         FontSize="20"
@@ -334,7 +334,7 @@
         Margin="10,47,0,0" />
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" x:Name="FillIn_ContentGrid" Padding="10" RowSpacing="10" ColumnSpacing="10" IsVisible="False">
+        <Grid Grid.Row="1" x:Name="FillIn_ContentGrid" Padding="10" ZIndex="110" RowSpacing="10" ColumnSpacing="10" IsVisible="False">
             <VerticalStackLayout Padding="4" Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
                 <!-- Sentence Card with a blank -->
                 <Frame x:Name="FillIn_SentenceFrame"
@@ -360,7 +360,7 @@
                     BorderWidth="2"
                     TextColor="Black"
                     CornerRadius="10"
-                    WidthRequest="120"
+                    WidthRequest="110"
                     HeightRequest="50" />
                     <Button x:Name="Fill_Option2"
                     Clicked="FillIn_Option_Clicked"
@@ -369,7 +369,7 @@
                     BorderWidth="2"
                     TextColor="Black"
                     CornerRadius="10"
-                    WidthRequest="120"
+                    WidthRequest="110"
                     HeightRequest="50" />
                     <Button x:Name="Fill_Option3"
                     Clicked="FillIn_Option_Clicked"
@@ -378,7 +378,7 @@
                     BorderWidth="2"
                     TextColor="Black"
                     CornerRadius="10"
-                    WidthRequest="120"
+                    WidthRequest="110"
                     HeightRequest="50" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
@@ -401,34 +401,33 @@
         HorizontalOptions="FillAndExpand"
         Margin="20,0,20,20"
         ZIndex="20"/>
+        
         <!-- Higher than CorrectBox -->
-
-        <!-- Correct Box OVERLAY -->
         <Frame x:Name="CorrectBox"
        Grid.RowSpan="3"
-       Margin="0"
        Padding="0"
+               Margin="0,-110,0,0"
        CornerRadius="0"
-       IsVisible="True"
-       HeightRequest="130"
+       IsVisible="False"
        HorizontalOptions="FillAndExpand"
-       VerticalOptions="End"
+       VerticalOptions="FillAndExpand"
        BackgroundColor="Transparent"
        HasShadow="False"
        ZIndex="0">
+
             <WebView
-         HorizontalOptions="FillAndExpand"
-         VerticalOptions="FillAndExpand"
-         BackgroundColor="Transparent"
-         IsVisible="True"
-         InputTransparent="True">
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="Transparent"
+        InputTransparent="True">
                 <WebView.Source>
                     <HtmlWebViewSource>
                         <HtmlWebViewSource.Html>
                             <![CDATA[
                     <html>
-                        <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; width:100%; height:100%;">
-                            <img src="correctanswer.gif" style="width:100%; height:100%; object-fit:contain; display:block;" />
+                        <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+                            <img src="correctanswer.gif"
+                                 style="width:100vw; height:100vh; object-fit:cover;" />
                         </body>
                     </html>
                     ]]>
@@ -438,37 +437,175 @@
             </WebView>
         </Frame>
 
-
-
-
         <!-- Worng Box OVERLAY -->
-        <Frame x:Name="WorngBox" Grid.RowSpan="3"
-            Margin="0"
+        <Frame x:Name="WorngBox"
+            Grid.RowSpan="3"
             Padding="0"
             CornerRadius="0"
             IsVisible="False"
-            HeightRequest="130"
+            Margin="0,-110,0,0"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="End"
+            VerticalOptions="FillAndExpand"
             BackgroundColor="Transparent"
             HasShadow="False"
             ZIndex="0">
             <!-- Behind button -->
-            <WebView HeightRequest="930"
-             HorizontalOptions="FillAndExpand"
-             VerticalOptions="FillAndExpand"
-             BackgroundColor="Transparent"
-             IsVisible="True">
+            <WebView
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="Transparent"
+            InputTransparent="True">
                 <WebView.Source>
                     <HtmlWebViewSource>
                         <HtmlWebViewSource.Html>
                             <![CDATA[
-                    <html>
-                        <body style="margin:0; padding:0; display:flex; justify-content:center; align-items:center; background: transparent; overflow:hidden; width:100vw; height:100vh;">
-                            <img src="wronganswer.gif" style="width:100%; height:100%; background: transparent; display:block;" />
-                        </body>
-                    </html>
-                    ]]>
+            <html>
+                <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+                    <img src="wronganswer.gif"
+                         style="width:100vw; height:100vh; object-fit:cover;" />
+                </body>
+            </html>
+            ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+        </Frame>
+
+        <!-- nicely done than CorrectBox -->
+        <Frame x:Name="nicelydoneBox"
+ Grid.RowSpan="3"
+ Padding="0"
+         Margin="0,-110,0,0"
+ CornerRadius="0"
+ IsVisible="False"
+ HorizontalOptions="FillAndExpand"
+ VerticalOptions="FillAndExpand"
+ BackgroundColor="Transparent"
+ HasShadow="False"
+ ZIndex="0">
+
+            <WebView
+  HorizontalOptions="FillAndExpand"
+  VerticalOptions="FillAndExpand"
+  BackgroundColor="Transparent"
+  InputTransparent="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+              <html>
+                  <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+                      <img src="nicelydone.gif"
+                           style="width:100vw; height:100vh; object-fit:cover;" />
+                  </body>
+              </html>
+              ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+        </Frame>
+
+        <!-- excellent Box OVERLAY -->
+        <Frame x:Name="excellentBox"
+      Grid.RowSpan="3"
+      Padding="0"
+      CornerRadius="0"
+      IsVisible="False"
+      Margin="0,-110,0,0"
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand"
+      BackgroundColor="Transparent"
+      HasShadow="False"
+      ZIndex="0">
+            <!-- Behind button -->
+            <WebView
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand"
+      BackgroundColor="Transparent"
+      InputTransparent="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+      <html>
+          <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+              <img src="excellent.gif"
+                   style="width:100vw; height:100vh; object-fit:cover;" />
+          </body>
+      </html>
+      ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+        </Frame>
+
+        <!-- Higher than AwesomeBox -->
+        <Frame x:Name="AwesomeBox"
+ Grid.RowSpan="3"
+ Padding="0"
+         Margin="0,-110,0,0"
+ CornerRadius="0"
+ IsVisible="False"
+ HorizontalOptions="FillAndExpand"
+ VerticalOptions="FillAndExpand"
+ BackgroundColor="Transparent"
+ HasShadow="False"
+ ZIndex="0">
+
+            <WebView
+  HorizontalOptions="FillAndExpand"
+  VerticalOptions="FillAndExpand"
+  BackgroundColor="Transparent"
+  InputTransparent="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+              <html>
+                  <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+                      <img src="awesome.gif"
+                           style="width:100vw; height:100vh; object-fit:cover;" />
+                  </body>
+              </html>
+              ]]>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+        </Frame>
+
+        <!-- Amazing Box OVERLAY -->
+        <Frame x:Name="AmazingBox"
+      Grid.RowSpan="3"
+      Padding="0"
+      CornerRadius="0"
+      IsVisible="False"
+      Margin="0,-110,0,0"
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand"
+      BackgroundColor="Transparent"
+      HasShadow="False"
+      ZIndex="0">
+            <!-- Behind button -->
+            <WebView
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand"
+      BackgroundColor="Transparent"
+      InputTransparent="True">
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <![CDATA[
+      <html>
+          <body style="margin:0; padding:0; width:100vw; height:100vh; background:transparent;">
+              <img src="amazing.gif"
+                   style="width:100vw; height:100vh; object-fit:cover;" />
+          </body>
+      </html>
+      ]]>
                         </HtmlWebViewSource.Html>
                     </HtmlWebViewSource>
                 </WebView.Source>

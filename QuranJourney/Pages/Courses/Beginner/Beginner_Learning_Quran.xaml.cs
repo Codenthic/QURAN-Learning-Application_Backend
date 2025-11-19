@@ -5,14 +5,14 @@
     public partial class Beginner_Learning_Quran : ContentPage
     {
     #region =============================== Fields / Variables =======================================
-        private int currentQuestionIndex = 0;          // Track current question
-        private string selectedAnswer = string.Empty;  // Track selected answer
-        private bool isAnswerChecked = false;          // Track if answer checked (currently unused)
-        private int currentActivityIndex = 0;          // Track activity type (0=SelectWord,1=WhatYouHear,2=WhatSound)
-        private List<LetterQuizItem> shuffledQuestions; // Shuffled list of questions
-        private int matchingScore = 0;         // Correct matches count
-        private Button firstSelected = null;  // Pehla selected button
-        private Button secondSelected = null; // Dusra selected button
+        private int currentQuestionIndex = 0;
+        private string selectedAnswer = string.Empty;
+        private bool isAnswerChecked = false;
+        private int currentActivityIndex = 0;
+        private List<LetterQuizItem> shuffledQuestions;
+        private int matchingScore = 0;
+        private Button firstSelected = null;
+        private Button secondSelected = null;
         private List<Tuple<Button, Button>> matchedPairs = new List<Tuple<Button, Button>>();
         private List<Label> dragSourceLabels = new();
         private List<Button> dropSlotButtons = new();
@@ -60,83 +60,150 @@
         ShowCurrentActivity();
 
         allButtons = new List<Button>
-    {
-        Btn1, Btn2, Btn3, Btn4, Btn5,
-        Btn6, Btn7, Btn8, Btn9, Btn10
-    };
+        {
+            Btn1, Btn2, Btn3, Btn4, Btn5,
+            Btn6, Btn7, Btn8, Btn9, Btn10
+        };
 
         foreach (var btn in allButtons)
         {
             btn.Clicked += MatchingPairOption_Clicked;
             btn.BackgroundColor = Colors.White;
         }
-
         // Progress Bar
         AnimateProgress(0.0);
     }
 
     #endregion
 
+    private void UpdateCurrentQuestionIndex()
+    {
+        // Find minimum ActivityCount
+        int minCount = shuffledQuestions.Min(x => x.ActivityCount);
+
+        // Find first question with the lowest ActivityCount
+        currentQuestionIndex = shuffledQuestions.FindIndex(x => x.ActivityCount == minCount);
+    }
+
     #region =============================== Activity Management ======================================
+    //private void ShowCurrentActivity()
+    //{
+    //        // 1️⃣ Hide all headers & grids
+    //        Select_Word_Header.IsVisible = false;
+    //        Select_Word_ContentGrid.IsVisible = false;
+    //        What_You_Hear_Header.IsVisible = false;
+    //        What_You_Hear_ContentGrid.IsVisible = false;
+    //        What_Sound_Header.IsVisible = false;
+    //        What_Sound_ContentGrid.IsVisible = false;
+    //        Correct_Char_Header.IsVisible = false;
+    //        Correct_Char_ContentGrid.IsVisible = false;
+    //        FillIn_ContentGrid.IsVisible = false;
+    //        FillIn_Header.IsVisible = false;
+
+    //    ResetAllOptionButtons();
+
+    //        // 3️⃣ Show current activity
+    //        switch (currentActivityIndex)
+    //        {
+    //            case 0:
+    //                Select_Word_Activity(shuffledQuestions[currentQuestionIndex]);
+    //                Select_Word_Header.IsVisible = true;
+    //                Select_Word_ContentGrid.IsVisible = true;
+    //                break;
+
+    //            case 1:
+    //                What_You_Hear_Activity(shuffledQuestions[currentQuestionIndex]);
+    //                What_You_Hear_Header.IsVisible = true;
+    //                What_You_Hear_ContentGrid.IsVisible = true;
+    //                break;
+
+    //            case 2:
+    //                What_Sound_Hear_LoadQuestion(shuffledQuestions[currentQuestionIndex]);
+    //                What_Sound_Header.IsVisible = true;
+    //                What_Sound_ContentGrid.IsVisible = true;
+    //                break;
+    //            case 3:
+    //                Correct_Char_Activity(shuffledQuestions[currentQuestionIndex]);
+    //                Correct_Char_Header.IsVisible = true;
+    //                Correct_Char_ContentGrid.IsVisible = true;
+    //                break;
+    //            case 4:
+    //                FillIn_Activity(shuffledQuestions[currentQuestionIndex]);
+    //                FillIn_Header.IsVisible = true;
+    //                FillIn_ContentGrid.IsVisible = true;
+    //                break;
+    //            //case 5:
+    //            //    MatchingPair_Activity(shuffledQuestions[currentQuestionIndex]);
+    //            //    Matching_pair_Header.IsVisible = true;
+    //            //    Matching_pair_ContentGrid.IsVisible = true;
+    //            //    break;
+    //    }
+
+    //    // Reset selection
+    //    selectedAnswer = string.Empty;
+    //        CheckButton.BackgroundColor = Color.FromArgb("#E0E0E0");
+    //    }
     private void ShowCurrentActivity()
-        {
-            // 1️⃣ Hide all headers & grids
-            Select_Word_Header.IsVisible = false;
-            Select_Word_ContentGrid.IsVisible = false;
-            What_You_Hear_Header.IsVisible = false;
-            What_You_Hear_ContentGrid.IsVisible = false;
-            What_Sound_Header.IsVisible = false;
-            What_Sound_ContentGrid.IsVisible = false;
-            Correct_Char_Header.IsVisible = false;
-            Correct_Char_ContentGrid.IsVisible = false;
-            FillIn_ContentGrid.IsVisible = false;
-            FillIn_Header.IsVisible = false;
+    {
+        // FIRST: Pick the correct question dynamically based on ActivityCount
+        UpdateCurrentQuestionIndex();
+
+        // Hide all headers & grids
+        Select_Word_Header.IsVisible = false;
+        Select_Word_ContentGrid.IsVisible = false;
+        What_You_Hear_Header.IsVisible = false;
+        What_You_Hear_ContentGrid.IsVisible = false;
+        What_Sound_Header.IsVisible = false;
+        What_Sound_ContentGrid.IsVisible = false;
+        Correct_Char_Header.IsVisible = false;
+        Correct_Char_ContentGrid.IsVisible = false;
+        FillIn_ContentGrid.IsVisible = false;
+        FillIn_Header.IsVisible = false;
 
         ResetAllOptionButtons();
 
-            // 3️⃣ Show current activity
-            switch (currentActivityIndex)
-            {
-                case 0:
-                    Select_Word_Activity(shuffledQuestions[currentQuestionIndex]);
-                    Select_Word_Header.IsVisible = true;
-                    Select_Word_ContentGrid.IsVisible = true;
-                    break;
+        // Show current activity based on index
+        var currentQuiz = shuffledQuestions[currentQuestionIndex];
 
-                case 1:
-                    What_You_Hear_Activity(shuffledQuestions[currentQuestionIndex]);
-                    What_You_Hear_Header.IsVisible = true;
-                    What_You_Hear_ContentGrid.IsVisible = true;
-                    break;
+        switch (currentActivityIndex)
+        {
+            case 0:
+                Select_Word_Activity(currentQuiz);
+                Select_Word_Header.IsVisible = true;
+                Select_Word_ContentGrid.IsVisible = true;
+                break;
 
-                case 2:
-                    What_Sound_Hear_LoadQuestion(shuffledQuestions[currentQuestionIndex]);
-                    What_Sound_Header.IsVisible = true;
-                    What_Sound_ContentGrid.IsVisible = true;
-                    break;
-                case 3:
-                    Correct_Char_Activity(shuffledQuestions[currentQuestionIndex]);
-                    Correct_Char_Header.IsVisible = true;
-                    Correct_Char_ContentGrid.IsVisible = true;
-                    break;
+            case 1:
+                What_You_Hear_Activity(currentQuiz);
+                What_You_Hear_Header.IsVisible = true;
+                What_You_Hear_ContentGrid.IsVisible = true;
+                break;
+
+            case 2:
+                What_Sound_Hear_LoadQuestion(currentQuiz);
+                What_Sound_Header.IsVisible = true;
+                What_Sound_ContentGrid.IsVisible = true;
+                break;
+
+            case 3:
+                Correct_Char_Activity(currentQuiz);
+                Correct_Char_Header.IsVisible = true;
+                Correct_Char_ContentGrid.IsVisible = true;
+                break;
+
             case 4:
-                FillIn_Activity(shuffledQuestions[currentQuestionIndex]);
+                FillIn_Activity(currentQuiz);
                 FillIn_Header.IsVisible = true;
                 FillIn_ContentGrid.IsVisible = true;
                 break;
-                //case 5:
-                //    MatchingPair_Activity(shuffledQuestions[currentQuestionIndex]);
-                //    Matching_pair_Header.IsVisible = true;
-                //    Matching_pair_ContentGrid.IsVisible = true;
-                //    break;
         }
 
         // Reset selection
         selectedAnswer = string.Empty;
-            CheckButton.BackgroundColor = Color.FromArgb("#E0E0E0");
-        }
+        CheckButton.BackgroundColor = Color.FromArgb("#E0E0E0");
+    }
     #endregion
-    
+
     #region ================================ Select And Match Correct Char Activity =====================
 
     private void MatchingPair_Activity(LetterQuizItem quiz)
@@ -536,77 +603,145 @@
     #endregion
 
     #region =============================== Answer Validation ========================================
-        private bool ValidateAnswer(string answer)
+    //private bool ValidateAnswer(string answer)
+    //{
+    //    var currentQuiz = shuffledQuestions[currentQuestionIndex];
+
+    //    if (Select_Word_ContentGrid.IsVisible || What_You_Hear_ContentGrid.IsVisible)
+    //    {
+    //        return currentQuiz.CorrectArabic == answer;
+    //        shuffledQuestions[currentQuestionIndex].ActivityCount++;
+    //}
+    //else if (What_Sound_ContentGrid.IsVisible)
+    //    {
+    //        return currentQuiz.CorrectEnglish == answer;
+    //}
+    //    else if (Correct_Char_ContentGrid.IsVisible) // ✅ Correct Char check
+    //    {
+    //        // Check either Arabic or English based on button text
+    //        return currentQuiz.CorrectArabic == answer || currentQuiz.CorrectEnglish == answer;
+    //}
+    //    else if (Matching_pair_ContentGrid.IsVisible)
+    //    {
+    //        if (firstSelected == null || secondSelected == null) return false;
+
+    //        // Compare selected pair
+    //        var leftText = firstSelected.Text;
+    //        var rightText = secondSelected.Text;
+
+    //        currentQuiz = shuffledQuestions[currentQuestionIndex];
+
+    //        bool isMatch = false;
+
+    //        // Matching logic: leftText corresponds to rightText
+    //        for (int i = 0; i < currentQuiz.ArabicOptions.Count; i++)
+    //        {
+    //            if (currentQuiz.ArabicOptions[i] == leftText && currentQuiz.EnglishOptions[i] == rightText)
+    //            {
+    //                isMatch = true;
+    //                break;
+    //            }
+    //        }
+
+    //        // Highlight correct pair green
+    //        if (isMatch)
+    //        {
+    //            firstSelected.BackgroundColor = Color.FromArgb("#58CC02");
+    //            secondSelected.BackgroundColor = Color.FromArgb("#58CC02");
+    //            matchingScore++;
+    //        }
+    //        else
+    //        {
+    //            firstSelected.BackgroundColor = Colors.Red;
+    //            secondSelected.BackgroundColor = Colors.Red;
+    //        }
+
+    //        // Reset selections for next match
+    //        firstSelected = null;
+    //        secondSelected = null;
+
+    //        return isMatch;
+    //    }
+    //    else if (FillIn_ContentGrid.IsVisible)
+    //    {
+    //        var quiz = shuffledQuestions[currentQuestionIndex];
+
+    //        // If we used English options for fill, compare to CorrectEnglish, otherwise CorrectArabic
+    //        if (quiz.ArabicOptions != null && quiz.ArabicOptions.Count >= 1)
+    //            return quiz.CorrectArabic == answer;
+    //        else
+    //            return quiz.CorrectArabic == answer;
+    //    }
+    //    return false;
+    //}
+
+
+    private bool ValidateAnswer(string answer)
+    {
+        var currentQuiz = shuffledQuestions[currentQuestionIndex];
+        bool isCorrect = false;
+
+        // ---------------------- SELECT WORD / WHAT YOU HEAR ----------------------
+        if (Select_Word_ContentGrid.IsVisible || What_You_Hear_ContentGrid.IsVisible)
         {
-            var currentQuiz = shuffledQuestions[currentQuestionIndex];
-
-            if (Select_Word_ContentGrid.IsVisible || What_You_Hear_ContentGrid.IsVisible)
-            {
-                return currentQuiz.CorrectArabic == answer;
-            }
-            else if (What_Sound_ContentGrid.IsVisible)
-            {
-                return currentQuiz.CorrectEnglish == answer;
-            }
-            else if (Correct_Char_ContentGrid.IsVisible) // ✅ Correct Char check
-            {
-                // Check either Arabic or English based on button text
-                return currentQuiz.CorrectArabic == answer || currentQuiz.CorrectEnglish == answer;
-            }
-            else if (Matching_pair_ContentGrid.IsVisible)
-            {
-                if (firstSelected == null || secondSelected == null) return false;
-
-                // Compare selected pair
-                var leftText = firstSelected.Text;
-                var rightText = secondSelected.Text;
-
-                currentQuiz = shuffledQuestions[currentQuestionIndex];
-
-                bool isMatch = false;
-
-                // Matching logic: leftText corresponds to rightText
-                for (int i = 0; i < currentQuiz.ArabicOptions.Count; i++)
-                {
-                    if (currentQuiz.ArabicOptions[i] == leftText && currentQuiz.EnglishOptions[i] == rightText)
-                    {
-                        isMatch = true;
-                        break;
-                    }
-                }
-
-                // Highlight correct pair green
-                if (isMatch)
-                {
-                    firstSelected.BackgroundColor = Color.FromArgb("#58CC02");
-                    secondSelected.BackgroundColor = Color.FromArgb("#58CC02");
-                    matchingScore++;
-                }
-                else
-                {
-                    firstSelected.BackgroundColor = Colors.Red;
-                    secondSelected.BackgroundColor = Colors.Red;
-                }
-
-                // Reset selections for next match
-                firstSelected = null;
-                secondSelected = null;
-
-                return isMatch;
-            }
-            else if (FillIn_ContentGrid.IsVisible)
-            {
-                var quiz = shuffledQuestions[currentQuestionIndex];
-
-                // If we used English options for fill, compare to CorrectEnglish, otherwise CorrectArabic
-                if (quiz.EnglishOptions != null && quiz.EnglishOptions.Count >= 1)
-                    return quiz.CorrectEnglish == answer;
-                else
-                    return quiz.CorrectArabic == answer;
-            }
-            return false;
+            isCorrect = currentQuiz.CorrectArabic == answer;
         }
-        private async void CheckButton_Clicked(object sender, EventArgs e)
+
+        // ---------------------- WHAT SOUND ----------------------
+        else if (What_Sound_ContentGrid.IsVisible)
+        {
+            isCorrect = currentQuiz.CorrectEnglish == answer;
+        }
+
+        // ---------------------- CORRECT CHAR ----------------------
+        else if (Correct_Char_ContentGrid.IsVisible)
+        {
+            isCorrect = currentQuiz.CorrectArabic == answer || currentQuiz.CorrectEnglish == answer;
+        }
+
+        // ---------------------- MATCHING PAIR ----------------------
+        else if (Matching_pair_ContentGrid.IsVisible)
+        {
+            if (firstSelected == null || secondSelected == null)
+                return false;
+
+            var leftText = firstSelected.Text;
+            var rightText = secondSelected.Text;
+
+            isCorrect = false;
+
+            for (int i = 0; i < currentQuiz.ArabicOptions.Count; i++)
+            {
+                if (currentQuiz.ArabicOptions[i] == leftText &&
+                    currentQuiz.EnglishOptions[i] == rightText)
+                {
+                    isCorrect = true;
+                    break;
+                }
+            }
+
+            // Color change
+            firstSelected.BackgroundColor = isCorrect ? Color.FromArgb("#58CC02") : Colors.Red;
+            secondSelected.BackgroundColor = isCorrect ? Color.FromArgb("#58CC02") : Colors.Red;
+
+            // Clear selection
+            firstSelected = null;
+            secondSelected = null;
+        }
+
+        // ---------------------- FILL IN THE BLANK ----------------------
+        else if (FillIn_ContentGrid.IsVisible)
+        {
+            isCorrect = currentQuiz.CorrectArabic == answer;
+        }
+
+
+        // ---------------------- ACTIVITY COUNT UPDATE ----------------------
+        shuffledQuestions[currentQuestionIndex].ActivityCount++;
+        
+        return isCorrect;
+    }
+    private async void CheckButton_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectedAnswer)) return;
 
@@ -631,44 +766,49 @@
                     LoadNextQuestion();
                 }
             }
+        if (!isAnswerChecked)
+        {
+            bool isCorrect = ValidateAnswer(selectedAnswer);
 
-            if (!isAnswerChecked)
+            if (isCorrect)
             {
-                bool isCorrect = ValidateAnswer(selectedAnswer);
+                // List of positive feedback boxes
+                var positiveBoxes = new List<Frame> { nicelydoneBox, excellentBox, AwesomeBox, AmazingBox };
 
-                if (isCorrect)
-                {
-                    CorrectBox.IsVisible = true;
-                    await CorrectBox.FadeTo(0, 800);
-                    CorrectBox.Opacity = 1;
+                // Pick one randomly
+                var random = new Random();
+                var boxToShow = positiveBoxes[random.Next(positiveBoxes.Count)];
 
-                }
-                else
-                {
-                    WorngBox.IsVisible = true;
-                    await WorngBox.FadeTo(0, 800);
-                    WorngBox.Opacity = 1;
-              
-                }
-
-                CheckButton.Text = "Continue";
-                isAnswerChecked = true;
+                boxToShow.IsVisible = true;
+                await boxToShow.FadeTo(0, 800);
+                boxToShow.Opacity = 1;
             }
             else
             {
-                //await Task.Delay(500);
-                //await CorrectBox.FadeTo(0, 800);
-                //await WorngBox.FadeTo(0, 800);
-                CorrectBox.IsVisible = false;
-                WorngBox.IsVisible = false;
-                UpdateProgress();
-                LoadNextQuestion();
-                CheckButton.Text = "Check";
-                isAnswerChecked = false;
+                WorngBox.IsVisible = true;
+                await WorngBox.FadeTo(0, 800);
+                WorngBox.Opacity = 1;
             }
+
+            CheckButton.Text = "Continue";
+            isAnswerChecked = true;
         }
+        else
+        {
+            // Hide all feedback boxes
+            CorrectBox.IsVisible = false;
+            WorngBox.IsVisible = false;
+            nicelydoneBox.IsVisible = false;
+            excellentBox.IsVisible = false;
+            AwesomeBox.IsVisible = false;
+            AmazingBox.IsVisible = false;
 
-
+            UpdateProgress();
+            LoadNextQuestion();
+            CheckButton.Text = "Check";
+            isAnswerChecked = false;
+        }
+    }
     #endregion
 
     #region =============================== Fill in The Blank Activity=================================
