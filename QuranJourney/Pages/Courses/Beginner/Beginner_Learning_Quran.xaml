@@ -245,7 +245,7 @@
 
         <Grid Grid.Row="1" x:Name="What_You_Hear_ContentGrid" Padding="10" ZIndex="110" RowSpacing="10" ColumnSpacing="10" IsVisible="False" >
             <!-- 🔹 Speaker Button -->
-            <Button Grid.Row="1" Text="" ImageSource="volume_icon.png" BackgroundColor="#1CB0F6" WidthRequest="120" HeightRequest="120" CornerRadius="20" Margin="20" HorizontalOptions="Center" VerticalOptions="Start" />
+            <Button Grid.Row="1" Text="" ImageSource="volume_icon.png" BackgroundColor="#1CB0F6"  Clicked="PlayVoice" WidthRequest="120" HeightRequest="120" CornerRadius="20" Margin="20" HorizontalOptions="Center" VerticalOptions="Start" />
             
             <!-- 🔹 Answer Buttons Grid -->
             <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*" Padding="20" Margin="0,160,0,0" RowSpacing="15" ColumnSpacing="20" HorizontalOptions="Center" VerticalOptions="Start">
