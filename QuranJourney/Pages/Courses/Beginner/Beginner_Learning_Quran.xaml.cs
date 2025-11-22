@@ -400,9 +400,9 @@ namespace QuranJourney.Pages.Courses.Beginner;
            if (buttons.Count >= 4)
            {
                buttons[0].Text = quiz.ArabicOptions[0];
-               buttons[1].Text = quiz.EnglishOptions[0];
-               buttons[2].Text = quiz.ArabicOptions[1];
-               buttons[3].Text = quiz.EnglishOptions[1];
+               buttons[1].Text = quiz.ArabicOptions[1];
+               buttons[2].Text = quiz.ArabicOptions[2];
+               buttons[3].Text = quiz.ArabicOptions[3];
            }
 
            // Add click events
@@ -542,51 +542,44 @@ namespace QuranJourney.Pages.Courses.Beginner;
                 // Enable Check button
                 CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
             }
-        #endregion
+    #endregion
 
-        #region =============================== What Sound Activity =====================================
-            // Load dynamic buttons for What Sound activity
-            private void What_Sound_Hear_LoadQuestion(LetterQuizItem quiz)
+    #region =============================== What Sound Activity =====================================
+    // Load dynamic buttons for What Sound activity
+    private void What_Sound_Hear_LoadQuestion(LetterQuizItem quiz)
+    {
+        What_SoundArabicLetterLabel.Text = quiz.ArabicLetter;
+        What_Sound_OptionsFlex.Children.Clear();
+
+        foreach (var opt in quiz.EnglishOptions)
+        {
+            var btn = new Button
             {
-                What_SoundArabicLetterLabel.Text = quiz.ArabicLetter;
-                What_Sound_OptionsGrid.Children.Clear();
+                Text = opt,
+                BackgroundColor = Colors.White,
+                TextColor = Colors.Black,
+                BorderColor = Color.FromArgb("#E0E0E0"),
+                BorderWidth = 1,
+                CornerRadius = 14,
+                Padding = new Thickness(14, 10),
+                Margin = new Thickness(5),
+                MinimumWidthRequest = 60
+            };
 
-                int col = 0, row = 0;
+            btn.Clicked += What_Sound_Hear_Option_Clicked;
 
-                foreach (var opt in quiz.EnglishOptions)
-                {
-                    var btn = new Button
-                    {
-                        Text = opt,
-                        BackgroundColor = Colors.White,
-                        TextColor = Colors.Black,
-                        BorderColor = Color.FromArgb("#E0E0E0"),
-                        BorderWidth = 1,
-                        CornerRadius = 14,
-                        HeightRequest = 50,
-                        WidthRequest = 100,
-                        Margin = 5
-                    };
-                    btn.Clicked += What_Sound_Hear_Option_Clicked;
+            What_Sound_OptionsFlex.Children.Add(btn);
+        }
+    }
 
-                    What_Sound_OptionsGrid.Add(btn, col, row);
 
-                    col++;
-                    if (col == 3)
-                    {
-                        col = 0;
-                        row++;
-                    }
-                }
-            }
-
-            // Handle What Sound button click
-            private void What_Sound_Hear_Option_Clicked(object sender, EventArgs e)
+    // Handle What Sound button click
+    private void What_Sound_Hear_Option_Clicked(object sender, EventArgs e)
             {
                 var btn = (Button)sender;
                 selectedAnswer = btn.Text;
 
-                foreach (var child in What_Sound_OptionsGrid.Children)
+                foreach (var child in What_Sound_OptionsFlex.Children)
                 {
                     if (child is Button b)
                     {
@@ -809,84 +802,156 @@ namespace QuranJourney.Pages.Courses.Beginner;
                 isAnswerChecked = false;
             }
         }
-        #endregion
+    #endregion
 
-        #region =============================== Fill in The Blank Activity=================================
+    #region =============================== Fill in The Blank Activity=================================
 
-             private void FillIn_Activity(LetterQuizItem quiz)
+    //     private void FillIn_Activity(LetterQuizItem quiz)
+    //{
+    //    // Header label (optional dynamic)
+    //    var headerLabel = FillIn_Header.Children.OfType<Label>().FirstOrDefault();
+    //    if (headerLabel != null)
+    //        headerLabel.Text = $"Fill in the blank for '{quiz.EnglishLetter}'";
+
+    //    // Determine sentence text - prefer a FillSentence property if present, otherwise a default template
+    //    string sentence = null;
+    //    // try to use a 'FillSentence' property if your model has it
+    //    var prop = typeof(LetterQuizItem).GetProperty("FillSentence");
+    //    if (prop != null)
+    //    {
+    //        var val = prop.GetValue(quiz) as string;
+    //        if (!string.IsNullOrWhiteSpace(val))
+    //            sentence = val;
+    //    }
+
+    //    // fallback: create a template sentence using EnglishLetter
+    //    if (string.IsNullOrWhiteSpace(sentence))
+    //    {
+    //        sentence = $"Select the missing word for '{quiz.EnglishLetter}': ___ {quiz.EnglishLetter}";
+    //    }
+
+    //    FillIn_SentenceLabel.Text = sentence;
+
+    //    // Choose options source: prefer EnglishOptions, otherwise ArabicOptions
+    //    var options = (quiz.ArabicOptions != null && quiz.ArabicOptions.Count >= 3)
+    //                    ? quiz.ArabicOptions.Take(3).ToList()
+    //                    : quiz.EnglishOptions.Take(3).ToList();
+
+    //    // If fewer than 3 options exist, pad with whatever is available
+    //    while (options.Count < 3)
+    //    {
+    //        options.Add(string.Empty);
+    //    }
+
+    //    Fill_Option1.Text = options[0];
+    //    Fill_Option2.Text = options[1];
+    //    Fill_Option3.Text = options[2];
+
+    //    // Reset visuals
+    //    Fill_Option1.BackgroundColor = Colors.White; Fill_Option1.TextColor = Colors.Black;
+    //    Fill_Option2.BackgroundColor = Colors.White; Fill_Option2.TextColor = Colors.Black;
+    //    Fill_Option3.BackgroundColor = Colors.White; Fill_Option3.TextColor = Colors.Black;
+    //}
+
+
+    //     private void FillIn_Option_Clicked(object sender, EventArgs e)
+    //{
+    //    var clickedButton = sender as Button;
+    //    if (clickedButton == null) return;
+
+    //    // reset other options
+    //    var opts = new List<Button> { Fill_Option1, Fill_Option2, Fill_Option3 };
+    //    foreach (var b in opts)
+    //    {
+    //        b.BackgroundColor = Colors.White;
+    //        b.TextColor = Colors.Black;
+    //    }
+
+    //    // highlight selected
+    //    clickedButton.BackgroundColor = Color.FromArgb("#1CB0F6");
+    //    clickedButton.TextColor = Colors.White;
+
+    //    // set selectedAnswer (we'll validate against quiz)
+    //    selectedAnswer = clickedButton.Text;
+
+    //    // enable Check button
+    //    CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
+    //}
+
+    private void FillIn_Option_Clicked(object sender, EventArgs e)
+    {
+        if (sender is not Button clickedButton)
+            return;
+
+        // reset all buttons
+        foreach (var child in Fill_OptionsFlex.Children)
         {
-            // Header label (optional dynamic)
-            var headerLabel = FillIn_Header.Children.OfType<Label>().FirstOrDefault();
-            if (headerLabel != null)
-                headerLabel.Text = $"Fill in the blank for '{quiz.EnglishLetter}'";
-
-            // Determine sentence text - prefer a FillSentence property if present, otherwise a default template
-            string sentence = null;
-            // try to use a 'FillSentence' property if your model has it
-            var prop = typeof(LetterQuizItem).GetProperty("FillSentence");
-            if (prop != null)
-            {
-                var val = prop.GetValue(quiz) as string;
-                if (!string.IsNullOrWhiteSpace(val))
-                    sentence = val;
-            }
-
-            // fallback: create a template sentence using EnglishLetter
-            if (string.IsNullOrWhiteSpace(sentence))
-            {
-                sentence = $"Select the missing word for '{quiz.EnglishLetter}': ___ {quiz.EnglishLetter}";
-            }
-
-            FillIn_SentenceLabel.Text = sentence;
-
-            // Choose options source: prefer EnglishOptions, otherwise ArabicOptions
-            var options = (quiz.ArabicOptions != null && quiz.ArabicOptions.Count >= 3)
-                            ? quiz.ArabicOptions.Take(3).ToList()
-                            : quiz.EnglishOptions.Take(3).ToList();
-
-            // If fewer than 3 options exist, pad with whatever is available
-            while (options.Count < 3)
-            {
-                options.Add(string.Empty);
-            }
-
-            Fill_Option1.Text = options[0];
-            Fill_Option2.Text = options[1];
-            Fill_Option3.Text = options[2];
-
-            // Reset visuals
-            Fill_Option1.BackgroundColor = Colors.White; Fill_Option1.TextColor = Colors.Black;
-            Fill_Option2.BackgroundColor = Colors.White; Fill_Option2.TextColor = Colors.Black;
-            Fill_Option3.BackgroundColor = Colors.White; Fill_Option3.TextColor = Colors.Black;
-        }
-
-             private void FillIn_Option_Clicked(object sender, EventArgs e)
-        {
-            var clickedButton = sender as Button;
-            if (clickedButton == null) return;
-
-            // reset other options
-            var opts = new List<Button> { Fill_Option1, Fill_Option2, Fill_Option3 };
-            foreach (var b in opts)
+            if (child is Button b)
             {
                 b.BackgroundColor = Colors.White;
                 b.TextColor = Colors.Black;
             }
-
-            // highlight selected
-            clickedButton.BackgroundColor = Color.FromArgb("#1CB0F6");
-            clickedButton.TextColor = Colors.White;
-
-            // set selectedAnswer (we'll validate against quiz)
-            selectedAnswer = clickedButton.Text;
-
-            // enable Check button
-            CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
         }
-        #endregion
 
-        #region =============================== Progress Update ==========================================
-             private void UpdateProgress()
+        // highlight selected button
+        clickedButton.BackgroundColor = Color.FromArgb("#1CB0F6");
+        clickedButton.TextColor = Colors.White;
+
+        // store selected answer
+        selectedAnswer = clickedButton.Text;
+
+        // enable "Check" button
+        CheckButton.BackgroundColor = Color.FromArgb("#58CC02");
+    }
+
+    private void FillIn_Activity(LetterQuizItem quiz)
+    {
+        // Header update
+        var headerLabel = FillIn_Header.Children.OfType<Label>().FirstOrDefault();
+        if (headerLabel != null)
+            headerLabel.Text = $"Fill in the blank for '{quiz.EnglishLetter}'";
+
+        // Direct default sentence (no FillSentence)
+        string sentence = $"Select the missing word for '{quiz.EnglishLetter}': ___ {quiz.EnglishLetter}";
+        FillIn_SentenceLabel.Text = sentence;
+
+        // Choose options
+        var options = (quiz.ArabicOptions != null && quiz.ArabicOptions.Count >= 3)
+                        ? quiz.ArabicOptions.Take(3).ToList()
+                        : quiz.EnglishOptions.Take(3).ToList();
+
+        while (options.Count < 3)
+            options.Add("");
+
+        // Clear old UI
+        Fill_OptionsFlex.Children.Clear();
+
+        // Create responsive option buttons
+        foreach (var opt in options)
+        {
+            var btn = new Button
+            {
+                Text = opt,
+                BackgroundColor = Colors.White,
+                BorderColor = Color.FromArgb("#5480C0"),
+                BorderWidth = 2,
+                TextColor = Colors.Black,
+                CornerRadius = 10,
+                Padding = new Thickness(14, 10),
+                Margin = new Thickness(5),
+                MinimumWidthRequest = 60,
+            };
+
+            btn.Clicked += FillIn_Option_Clicked;
+            Fill_OptionsFlex.Children.Add(btn);
+        }
+
+        selectedAnswer = null;
+    }
+    #endregion
+
+    #region =============================== Progress Update ==========================================
+    private void UpdateProgress()
             {
                 var category = SpecialLetterRepository.GetCategoryById(1);
                 int totalQuestions = category.QuizItems.Count;
@@ -944,7 +1009,7 @@ namespace QuranJourney.Pages.Courses.Beginner;
                 }
 
                 // Reset What Sound buttons (dynamic)
-                foreach (var child in What_Sound_OptionsGrid.Children)
+                foreach (var child in What_Sound_OptionsFlex.Children)
                 {
                     if (child is Button b)
                     {
